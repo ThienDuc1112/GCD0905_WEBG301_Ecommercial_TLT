@@ -1,8 +1,42 @@
-{% extends 'base.html.twig' %} {% block main %}
-<div class="main_dashboard">
-  <div class="main_dashboard_content">
-    <h1 class="heading_bg">Let's explore our exciting video world</h1>
-    <button class="dashboard_btn">Let discover</button>
-  </div>
-</div>
+{% extends 'base.html.twig' %}
+  {% block menu %} {% endblock %}
+{% block title %}Product index{% endblock %}
+
+{% block main %}
+  <h1>Product index</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Brand</th>
+      <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+      <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.Name }}</td>
+        <td>{{ product.Price }}</td>
+        <td>{{ product.Description }}</td>
+        <td>{{ product.Brand }}</td>
+        <td>
+          <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+          <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="6">no records found</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{{ path('app_product_new') }}">Create new</a>
 {% endblock %}
+{% block footer_links %} {% endblock %}
