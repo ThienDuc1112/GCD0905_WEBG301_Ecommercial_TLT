@@ -113,10 +113,13 @@
 }
 .main_dashboard_img_list{
     display: grid;
-    grid-template-columns: 35% 35%;
-    column-gap: 15%;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 3%;
     height: 80vh;
     justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 50px;
 }
 .img_list_col_1{
     background: url("../img/list_img_1.png");
@@ -124,6 +127,14 @@
 .img_list_col_2{
     background: url("../img/list_img_2.png");
 }
+.img_list_col_3{
+    background: url("../img/list_img_3.png");
+}
+.img_dashboard{
+    border-radius: 25px;
+    background-size: cover;
+}
+
 /* FOOTER */
 .footer_container {
     display: grid;
@@ -151,11 +162,10 @@ ul.footer_list_link li {
     background-blend-mode: color-dodge;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 101vh;
-    width: 90%;
+    height: 106vh;
+    width: 95%;
     margin: 0 auto;
     margin-top: 36px;
-    margin-bottom: 36px;
     border-radius: 25px;
 }
 .main_dashboard_content {
@@ -180,58 +190,29 @@ ul.footer_list_link li {
     border-radius: 20px;
 }
 .dashboard_btn:hover {
-    background-color: #2e333d;
+    background-color: #666970;
     cursor: pointer;
 }
 .main_dashboard_text_content{
     text-align: center;
+    margin: 42px 0px;
 }
-/* VIDEOLIST */
-.video_list_container {
-    text-align: center;
-}
-.video_list_choice_option{
-
-}
-.video_list_heading{
-    font-size: 30px;
+.main_dashboard_img_button{
+    padding: 15px;
+    font-size: 22px;
+    background-color: rgba(0, 0, 0, 0.34);
     color: #fff;
-    padding: 30px 0;
+    font-weight: 600;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    position: relative;
+    top: 44%;
+    left: 36%;
+    transition: 0.7s;
 }
-.video_list_button{
-    border: none;
-    font-size: 18px;
-    width: 10vw;
-    padding: 10px;
-    margin-bottom: 16px;
-    transition: 1s;
-}
-.video_list_button:hover{
-    background-color: #61dffb;
-}
-.video_list_heading_section{
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 40%;
-    justify-items: center;
-}
-.video_list_content_section{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 10vh;
-}
-.video_list_switch_section_list{
-    display: flex;
-    justify-content: center;
-}
-.video_list_li{
-    list-style-type: none;
-}
-.video_list_heading_content{
-    background-color: #2e333d;
-}
-.video_list_option_list{
-    padding: 10px;
-    font-size: 18px;
+.main_dashboard_img_button:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.51);
+    color: #000000;
+    border: 2px solid #000000;
 }
