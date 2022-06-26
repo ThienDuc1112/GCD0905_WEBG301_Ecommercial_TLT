@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %} {% block main %}
+
+{% block customstylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
+{% endblock %}
+{% block menu %}{% endblock %}
+{% block main %}
+    <form method="POST" action="#" class="form-signin">
+        <h1 class="">Please sign in</h1>
+        <label for="inputEmail" class="">Email address</label>
+        <input type="email" id="inputEmail" class="" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="">Password</label>
+        <input type="password" id="inputPassword" class="" placeholder="Password" required>
+        <div class="">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="" type="submit">Sign in</button>
+    </form>
+{% endblock %}
+{% block footer_links %}{% endblock %}
+
