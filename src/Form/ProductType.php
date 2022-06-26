@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Image;
 use App\Entity\Product;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +20,11 @@ class ProductType extends AbstractType
             ->add('Brand')
             ->add('Category')
             ->add('Images')
+            ->add('images_id', EntityType::class, [
+                'class' => Image::class,
+                'choice_label' => 'img1',
+                'mapped' => false,
+            ]);
         ;
     }
 
