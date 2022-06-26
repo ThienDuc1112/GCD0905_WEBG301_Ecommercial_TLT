@@ -168,4 +168,16 @@ class Product
 
         return $this;
     }
+
+    public function getimages_id(): ?Image
+    {
+        return $this->Images;
+    }
+
+    public function setimages_id(?Image $Images): self
+    {
+        $this->Images = $Images;
+
+        return $this;
+    }
 }

@@ -9,6 +9,7 @@
     <thead>
     <tr>
       <th>Id</th>
+      <th>Image</th>
       <th>Name</th>
       <th>Price</th>
       <th>Description</th>
@@ -20,6 +21,9 @@
     {% for product in products %}
       <tr>
         <td>{{ product.id }}</td>
+        <td>
+          <img style="height: 30px" src="{{ asset('assets/images/'~product.images_id ) }}" alt="">
+        </td>
         <td>{{ product.Name }}</td>
         <td>{{ product.Price }}</td>
         <td>{{ product.Description }}</td>
