@@ -216,3 +216,35 @@ ul.footer_list_link li {
     color: #000000;
     border: 2px solid #000000;
 }
+/* LOGIN */
+
+.login_section{
+    position: absolute;
+    top: 22%;
+    left: 40%;
+    display: grid;
+    row-gap: 8px;
+}
+.login_label{
+    font-size: 20px;
+}
+.login_input{
+    height: 38px;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    background: #f5f5f5;
+    color: inherit;
+}
+.login_btn{
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    background-color: #000;
+}
+.login_btn:hover{
+    background-color: #666970;
+    cursor: pointer;
+}
