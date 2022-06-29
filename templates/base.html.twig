@@ -15,92 +15,117 @@
 </head>
 
 <body>
-    {% block menu %}
-        <div class="menu_container">
-            <div class="menu_log_section">
-                <a class="btn_log" href="">Sign up</a>
-                <a class="btn_log" href="{{ path('login') }}">Sign in</a>
-            </div>
+{% block menu %}
+    <div class="menu_container">
+        <div class="menu_text_section">
+            <p class="text_label">🤡</p>
         </div>
-        <div class="menu_container_option">
-            <div class="menu_logo_section">
-                <h2 class="heading_double">TLT</h2>
-            </div>
-            <div class="menu_select_section">
-                <a class="text_option" href="">Home</a>
-                <a class="text_option" href="">Adidas</a>
-                <a class="text_option" href="">Nike</a>
-                <a class="text_option" href="">Men's</a>
-                <a class="text_option" href="">Women's</a>
-                <a class="text_option" href="">About Us</a>
-                <a class="text_option" href="">Contact Us</a>
-            </div>
-            <div class="menu_field_section">
-{#                <form#}
-{#                        method="POST"#}
-{#                        class="menu_searcing_form"#}
-{#                        action="#"#}
-{#                >#}
-{#                    <input#}
-{#                            class="menu_search_input"#}
-{#                            type="search"#}
-{#                            placeholder="video title"#}
-{#                            aria-label="Search video"#}
-{#                    />#}
-{#                </form>#}
-                <form action="{{ path('app_shop') }}" class="menu_searcing_form">
-                    <input type="search" name="search" class="menu_search_input" placeholder="video title" aria-label="Search video">
-                    <button class="search-btn" type="submit">
-                        <span>Search</span>
-                    </button>
-                </form>
-            </div>
-            <div class="menu_proceed_section">
-                <a class="btn_log" href=""><i class="fa-solid fa-cart-shopping trolley_icon"></i> Cart</a>
-            </div>
+        <div class="menu_log_section">
+            <a class="btn_log" href="{{ path('register') }}">Sign up</a> |
+            <a class="btn_log" href="{{ path('login') }}">Sign in</a>
         </div>
-    {% endblock %}
-    {% block main %}
-    {% endblock %}
-    {% block footer_links %}
-        <footer class="footer_container">
-            <div class="footer_col">
-                <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-            </div>
-            <div class="footer_col">
-                <h5 class="heading_penta">Features</h5>
-                <ul class="footer_list_link">
-                    <li><a class="footer_link" href="#">Live streaming</a></li>
-                    <li><a class="footer_link" href="#">Video player</a></li>
-                    <li><a class="footer_link" href="#">Monetization</a></li>
-                    <li><a class="footer_link" href="#">Hosting</a></li>
-                    <li><a class="footer_link" href="#">Privacy</a></li>
-                    <li><a class="footer_link" href="#">Analytics</a></li>
-                    <li><a class="footer_link" href="#">Speed test</a></li>
-                </ul>
-            </div>
-            <div class="footer_col">
-                <h5 class="heading_penta">Resources</h5>
-                <ul class="footer_list_link">
-                    <li><a class="footer_link" href="#">Help center</a></li>
-                    <li><a class="footer_link" href="#">Blog</a></li>
-                    <li><a class="footer_link" href="#">Guidelines</a></li>
-                    <li><a class="footer_link" href="#">Developers</a></li>
-                </ul>
-            </div>
-            <div class="footer_col">
-                <h5 class="heading_penta">About</h5>
-                <ul class="footer_list_link">
-                    <li><a class="footer_link" href="#">Team</a></li>
-                    <li><a class="footer_link" href="#">Contact</a></li>
-                    <li><a class="footer_link" href="#">Jobs</a></li>
-                    <li><a class="footer_link" href="#">Partners</a></li>
-                    <li><a class="footer_link" href="#">Terms</a></li>
-                </ul>
-            </div>
-        </footer>
-    {% endblock %}
+    </div>
+    <div class="menu_container_option">
+        <div class="menu_logo_section">
+            <h2 class="heading_double">TLT</h2>
+        </div>
+        <div class="menu_select_section">
+            <a class="text_option" href="">Home</a>
+            <a class="text_option" href="">Shop</a>
+            <a class="text_option" href="">Adidas</a>
+            <a class="text_option" href="">Nike</a>
+            <a class="text_option" href="">Men's</a>
+            <a class="text_option" href="">Women's</a>
+            <a class="text_option" href="">About Us</a>
+            <a class="text_option" href="">Contact Us</a>
+        </div>
+        <div class="menu_field_section">
+            {#        <form #}
 
+            {#            method="POST" #}
+
+            {#            class="menu_searcing_form" #}
+
+            {#            action="#" #}
+
+            {#        > #}
+
+            {#          <input #}
+
+            {#              class="menu_search_input" #}
+
+            {#              type="search" #}
+
+            {#              placeholder="video title" #}
+
+            {#              aria-label="Search video" #}
+
+            {#          /> #}
+
+            {#        </form> #}
+
+            <form action="{{ path('app_shop') }}" class="menu_searcing_form">
+
+                <input type="search" name="search" class="menu_search_input" placeholder="video title"
+                       aria-label="Search video">
+
+                <button class="search_btn" type="submit">
+                    <span class="text_search">Search</span>
+                </button>
+
+            </form>
+        </div>
+        <div class="menu_proceed_section">
+            <a class="btn_trolley" href="{{ path('login') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                          class="trolley_icon"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+{% block main %}
+{% endblock %}
+{% block footer_links %}
+    <footer class="footer_container">
+        <div class="footer_col">
+            <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+        </div>
+        <div class="footer_col">
+            <h5 class="heading_penta">Features</h5>
+            <ul class="footer_list_link">
+                <li><a class="footer_link" href="#">Live streaming</a></li>
+                <li><a class="footer_link" href="#">Video player</a></li>
+                <li><a class="footer_link" href="#">Monetization</a></li>
+                <li><a class="footer_link" href="#">Hosting</a></li>
+                <li><a class="footer_link" href="#">Privacy</a></li>
+                <li><a class="footer_link" href="#">Analytics</a></li>
+                <li><a class="footer_link" href="#">Speed test</a></li>
+            </ul>
+        </div>
+        <div class="footer_col">
+            <h5 class="heading_penta">Resources</h5>
+            <ul class="footer_list_link">
+                <li><a class="footer_link" href="#">Help center</a></li>
+                <li><a class="footer_link" href="#">Blog</a></li>
+                <li><a class="footer_link" href="#">Guidelines</a></li>
+                <li><a class="footer_link" href="#">Developers</a></li>
+            </ul>
+        </div>
+        <div class="footer_col">
+            <h5 class="heading_penta">About</h5>
+            <ul class="footer_list_link">
+                <li><a class="footer_link" href="#">Team</a></li>
+                <li><a class="footer_link" href="#">Contact</a></li>
+                <li><a class="footer_link" href="#">Jobs</a></li>
+                <li><a class="footer_link" href="#">Partners</a></li>
+                <li><a class="footer_link" href="#">Terms</a></li>
+            </ul>
+        </div>
+    </footer>
+{% endblock %}
 
 
 <script>

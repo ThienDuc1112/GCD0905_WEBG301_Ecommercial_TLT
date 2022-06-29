@@ -1,23 +1,16 @@
 {% extends 'base.html.twig' %}
-
-{% block customstylesheets %}
-    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
-{% endblock %}
 {% block menu %}{% endblock %}
 {% block main %}
-    <form method="POST" action="#" class="login_section">
-        <h1 class="heading_bg">Please sign in</h1>
-        <label for="inputEmail" class="login_label">Email address</label>
-        <input type="email" id="inputEmail" class="login_input" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="login_label">Password</label>
-        <input type="password" id="inputPassword" class="login_input" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="login_btn" type="submit">Sign in</button>
-    </form>
+    <div class="login_container">
+        <form action="" method="post">
+            <h3 class="heading_bg">Please sign in</h3>
+            <label for="inputEmail" class="login_label">Email address</label>
+            <input type="email" class="login_input" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="login_label">Password</label>
+            <input type="password" class="login_input" placeholder="Email address" required autofocus>
+            <button class="login_btn" type="submit">Sign in</button>
+            <a href="{{ path('register') }}" class="text_login">I'm new</a>
+        </form>
+    </div>
 {% endblock %}
 {% block footer_links %}{% endblock %}
-
