@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block customstylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
+{% block title %}Product shop{% endblock %}
+{% block main %}
+
+    <div class="container">
+        <div class="bar" name="sideBar">
+            <form action={{ path('app_shop') }} method="get">
+                Category:
+                <select name="category">
+                    <option value="Sneaker" {{ (selectedCat=="Sneaker") ? 'selected' }}> Sneaker</option>
+                    <option value="Office" {{ (selectedCat=="Office") ? 'selected' }}> Office</option>
+                    <option value="" {{ (selectedCat=="All") ? 'selected' }} >
+                        All
+                    </option>
+                </select><br>
+
+                Min Price: <input type="number" name="minPrice"><br>
+                Max Price: <input type="number" name="maxPrice"><br>
+                <input type="submit" value="Filter" class="btn btn-primary"> |
+                <a href="{{ path('app_product_index') }}"
+                   class="btn btn-primary">Reset</a>
+            </form>
+
+            <div class="row">
+                <div class="col-6"><h4>Product Listing</h4></div>
+                <div class="col-3 text-end"><p>Price: </p></div>
+                <div class="col-3">
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'Price', 'order': 'desc'})) }}"
+                       class="btn btn-primary btn-sm">Hi->Low</a>
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'Price', 'order': 'asc'})) }}"
+                       class="btn btn-primary btn-sm">Low->Hi</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content" name="listing">
+            {% for product in products %}
+                <div class="items">
+                    <img style="height: 230px" src="{{ asset('assets/images/'~product.images_id) }}" class="card-img-top" alt="">
+                    <div class="card_body">
+                        <h5 class="">{{product.Name}}</h5>
+                        <p class="card-text">{{product.Description}}</p>
+                        <p class="price">{{ product.Price}}</p>
+                        <p class="category">{{ product.Category}}</p>
+                    </div>
+                    <div class="action">
+                        <a href="#" class="view">View detail</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div style="display:flex;text-align:center;justify-content:center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% for i in range(1, pageNumber) %}
+                        {% set style = app.request.get('pageId')==i ? "active" : "" %}
+                        <li class="page-item ">
+                            <a class="page-link"
+                               href={{ path(app.request.attributes.get('_route'),
+                                app.request.query.all|merge({'pageId': i})) }}>{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+{% endblock %}

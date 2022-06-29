@@ -36,17 +36,23 @@
                 <a class="text_option" href="">Contact Us</a>
             </div>
             <div class="menu_field_section">
-                <form
-                        method="POST"
-                        class="menu_searcing_form"
-                        action="#"
-                >
-                    <input
-                            class="menu_search_input"
-                            type="search"
-                            placeholder="video title"
-                            aria-label="Search video"
-                    />
+{#                <form#}
+{#                        method="POST"#}
+{#                        class="menu_searcing_form"#}
+{#                        action="#"#}
+{#                >#}
+{#                    <input#}
+{#                            class="menu_search_input"#}
+{#                            type="search"#}
+{#                            placeholder="video title"#}
+{#                            aria-label="Search video"#}
+{#                    />#}
+{#                </form>#}
+                <form action="{{ path('app_shop') }}" class="menu_searcing_form">
+                    <input type="search" name="search" class="menu_search_input" placeholder="video title" aria-label="Search video">
+                    <button class="search-btn" type="submit">
+                        <span>Search</span>
+                    </button>
                 </form>
             </div>
             <div class="menu_proceed_section">
