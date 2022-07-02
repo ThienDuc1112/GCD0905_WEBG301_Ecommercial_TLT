@@ -2,7 +2,7 @@
 
 {% block title %}Product{% endblock %}
 
-{% block body %}
+{% block main %}
     <h1>Product</h1>
 
     <table class="table">
@@ -27,6 +27,11 @@
                 <th>Brand</th>
                 <td>{{ product.Brand }}</td>
             </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ product.Category }}</td>
+            </tr>
+
         </tbody>
     </table>
 

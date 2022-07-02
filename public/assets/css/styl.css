@@ -3,18 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
-.container{
+
+.container {
     margin: 50px 100px;
     display: grid;
     grid-template-columns: 20% 80%;
 }
-.content{
+
+.content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 15px;
     padding: 16px;
 }
-.items{
+
+.items {
     height: 45vh;
     border-radius: 8px;
     background-color: aliceblue;
@@ -28,57 +31,99 @@
 
 
 }
-img{
+
+img {
     height: 75%;
     padding-bottom: 15px;
 }
-.card_body{
+
+.card_body {
     margin-bottom: 20px;
 }
-.view{
+
+.view {
     padding: 10px 20px;
     text-decoration: none;
     background-color: #5eb5e0;
     color: #fff;
     margin-top: 20px;
 }
-.bar{
+
+.bar {
     font-size: 16px;
     background-color: cyan;
-    margin-left:30px;
+    margin-left: 30px;
     line-height: 30px;
     padding-top: 20px;
     padding-left: 10px;
     border: black solid 1px;
 }
-.row{
+
+.row {
     margin-top: 50px;
 }
-.pagination{
+
+.pagination {
     display: flex;
     text-align: center;
     padding-top: 30px;
     text-decoration: none;
 }
-.page-item{
+
+.page-item {
     list-style-type: none;
     padding: 3px;
     margin: 3px;
     background-color: royalblue;
 
 }
-.page-item a{
+
+.page-item a {
     text-decoration: none;
 }
-.search-bar{
+
+.search-bar {
     margin-top: 30px;
     padding: 0 100px;
 }
-.sort-button{
-    background-color: aqua;
+
+.sort-button {
+    background-color: #4CAF50;
     color: white;
-    padding: 40px;
+    padding: 13px 25px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    margin-left: 50px;
+}
+
+.sort-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 21%;
+    margin-top: 1%;
+    padding-top: 30px;
+}
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-list a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-list a:hover {
+    background-color: #f1f1f1
+}
+.sort-dropdown:hover .dropdown-list {
+    display: block;
 }

@@ -46,7 +46,7 @@ class Product
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="categories")
+     * @ORM\Column(type="string", length=100)
      */
     private $Category;
 
@@ -112,6 +112,17 @@ class Product
 
         return $this;
     }
+    public function getCategory(): ?string
+    {
+        return $this->Category;
+    }
+
+    public function setCategory(string $Category): self
+    {
+        $this->Category = $Category;
+
+        return $this;
+    }
 
     /**
      * @return Collection<int, DetailOrder>
@@ -143,19 +154,6 @@ class Product
         return $this;
     }
 
-
-
-    public function getCategory(): ?Category
-    {
-        return $this->Category;
-    }
-
-    public function setCategory(?Category $Category): self
-    {
-        $this->Category = $Category;
-
-        return $this;
-    }
 
     public function getImages(): ?Image
     {

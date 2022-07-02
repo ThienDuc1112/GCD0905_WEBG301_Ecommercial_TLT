@@ -1,53 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block customstylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styl.css') }}">
 {% endblock %}
 {% block title %}Product shop{% endblock %}
 {% block main %}
-
+    <div class="sort-dropdown">
+        <button class="sort-button">Sort</button>
+        <div class="dropdown-list">
+            <a href="{{ path(app.request.attributes.get('_route'),
+                app.request.query.all|merge({'sort': 'Price', 'order': 'desc'})) }}">Sort by price: High to Low</a>
+            <a href="{{ path(app.request.attributes.get('_route'),
+                app.request.query.all|merge({'sort': 'Price', 'order': 'asc'})) }}">Sort by price: Low To High</a>
+            <a href="{{ path(app.request.attributes.get('_route'),
+                app.request.query.all|merge({'sort': 'id', 'order': 'desc'})) }}">Sort by newness</a>
+        </div>
+    </div>
     <div class="container">
         <div class="bar" name="sideBar">
             <form action={{ path('app_shop') }} method="get">
                 Category:
-                <select name="category">
+                <select name="cat">
                     <option value="Sneaker" {{ (selectedCat=="Sneaker") ? 'selected' }}> Sneaker</option>
-                    <option value="Office" {{ (selectedCat=="Office") ? 'selected' }}> Office</option>
+                    <option value="Oxford" {{ (selectedCat=="Oxford") ? 'selected' }}> Oxford</option>
                     <option value="" {{ (selectedCat=="All") ? 'selected' }} >
                         All
                     </option>
+                </select> <br>
+                    Brand:
+                    <select name="brand">
+                        <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>
+                        <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>
                 </select><br>
 
                 Min Price: <input type="number" name="minPrice"><br>
                 Max Price: <input type="number" name="maxPrice"><br>
+{#                <div class="row">#}
+{#                    {% for item in listofproduct %}#}
+{#                    <div class="col-6"><h4> Brand List</h4>#}
+{#                        <a href="{{ path('app_shop2',{'brandName': item.brand})Nike }}"#}
+{#                    </div>#}
+{#                </div>#}
+
                 <input type="submit" value="Filter" class="btn btn-primary"> |
-                <a href="{{ path('app_product_index') }}"
+                <a href="{{ path('app_shop') }}"
                    class="btn btn-primary">Reset</a>
             </form>
 
-            <div class="row">
-                <div class="col-6"><h4>Product Listing</h4></div>
-                <div class="col-3 text-end"><p>Price: </p></div>
-                <div class="col-3">
-                    <a href="{{ path(app.request.attributes.get('_route'),
-                        app.request.query.all|merge({'sort': 'Price', 'order': 'desc'})) }}"
-                       class="btn btn-primary btn-sm">Hi->Low</a>
-                    <a href="{{ path(app.request.attributes.get('_route'),
-                        app.request.query.all|merge({'sort': 'Price', 'order': 'asc'})) }}"
-                       class="btn btn-primary btn-sm">Low->Hi</a>
-                </div>
-            </div>
+
         </div>
 
         <div class="content" name="listing">
             {% for product in products %}
                 <div class="items">
-                    <img style="height: 230px" src="{{ asset('assets/images/'~product.images_id) }}" class="card-img-top" alt="">
+                    <img style="height: 230px" src="{{ asset('assets/images/'~product.images_id) }}"
+                         class="card-img-top" alt="">
                     <div class="card_body">
-                        <h5 class="">{{product.Name}}</h5>
-                        <p class="card-text">{{product.Description}}</p>
-                        <p class="price">{{ product.Price}}</p>
-                        <p class="category">{{ product.Category}}</p>
+                        <h5 class="">{{ product.Name }}</h5>
+                        <p class="card-text">{{ product.Description }}</p>
+                        <p class="price">{{ product.Price }}</p>
+                        <p class="category">{{ product.Category }}</p>
                     </div>
                     <div class="action">
                         <a href="#" class="view">View detail</a>

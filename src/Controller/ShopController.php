@@ -17,11 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShopController extends AbstractController
 {
     /**
-     * @Route("/page/{pageId}", name="app_shop", methods={"GET"})")
+     * @Route("/page/{pageId}/{brandName}", name="app_shop", methods={"GET"})")
      */
     public function index(ProductRepository $productRepository, Request $request, $pageId = 1): Response
     {
-        $selectCategory = $request->query->get('category');
+        $selectBrand = $productRepository->findAll();
+        $selectCategory = $request->query->get('cat');
         $minPrice = $request->query->get('minPrice');
         $maxPrice = $request->query->get('maxPrice');
         $sortBy = $request->query->get('sort');
@@ -54,7 +55,9 @@ class ShopController extends AbstractController
         return $this->render('front/shop.html.twig', [
             'products'=>$filteredList,
             'selectedCat' => $selectCategory ?: '',
-            'pageNumber' => ceil($numOfItems/$itemsPerPage)
+            'listofproduct'=>$selectBrand,
+            'pageNumber' => ceil($numOfItems/$itemsPerPage),
+
 
         ]);
     }
