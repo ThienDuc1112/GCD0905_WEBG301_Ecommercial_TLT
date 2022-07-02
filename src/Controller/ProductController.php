@@ -46,6 +46,30 @@ class ProductController extends AbstractController
         ]);
     }
 
+//    Tìm ra sản phẩm có brand là adidas
+    /**
+     * @Route("/adidas", name="adidas")
+     */
+    public function getBrandAdidas(ProductRepository $productRepository) {
+
+        $products = $productRepository->findBy(['Brand' => 'Adidas']);
+        return $this->render('product/adidas.html.twig', [
+            'products' => $products
+        ]);
+    }
+
+//    Tìm ra sản phẩm có brand là Nike
+    /**
+     * @Route("/nike", name="nike")
+     */
+    public function getBrandNike(ProductRepository $productRepository) {
+
+        $products = $productRepository->findBy(['Brand' => 'Nike']);
+        return $this->render('product/nike.html.twig', [
+            'products' => $products
+        ]);
+    }
+
     /**
      * @Route("/{id}", name="app_product_show", methods={"GET"})
      */
@@ -87,4 +111,6 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }
