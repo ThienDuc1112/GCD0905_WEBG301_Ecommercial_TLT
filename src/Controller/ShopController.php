@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShopController extends AbstractController
 {
     /**
-     * @Route("/page/{pageId}/{brandName}", name="app_shop", methods={"GET"})")
+     * @Route("/page/{pageId}/", name="app_shop", methods={"GET"})")
      */
     public function index(ProductRepository $productRepository, Request $request, $pageId = 1): Response
     {

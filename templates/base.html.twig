@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="icon" href="https://www.freepnglogos.com/uploads/shopee-logo/shopee-bag-logo-free-transparent-icon-17.png" type="image/x-icon" />
 
     {% block customstylesheets %}{% endblock %}
 
-    <title>{% block title %}Symfony 4 course app - video sharing service {% endblock %}</title>
+    <title>{% block title %}Authentic Shoes {% endblock %}</title>
 
 </head>
 
@@ -30,7 +31,7 @@
             <h2 class="heading_double">TLT</h2>
         </div>
         <div class="menu_select_section">
-            <a class="text_option" href="">Home</a>
+            <a class="text_option" href="{{ path('main_page') }}">Home</a>
             <a class="text_option" href="">Shop</a>
             <a class="text_option" href="">Adidas</a>
             <a class="text_option" href="">Nike</a>
