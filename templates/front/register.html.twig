@@ -2,36 +2,52 @@
 {% block menu %}{% endblock %}
 {% block main %}
     <div class="login_container">
-            <form method="POST" action="#" class="needs-validation" novalidate>
-                <h3 class="heading_bg">Please sign up</h3>
-                        <label for="firstName" class="login_label">First name</label>
-                        <input type="text" class="login_input" id="firstName" placeholder="Enter your first name" value="" required>
-                        <p class="invalid_feedback">
-                            Valid first name is required.
-                        </p>
-                        <label for="lastName" class="login_label">Last name</label>
-                        <input type="text" class="login_input" id="lastName" placeholder="Enter your last name" value="" required>
-                        <p class="invalid_feedback">
-                            Valid last name is required.
-                        </p>
-                    <label for="email" class="login_label">Email</label>
-                    <input type="email" class="login_input" id="email" placeholder="Eg: Truongnvgcd201597@fpt.edu.vn" required>
-                    <div class="invalid_feedback">
-                        Please enter a valid email address for shipping updates.
-                    </div>
-                    <label for="password" class="login_label">Password</label>
-                    <input type="password" class="login_input" id="password" placeholder="Enter your password" required>
-                    <p class="invalid_feedback">
-                        Please enter a valid password (min 6 characters).
-                    </p>
-                    <label for="confirm_password" class="login_label">Confirm Password</label>
-                    <input type="password" class="login_input" id="confirm_password" placeholder="Re-enter your password" required>
-                    <p class="invalid_feedback">
-                        Please enter a valid password confirmation (min 6 characters).
-                    </p>
+        <form method="POST" action="#" class="needs-validation" novalidate>
+            <h3 class="heading_bg">Please sign up</h3>
+            <div class="form-group">
+                <label for="firstName" class="login_label">First name</label>
+                <input type="text" class="login_input" id="firstName" placeholder="Enter your first name" value=""
+                       required>
+                <p class="invalid_feedback">
+                    Valid first name is required.
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="login_label">Last name</label>
+                <input type="text" class="login_input" id="lastName" placeholder="Enter your last name" value=""
+                       required>
+                <p class="invalid_feedback">
+                    Valid last name is required.
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="email" class="login_label">Email</label>
+                <input type="email" class="login_input" id="email" placeholder="Eg: Truongnvgcd201597@fpt.edu.vn"
+                       required>
+                <div class="invalid_feedback">
+                    Please enter a valid email address for shipping updates.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="login_label">Password</label>
+                <input type="password" class="login_input" id="password" placeholder="Enter your password" required>
+                <p class="invalid_feedback">
+                    Please enter a valid password (min 6 characters).
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password" class="login_label">Confirm Password</label>
+                <input type="password" class="login_input" id="confirm_password" placeholder="Re-enter your password"
+                       required>
+                <p class="invalid_feedback">
+                    Please enter a valid password confirmation (min 6 characters).
+                </p>
+            </div>
 
-                <a href="" role="button"><button class="login_btn" type="submit">Register</button></a>
-            </form>
+            <a href="" role="button">
+                <button class="login_btn" type="submit">Register</button>
+            </a>
+        </form>
     </div>
 {% endblock %}
 {% block footer_links %}{% endblock %}

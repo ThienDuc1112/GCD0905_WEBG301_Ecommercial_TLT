@@ -10,7 +10,7 @@
             <div class="product-img">
                 <div class="img-display">
                     <div class="img-showcase">
-                        <img src="{{ asset('assets/images/'~product.Picture) }}">
+                        <img class="img-showcase_main-img" src="{{ asset('assets/images/'~product.Picture) }}">
                         <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
                         <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
                         <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
@@ -41,7 +41,15 @@
             </div>
             <div class="product-content">
                 <h2 class="product-title">{{ product.Name }}</h2>
-                <a class="product-link" href="#">Visit {{ product.Brand }} store</a>
+
+                {# Điều hướng theo tên của brand #}
+                {% set brand = product.Brand %}
+                {% if brand == 'Nike'%}
+                    <a class="product-link" href="{{ path('nike')}}">Visit {{ product.Brand }} store</a>
+                {% endif %}
+                {% if brand == 'Adidas'%}
+                    <a class="product-link" href="{{ path('adidas')}}">Visit {{ product.Brand }} store</a>
+                {% endif %}
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>

@@ -131,6 +131,11 @@ img {
     min-width: 100%;
 }
 
+.img-showcase_main-img {
+    min-width: 500px;
+    height: 400px;
+}
+
 .img-select {
     display: flex;
 }
@@ -273,7 +278,7 @@ img {
 
     }
     .product-content{
-        padding-top: 60x;
+        padding-top: 60px;
         padding-left: 30px;
     }
     

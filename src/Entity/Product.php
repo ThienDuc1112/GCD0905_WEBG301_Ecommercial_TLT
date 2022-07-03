@@ -142,6 +142,18 @@ class Product
         return $this;
     }
 
+    public function getimages_id(): ?string
+    {
+        return $this->Picture;
+    }
+
+    public function setimages_id(string $Picture): self
+    {
+        $this->Picture = $Picture;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, DetailOrder>
      */

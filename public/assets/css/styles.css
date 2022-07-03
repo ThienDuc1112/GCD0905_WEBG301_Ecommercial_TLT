@@ -34,6 +34,7 @@
   color: inherit;
   padding: 8px 48px;
   cursor: text;
+  outline-color: #999;
 }
 .menu_search_button {
   padding: 8px;
@@ -315,4 +316,13 @@ ul.footer_list_link li {
 }
 .invalid_feedback{
   display: none;
+}
+
+.right-content {
+  margin-left: 300px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
