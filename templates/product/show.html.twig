@@ -1,43 +1,113 @@
 {% extends 'base.html.twig' %}
-
+{% block customstylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/dash.css') }}">
+{% endblock %}
 {% block title %}Product{% endblock %}
 
 {% block main %}
-    <h1>Product</h1>
+    <div class="card-wrapper">
+        <div class="card">
+            <div class="product-img">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        <img src="{{ asset('assets/images/'~product.Picture) }}">
+                        <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
+                        <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
+                        <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
+                    </div>
+                </div>
+                <div class="img-select">
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content">
+                <h2 class="product-title">{{ product.Name }}</h2>
+                <a class="product-link" href="#">Visit {{ product.Brand }} store</a>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>4.8(32)</span>
+                </div>
+                <div class="product-price">
+                    <p class="old-price">Old Price: <span>${{ product.Price }}
+                    <p class="new-price">New Price: <span>${{ product.Price - 5 }}
+                </div>
+                <div class="product-detail">
+                    <h2> About this product:</h2>
+                    <p>{{ product.Description }}</p>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i>Available: <span>in the store</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i>Category: <span>{{ product.Category }}</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i>Shipping Area: <span>in Viet Nam</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i>Shipping Fee:<span>depend on area</span></li>
+                    </ul>
+                </div>
+                <div class="purchase-infor">
+                    Number of item:<input type="number" min="0" value="1">
+                    <button type="button" class="button">
+                        Add to cart <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{#    <h1>Product</h1>#}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ product.Name }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.Price }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.Description }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ product.Brand }}</td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td>{{ product.Category }}</td>
-            </tr>
+{#    <table class="table">#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ product.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <td>{{ product.Name }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Price</th>#}
+{#                <td>{{ product.Price }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Description</th>#}
+{#                <td>{{ product.Description }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Brand</th>#}
+{#                <td>{{ product.Brand }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Category</th>#}
+{#                <td>{{ product.Category }}</td>#}
+{#            </tr>#}
 
-        </tbody>
-    </table>
+{#        </tbody>#}
+{#    </table>#}
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+{#    <a href="{{ path('app_product_index') }}">back to list</a>#}
 
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+{#    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>#}
 
-    {{ include('product/_delete_form.html.twig') }}
+{#    {{ include('product/_delete_form.html.twig') }}#}
 {% endblock %}

@@ -53,7 +53,7 @@
         <div class="content" name="listing">
             {% for product in products %}
                 <div class="items">
-                    <img style="height: 230px" src="{{ asset('assets/images/'~product.images_id) }}"
+                    <img style="height: 230px" src="{{ asset('assets/images/'~product.Picture) }}"
                          class="card-img-top" alt="">
                     <div class="card_body">
                         <h5 class="">{{ product.Name }}</h5>
@@ -62,7 +62,7 @@
                         <p class="category">{{ product.Category }}</p>
                     </div>
                     <div class="action">
-                        <a href="#" class="view">View detail</a>
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}" class="view">View detail</a>
                     </div>
                 </div>
             {% endfor %}

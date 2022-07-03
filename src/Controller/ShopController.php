@@ -21,7 +21,7 @@ class ShopController extends AbstractController
      */
     public function index(ProductRepository $productRepository, Request $request, $pageId = 1): Response
     {
-        $selectBrand = $productRepository->findAll();
+        $selectBrand = $request->query->get('brand');
         $selectCategory = $request->query->get('cat');
         $minPrice = $request->query->get('minPrice');
         $maxPrice = $request->query->get('maxPrice');
@@ -41,6 +41,9 @@ class ShopController extends AbstractController
         if (!is_null($selectCategory)) {
             $criteria->andWhere($expressionBuilder->eq('Category', $selectCategory));
         }
+        if (!is_null($selectBrand)) {
+            $criteria->andWhere($expressionBuilder->eq('Brand', $selectBrand));
+        }
         if (!empty($sortBy)) {
             $criteria->orderBy([$sortBy => ($orderBy == 'asc') ? Criteria::ASC : Criteria::DESC]);
         }
@@ -55,10 +58,21 @@ class ShopController extends AbstractController
         return $this->render('front/shop.html.twig', [
             'products'=>$filteredList,
             'selectedCat' => $selectCategory ?: '',
-            'listofproduct'=>$selectBrand,
+            'selectedBrand'=>$selectBrand ?: '',
             'pageNumber' => ceil($numOfItems/$itemsPerPage),
 
 
         ]);
+    }
+
+    /**
+     * @Route("/productDetail/{productID}", name="product_detail", methods={"GET"})
+     */
+    public function productDetail(Product $product): Response
+    {
+        return $this->render('product/detail_product.html.twig',[
+            'product'=>$product,
+        ]);
+
     }
 }
