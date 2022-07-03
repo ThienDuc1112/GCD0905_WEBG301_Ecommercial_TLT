@@ -7,30 +7,30 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ order.id }}</td>
-            </tr>
-            <tr>
-                <th>Delivery_address</th>
-                <td>{{ order.DeliveryAddress }}</td>
-            </tr>
-            <tr>
-                <th>Order_date</th>
-                <td>{{ order.OrderDate ? order.OrderDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Order_phone</th>
-                <td>{{ order.OrderPhone }}</td>
-            </tr>
-            <tr>
-                <th>Name_customer</th>
-                <td>{{ order.NameCustomer }}</td>
-            </tr>
-            <tr>
-                <th>Order_status</th>
-                <td>{{ order.OrderStatus }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ order.id }}</td>
+        </tr>
+        <tr>
+            <th>Delivery_address</th>
+            <td>{{ order.DeliveryAddress }}</td>
+        </tr>
+        <tr>
+            <th>Order_date</th>
+            <td>{{ order.OrderDate ? order.OrderDate|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Order_phone</th>
+            <td>{{ order.OrderPhone }}</td>
+        </tr>
+        <tr>
+            <th>Name_customer</th>
+            <td>{{ order.NameCustomer }}</td>
+        </tr>
+        <tr>
+            <th>Order_status</th>
+            <td>{{ order.OrderStatus }}</td>
+        </tr>
         </tbody>
     </table>
 

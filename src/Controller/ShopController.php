@@ -47,8 +47,8 @@ class ShopController extends AbstractController
         if (!empty($sortBy)) {
             $criteria->orderBy([$sortBy => ($orderBy == 'asc') ? Criteria::ASC : Criteria::DESC]);
         }
-        if(!empty($search)){
-            $criteria->andwhere($expressionBuilder->contains('Name',$search));
+        if (!empty($search)) {
+            $criteria->andwhere($expressionBuilder->contains('Name', $search));
         }
         $filteredList = $productRepository->matching($criteria);
         $numOfItems = $filteredList->count();   // total number of items satisfied above query
@@ -56,10 +56,10 @@ class ShopController extends AbstractController
         $filteredList = $filteredList->slice($itemsPerPage * ($pageId - 1), $itemsPerPage);
 
         return $this->render('front/shop.html.twig', [
-            'products'=>$filteredList,
+            'products' => $filteredList,
             'selectedCat' => $selectCategory ?: '',
-            'selectedBrand'=>$selectBrand ?: '',
-            'pageNumber' => ceil($numOfItems/$itemsPerPage),
+            'selectedBrand' => $selectBrand ?: '',
+            'pageNumber' => ceil($numOfItems / $itemsPerPage),
 
 
         ]);
@@ -70,8 +70,8 @@ class ShopController extends AbstractController
      */
     public function productDetail(Product $product): Response
     {
-        return $this->render('product/detail_product.html.twig',[
-            'product'=>$product,
+        return $this->render('product/detail_product.html.twig', [
+            'product' => $product,
         ]);
 
     }

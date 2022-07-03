@@ -16,8 +16,7 @@ class OrderType extends AbstractType
             ->add('Order_date')
             ->add('Order_phone')
             ->add('Name_customer')
-            ->add('Order_status')
-        ;
+            ->add('Order_status');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

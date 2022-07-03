@@ -44,12 +44,12 @@ class ProductController extends AbstractController
                 try {
                     $file->move(
                         $this->getParameter('images_directory'),
-                        $form->get('Brand')->getData().'.jpg'
+                        $form->get('Brand')->getData() . '.jpg'
                     );
                 } catch (FileException $e) {
-                print($e);
+                    print($e);
                 }
-                $product->setPicture($form->get('Brand')->getData().'.jpg');
+                $product->setPicture($form->get('Brand')->getData() . '.jpg');
             }
             //------------------Image Upload--------------//
 
@@ -65,10 +65,12 @@ class ProductController extends AbstractController
     }
 
 //    Tìm ra sản phẩm có brand là adidas
+
     /**
      * @Route("/adidas", name="adidas")
      */
-    public function getBrandAdidas(ProductRepository $productRepository) {
+    public function getBrandAdidas(ProductRepository $productRepository)
+    {
 
         $products = $productRepository->findBy(['Brand' => 'Adidas']);
         return $this->render('product/adidas.html.twig', [
@@ -77,10 +79,12 @@ class ProductController extends AbstractController
     }
 
 //    Tìm ra sản phẩm có brand là Nike
+
     /**
      * @Route("/nike", name="nike")
      */
-    public function getBrandNike(ProductRepository $productRepository) {
+    public function getBrandNike(ProductRepository $productRepository)
+    {
 
         $products = $productRepository->findBy(['Brand' => 'Nike']);
         return $this->render('product/nike.html.twig', [
@@ -123,7 +127,7 @@ class ProductController extends AbstractController
      */
     public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product, true);
         }
 

@@ -119,6 +119,7 @@ class Product
 
         return $this;
     }
+
     public function getCategory(): ?string
     {
         return $this->Category;
@@ -130,6 +131,7 @@ class Product
 
         return $this;
     }
+
     public function getPicture(): ?string
     {
         return $this->Picture;
@@ -214,7 +216,8 @@ class Product
         return $this;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return strval($this->id);
     }
 

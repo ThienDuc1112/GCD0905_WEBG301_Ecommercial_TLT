@@ -27,20 +27,20 @@
                         All
                     </option>
                 </select> <br>
-                    Brand:
-                    <select name="brand">
-                        <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>
-                        <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>
+                Brand:
+                <select name="brand">
+                    <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>
+                    <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>
                 </select><br>
 
                 Min Price: <input type="number" name="minPrice"><br>
                 Max Price: <input type="number" name="maxPrice"><br>
-{#                <div class="row">#}
-{#                    {% for item in listofproduct %}#}
-{#                    <div class="col-6"><h4> Brand List</h4>#}
-{#                        <a href="{{ path('app_shop2',{'brandName': item.brand})Nike }}"#}
-{#                    </div>#}
-{#                </div>#}
+                {#                <div class="row"> #}
+                {#                    {% for item in listofproduct %} #}
+                {#                    <div class="col-6"><h4> Brand List</h4> #}
+                {#                        <a href="{{ path('app_shop2',{'brandName': item.brand})Nike }}" #}
+                {#                    </div> #}
+                {#                </div> #}
 
                 <input type="submit" value="Filter" class="btn btn-primary"> |
                 <a href="{{ path('app_shop') }}"

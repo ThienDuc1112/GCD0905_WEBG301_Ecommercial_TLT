@@ -16,6 +16,7 @@ class FrontController extends AbstractController
     {
         return $this->render('front/index.html.twig');
     }
+
     /**
      * @Route("/login", name="login")
      */
@@ -23,6 +24,7 @@ class FrontController extends AbstractController
     {
         return $this->render('front/login.html.twig');
     }
+
     /**
      * @Route("/register", name="register")
      */
@@ -30,8 +32,6 @@ class FrontController extends AbstractController
     {
         return $this->render('front/register.html.twig');
     }
-
-
 
 
 }

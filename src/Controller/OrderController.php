@@ -81,7 +81,7 @@ class OrderController extends AbstractController
      */
     public function delete(Request $request, Order $order, OrderRepository $orderRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$order->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $order->getId(), $request->request->get('_token'))) {
             $orderRepository->remove($order, true);
         }
 

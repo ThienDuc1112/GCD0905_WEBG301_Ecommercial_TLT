@@ -124,6 +124,7 @@ img {
 .dropdown-list a:hover {
     background-color: #f1f1f1
 }
+
 .sort-dropdown:hover .dropdown-list {
     display: block;
 }
