@@ -20,81 +20,56 @@ class Image
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Img1;
+    private $title;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $Img2;
+    private $image;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="images")
      */
-    private $Img3;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Igm4;
-
-
+    private $product;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getImg1(): ?string
+    public function getTitle(): ?string
     {
-        return $this->Img1;
+        return $this->title;
     }
 
-    public function setImg1(string $Img1): self
+    public function setTitle(string $title): self
     {
-        $this->Img1 = $Img1;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getImg2(): ?string
-    {
-        return $this->Img2;
-    }
+//    public function getImage(): ?string
+//    {
+//        return $this->image;
+//    }
 
-    public function setImg2(?string $Img2): self
+    public function setImage(?string $image): self
     {
-        $this->Img2 = $Img2;
+        $this->image = $image;
 
         return $this;
     }
 
-    public function getImg3(): ?string
+    public function getProduct(): ?Product
     {
-        return $this->Img3;
+        return $this->product;
     }
 
-    public function setImg3(?string $Img3): self
+    public function setProduct(?Product $product): self
     {
-        $this->Img3 = $Img3;
+        $this->product = $product;
 
         return $this;
     }
-
-    public function getIgm4(): ?string
-    {
-        return $this->Igm4;
-    }
-
-    public function setIgm4(?string $Igm4): self
-    {
-        $this->Igm4 = $Igm4;
-
-        return $this;
-    }
-
-    public function __toString() {
-        return $this->Img1;
-    }
-
-
 }

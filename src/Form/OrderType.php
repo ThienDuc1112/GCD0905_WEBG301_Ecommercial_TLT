@@ -2,27 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Image;
+use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ImageType extends AbstractType
+class OrderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Img1')
-            ->add('Img2')
-            ->add('Img3')
-            ->add('Igm4')
+            ->add('Delivery_address')
+            ->add('Order_date')
+            ->add('Order_phone')
+            ->add('Name_customer')
+            ->add('Order_status')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Image::class,
+            'data_class' => Order::class,
         ]);
     }
 }

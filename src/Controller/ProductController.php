@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
  * @Route("/product")
@@ -35,6 +36,23 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //------------------Image Upload--------------//
+
+            $file = $form['Picture']->getData();
+            if ($file) {
+                try {
+                    $file->move(
+                        $this->getParameter('images_directory'),
+                        $form->get('Brand')->getData().'.jpg'
+                    );
+                } catch (FileException $e) {
+                print($e);
+                }
+                $product->setPicture($form->get('Brand')->getData().'.jpg');
+            }
+            //------------------Image Upload--------------//
+
             $productRepository->add($product, true);
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
@@ -43,6 +61,30 @@ class ProductController extends AbstractController
         return $this->renderForm('product/new.html.twig', [
             'product' => $product,
             'form' => $form,
+        ]);
+    }
+
+//    Tìm ra sản phẩm có brand là adidas
+    /**
+     * @Route("/adidas", name="adidas")
+     */
+    public function getBrandAdidas(ProductRepository $productRepository) {
+
+        $products = $productRepository->findBy(['Brand' => 'Adidas']);
+        return $this->render('product/adidas.html.twig', [
+            'products' => $products
+        ]);
+    }
+
+//    Tìm ra sản phẩm có brand là Nike
+    /**
+     * @Route("/nike", name="nike")
+     */
+    public function getBrandNike(ProductRepository $productRepository) {
+
+        $products = $productRepository->findBy(['Brand' => 'Nike']);
+        return $this->render('product/nike.html.twig', [
+            'products' => $products
         ]);
     }
 
@@ -87,4 +129,5 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

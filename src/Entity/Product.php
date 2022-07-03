@@ -51,13 +51,20 @@ class Product
     private $Category;
 
     /**
-     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="product")
      */
-    private $Images;
+    private $images;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Picture;
+
 
     public function __construct()
     {
         $this->detailOrders = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -123,6 +130,17 @@ class Product
 
         return $this;
     }
+    public function getPicture(): ?string
+    {
+        return $this->Picture;
+    }
+
+    public function setPicture(string $Picture): self
+    {
+        $this->Picture = $Picture;
+
+        return $this;
+    }
 
     /**
      * @return Collection<int, DetailOrder>
@@ -154,28 +172,38 @@ class Product
         return $this;
     }
 
-
-    public function getImages(): ?Image
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
     {
-        return $this->Images;
+        return $this->images;
     }
 
-    public function setImages(?Image $Images): self
+    public function addImage(Image $image): self
     {
-        $this->Images = $Images;
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setProduct($this);
+        }
 
         return $this;
     }
 
-    public function getimages_id(): ?Image
+    public function removeImage(Image $image): self
     {
-        return $this->Images;
-    }
-
-    public function setimages_id(?Image $Images): self
-    {
-        $this->Images = $Images;
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getProduct() === $this) {
+                $image->setProduct(null);
+            }
+        }
 
         return $this;
     }
+
+    public function __toString(){
+        return strval($this->id);
+    }
+
 }
