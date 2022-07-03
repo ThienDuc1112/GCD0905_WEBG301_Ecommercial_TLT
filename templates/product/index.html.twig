@@ -1,15 +1,11 @@
 
 {% extends 'admin/base.html.twig' %}
-  {% block menu %} {% endblock %}
-
-{% extends 'base.html.twig' %}
+{% block menu %} {% endblock %}
 
 {% block title %}Product index{% endblock %}
 
-{% block main %}
-  {{ parent() }}
   {% block rightContent %}
-  <div class="right-container">
+    <h1>Product index</h1>
   <table class="table">
     <thead>
     <tr>
@@ -46,7 +42,7 @@
     {% endfor %}
     </tbody>
   </table>
-  <a href="{{ path('app_product_new') }}">Create new</a>
-  </div>
   {% endblock %}
-{% endblock %}
+
+
+

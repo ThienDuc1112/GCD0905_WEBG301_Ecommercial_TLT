@@ -316,3 +316,14 @@ ul.footer_list_link li {
 .invalid_feedback{
   display: none;
 }
+
+.right-content {
+  margin-left: 300px;
+  min-width: 900px;
+}
+
+.footer-contact-icon  {
+  width: 26px;
+  font-size: 22px;
+  color : rgba(0,0,0,0.6)
+}
