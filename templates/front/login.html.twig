@@ -4,12 +4,12 @@
     <div class="login_container">
         <form action="" method="post">
             <h3 class="heading_bg">Please sign in</h3>
-            <label for="inputEmail" class="login_label">Email address</label>
-            <input type="email" class="login_input" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="login_label">Password</label>
-            <input type="password" class="login_input" placeholder="Email address" required autofocus>
+            <label for="inputEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Email address" required autofocus>
             <button class="login_btn" type="submit">Sign in</button>
-            <a href="{{ path('register') }}" class="text_login">I'm new</a>
+            <a href="{{ path('register') }}" class="text_route_form">I'm new</a>
         </form>
     </div>
 {% endblock %}
