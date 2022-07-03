@@ -1,58 +1,61 @@
 {% extends 'base.html.twig' %}
 {% block customstylesheets %} <link href="{{ asset('assets/css/dash.css') }}" rel="stylesheet"> {% endblock %}
 {% block title %} Shop ABC - Dashboard {% endblock %}
+{% block style %} {% endblock %}
 {% block menu%}
 <h1 class="header-bar"> Admin</h1>
 {% endblock %}
 
 {% block main %}
     <div class="container">
-    <nav class="left-menu">
-        <h2>Menu</h2>
-    <ul class="list-management">
-        <li class="item-management">
-            <a class="link" href="#">
-                <i class=""></i>
-                <span class="title">Dashboard</span>
-            </a>
-        </li>
-        <li class="item-management">
-            <a class="link" href="#">
-                <i class=""></i>
-                <span class="title">Customer</span>
-            </a>
-        </li>
-        <li class="item-management2">
-            <a class="link" href="#">
-                <i class=""></i>
-                <span class="title">Product</span>
-                <i class="fas fa-caret-down"></i>
-            </a>
+        <nav class="left-menu">
+            <h2>Menu</h2>
             <ul class="list-management">
-                <li class="item-child"><a class="link" href="#">Add Product</a></li>
-                <li class="item-child"><a class="link" href="#">Add Property</a></li>
+                <li class="item-management">
+                    <a class="link" href="{{ path('main_page') }}">
+                        <i class=""></i>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="item-management">
+                    <a class="link" href="#">
+                        <i class=""></i>
+                        <span class="title">Customer</span>
+                    </a>
+                </li>
+                <li class="item-management2">
+                    <a class="link" href="{{ path('app_product_index') }}">
+                        <i class=""></i>
+                        <span class="title">Product</span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul class="list-management">
+                        <li class="item-child"><a class="link" href="{{ path('app_product_new') }}">Add Product</a></li>
+                        <li class="item-child"><a class="link" href="#">Add Property</a></li>
+                    </ul>
+                </li>
+                <li class="item-management3">
+                    <a class="link" href="{{ path('app_order_index') }}">
+                        <i class=""></i>
+                        <span class="title">Order</span>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul class="list-management">
+                        <li class="item-child"><a class="link" href="{{ path('app_order_new') }}">Add Order</a></li>
+                        <li class="item-child"><a class="link" href="#">Edit Order</a></li>
+                    </ul>
+                </li>
+                <li class="item-management">
+                    <a class="link" href="#">
+                        <i class=""></i>
+                        <span class="title">Customer</span>
+                    </a>
+                </li>
             </ul>
-        </li>
-        <li class="item-management3">
-            <a class="link" href="#">
-                <i class=""></i>
-                <span class="title">Order</span>
-                <i class="fas fa-caret-down"></i>
-            </a>
-            <ul class="list-management">
-                <li class="item-child"><a class="link" href="#">List Order</a></li>
-                <li class="item-child"><a class="link" href="#">Edit Order</a></li>
-            </ul>
-        </li>
-        <li class="item-management">
-            <a class="link" href="#">
-                <i class=""></i>
-                <span class="title">Customer</span>
-            </a>
-        </li>
-    </ul>
-    </nav>
-        {% block rightContent %} {% endblock %}
+        </nav>
+        <div class="right-content">
+            {% block rightContent %} {% endblock %}
+        </div>
     </div>
 {% endblock %}
 

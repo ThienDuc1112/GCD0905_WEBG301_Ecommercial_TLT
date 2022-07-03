@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -14,6 +16,8 @@
 
 
     {% block customstylesheets %}{% endblock %}
+
+    {% block style %} {% endblock %}
 
     <title>{% block title %}Authentic Shoes {% endblock %}</title>
 
@@ -36,7 +40,7 @@
         </div>
         <div class="menu_select_section">
             <a class="text_option" href="{{ path('main_page') }}">Home</a>
-            <a class="text_option" href="">Shop</a>
+            <a class="text_option" href="{{ path('app_product_index') }}">Shop</a>
             <a class="text_option" href="{{ path('adidas') }}">Adidas</a>
             <a class="text_option" href="{{ path('nike') }}">Nike</a>
             <a class="text_option" href="">Men's</a>
@@ -96,18 +100,35 @@
 {% block footer_links %}
     <footer class="footer_container">
         <div class="footer_col">
-            <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+            <small class="d-block mb-3 text-muted">&copy; Thien - Truong - Linh</small>
         </div>
         <div class="footer_col">
-            <h5 class="heading_penta">Features</h5>
+            <h5 class="heading_penta">Contact</h5>
             <ul class="footer_list_link">
-                <li><a class="footer_link" href="#">Live streaming</a></li>
-                <li><a class="footer_link" href="#">Video player</a></li>
-                <li><a class="footer_link" href="#">Monetization</a></li>
-                <li><a class="footer_link" href="#">Hosting</a></li>
-                <li><a class="footer_link" href="#">Privacy</a></li>
-                <li><a class="footer_link" href="#">Analytics</a></li>
-                <li><a class="footer_link" href="#">Speed test</a></li>
+                <li>
+                    <i class="footer-contact-icon fa-brands fa-facebook"></i>
+                    <a class="footer_link" href="#">Facebook</a>
+                </li>
+                <li>
+                    <i class="footer-contact-icon  fa-brands fa-youtube"></i>
+                    <a class="footer_link" href="#">Youtube</a>
+                </li>
+                <li>
+                    <i class="footer-contact-icon  fa-brands fa-vimeo"></i>
+                    <a class="footer_link" href="#">Vimeo</a>
+                </li>
+                <li>
+                    <i class="footer-contact-icon fa-brands fa-twitter"></i>
+                    <a class="footer_link" href="#">Twister</a>
+                </li>
+                <li>
+                    <i class="footer-contact-icon fa-brands fa-instagram"></i>
+                    <a class="footer_link" href="#">Instagram</a>
+                </li>
+                <li>
+                    <i class="footer-contact-icon fa-solid fa-envelope"></i>
+                    <a class="footer_link" href="#">Gmail</a>
+                </li>
             </ul>
         </div>
         <div class="footer_col">
