@@ -3,6 +3,9 @@
 {% block main %}
     <div class="login_container">
         <form action="" method="post">
+            <a class="form-home" href="{{ path('main_page') }}">
+                <i class="fa-solid fa-house form-home-ic"></i>
+            </a>
             <h3 class="heading_bg">Please sign in</h3>
             <label for="inputEmail" class="form-label">Email address</label>
             <input type="email" class="form-control" placeholder="Email address" required autofocus>

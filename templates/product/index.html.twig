@@ -1,50 +1,98 @@
 {% extends 'admin/base.html.twig' %}
   {% block menu %} {% endblock %}
 
+{% block style %}
+    <style>
+        .link__product {
+            color: #10c5e5;
+        }
+    </style>
+{% endblock %}
 
 {% block title %}Product index{% endblock %}
 
-{% block main %}
-    {{ parent() }}
+
     {% block rightContent %}
         <div class="right-container">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Brand</th>
-                    <th>actions</th>
-                </tr>
-                </thead>
-                <tbody>
+            <h1 class="product-page-heading">List Product</h1>
+
+            <div class="product-container">
                 {% for product in products %}
-                    <tr>
-                        <td>{{ product.id }}</td>
-                        <td>
-                            <img style="height: 30px" src="{{ asset('assets/images/'~product.Picture) }}" alt="">
-                            {#          <img style="height: 30px" src="{{ asset('assets/images/'~product.images_id ) }}" alt=""> #}
-                        </td>
-                        <td>{{ product.Name }}</td>
-                        <td>{{ product.Price }}</td>
-                        <td>{{ product.Description }}</td>
-                        <td>{{ product.Brand }}</td>
-                        <td>
-                            <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                            <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="6">no records found</td>
-                    </tr>
+
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-item">
+                        <img class="product-img" src="{{ asset('assets/images/'~product.Picture) }}" alt="">
+                        <p class="product-name">{{ product.Name }}</p>
+                        <div class="product-price">
+                            <p class="product-price__old">{{ product.Price + 10 }}$</p>
+                            <p class="product-price__new">{{ product.Price }}$</p>
+                        </div>
+                        <div class="product-favorite">
+                            <i class="fas fa-check product-favorite__ic"></i>
+                            <span class="product-favorite__text">Favorite</span>
+                        </div>
+
+                        <div class="product__action">
+                            <span class="product__like ">
+                                <i class="product__like-icon fas fa-heart "></i>
+                            </span>
+
+                            <div class="product__rating">
+                                <i class="product__star--gold fas fa-star"></i>
+                                <i class="product__star--gold fas fa-star"></i>
+                                <i class="product__star--gold fas fa-star"></i>
+                                <i class="product__star--gold fas fa-star"></i>
+                                <i class=" fas fa-star"></i>
+                            </div>
+                            <span class="product__sold">88 đã bán</span>
+                        </div>
+
+                        <div class="product__origin">
+                            <span class="product__origin-brand">{{ product.Brand }}</span>
+                            <span class="product__origin-name">TP.Hồ Chí Minh</span>
+                        </div>
+
+{#                        <div class="product-show">#}
+{#                            <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>#}
+{#                        </div>#}
+                    </a>
+
                 {% endfor %}
-                </tbody>
-            </table>
-            <a href="{{ path('app_product_new') }}">Create new</a>
+            </div>
+            {#            <table class="table"> #}
+            {#                <thead> #}
+            {#                <tr> #}
+            {#                    <th>Id</th> #}
+            {#                    <th>Image</th> #}
+            {#                    <th>Name</th> #}
+            {#                    <th>Price</th> #}
+            {#                    <th>Description</th> #}
+            {#                    <th>Brand</th> #}
+            {#                    <th>actions</th> #}
+            {#                </tr> #}
+            {#                </thead> #}
+            {#                <tbody> #}
+            {#                {% for product in products %} #}
+            {#                    <tr> #}
+            {#                        <td>{{ product.id }}</td> #}
+            {#                        <td> #}
+            {#                            <img style="height: 30px" src="{{ asset('assets/images/'~product.Picture) }}" alt=""> #}
+            {#                        </td> #}
+            {#                        <td>{{ product.Name }}</td> #}
+            {#                        <td>{{ product.Price }}</td> #}
+            {#                        <td>{{ product.Description }}</td> #}
+            {#                        <td>{{ product.Brand }}</td> #}
+            {#                        <td> #}
+            {#                            <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a> #}
+            {#                            <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a> #}
+            {#                        </td> #}
+            {#                    </tr> #}
+            {#                {% else %} #}
+            {#                    <tr> #}
+            {#                        <td colspan="6">no records found</td> #}
+            {#                    </tr> #}
+            {#                {% endfor %} #}
+            {#                </tbody> #}
+            {#            </table> #}
+            {#            <a href="{{ path('app_product_new') }}">Create new</a> #}
         </div>
     {% endblock %}
-{% endblock %}

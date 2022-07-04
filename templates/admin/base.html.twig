@@ -25,14 +25,14 @@
                     </a>
                 </li>
                 <li class="item-management2">
-                    <a class="link" href="{{ path('app_product_index') }}">
+                    <a class="link link__product" href="#">
                         <i class=""></i>
                         <span class="title">Product</span>
                         <i class="fas fa-caret-down"></i>
                     </a>
                     <ul class="list-management">
+                        <li class="item-child"><a class="link" href="{{ path('app_product_index') }}">List product</a></li>
                         <li class="item-child"><a class="link" href="{{ path('app_product_new') }}">Add Product</a></li>
-                        <li class="item-child"><a class="link" href="#">Add Property</a></li>
                     </ul>
                 </li>
                 <li class="item-management3">
@@ -54,6 +54,8 @@
                 </li>
             </ul>
         </nav>
+
+        <div class="left-content"></div>
         <div class="right-content">
             {% block rightContent %} {% endblock %}
         </div>
