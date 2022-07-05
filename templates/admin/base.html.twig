@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
+<<<<<<< Updated upstream
 {% block customstylesheets %}
     <link href="{{ asset('assets/css/dash.css') }}" rel="stylesheet"> {% endblock %}
+=======
+{% block customstylesheets %} <link href="{{ asset('assets/css/Style.css') }}" rel="stylesheet"> {% endblock %}
+>>>>>>> Stashed changes
 {% block title %} Shop ABC - Dashboard {% endblock %}
 {% block style %} {% endblock %}
 {% block menu %}
@@ -43,10 +47,15 @@
                         <i class="fas fa-caret-down"></i>
                     </a>
                     <ul class="list-management">
+<<<<<<< Updated upstream
                         <li class="item-child"><a class="link" href="{{ path('app_order_index') }}">List Order</a></li>
                         <li class="item-child"><a class="link" href="{{ path('app_order_action') }}">Action</a></li>
                         <li class="item-child"><a class="link" href="{{ path('app_order_new') }}">Add Order</a></li>
 
+=======
+                        <li class="item-child"><a class="link" href="#">Add Order</a></li>
+                        <li class="item-child"><a class="link" href="#">Edit Order</a></li>
+>>>>>>> Stashed changes
                     </ul>
                 </li>
                 <li class="item-management">

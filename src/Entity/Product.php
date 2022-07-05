@@ -39,10 +39,6 @@ class Product
      */
     private $Brand;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DetailOrder::class, mappedBy="Products")
-     */
-    private $detailOrders;
 
 
     /**
@@ -63,7 +59,7 @@ class Product
 
     public function __construct()
     {
-        $this->detailOrders = new ArrayCollection();
+
         $this->images = new ArrayCollection();
     }
 
@@ -144,6 +140,7 @@ class Product
         return $this;
     }
 
+<<<<<<< Updated upstream
     public function getimages_id(): ?string
     {
         return $this->Picture;
@@ -182,9 +179,9 @@ class Product
                 $detailOrder->setProducts(null);
             }
         }
+=======
+>>>>>>> Stashed changes
 
-        return $this;
-    }
 
     /**
      * @return Collection<int, Image>

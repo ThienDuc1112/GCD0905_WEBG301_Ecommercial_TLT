@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,38 +23,32 @@ class Order
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity=OrderDetail::class, mappedBy="orderRef", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $items;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Delivery_address;
+    private $status= self::STATUS_CART;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $Order_date;
+    private $createdAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private $Order_phone;
-
+    private $updatedAt;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    private $Name_customer;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $Order_status;
-
-    /**
-     * @ORM\OneToMany(targetEntity=DetailOrder::class, mappedBy="Orders")
-     */
-    private $detailOrders;
+    const STATUS_CART = 'cart';
 
     public function __construct()
     {
-        $this->detailOrders = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,18 +56,28 @@ class Order
         return $this->id;
     }
 
-    public function getDeliveryAddress(): ?string
+    /**
+     * @return Collection<int, OrderDetail>
+     */
+    public function getItems(): Collection
     {
-        return $this->Delivery_address;
+        return $this->items;
     }
 
-    public function setDeliveryAddress(string $Delivery_address): self
+    public function addItem(OrderDetail $item): self
     {
-        $this->Delivery_address = $Delivery_address;
+        foreach ($this->getItems() as $existingItem) {
+            if ($existingItem->equals($item)) {
+                $existingItem->setQuantity(
+                    $existingItem->getQuantity() + $item->getQuantity()
+                );
+                return $this;
+            }
+        }
+        $this->items[] = $item;
+        $item->setOrderRef($this);
 
-        return $this;
     }
-
     public function getDelivery_Address(): ?string
     {
         return $this->Delivery_address;
@@ -87,14 +93,23 @@ class Order
     public function getOrderDate(): ?\DateTimeInterface
     {
         return $this->Order_date;
+
+            return $this;
+
     }
 
-    public function setOrderDate(\DateTimeInterface $Order_date): self
+    public function removeItem(OrderDetail $item): self
     {
-        $this->Order_date = $Order_date;
+        if ($this->items->removeElement($item)) {
+            // set the owning side to null (unless already changed)
+            if ($item->getOrderRef() === $this) {
+                $item->setOrderRef(null);
+            }
+        }
 
         return $this;
     }
+
 
     public function getOrder_Date(): ?\DateTimeInterface
     {
@@ -108,66 +123,51 @@ class Order
         return $this;
     }
 
-    public function getOrderPhone(): ?string
-    {
-        return $this->Order_phone;
-    }
 
-    public function setOrderPhone(string $Order_phone): self
+    /**
+     * Removes all items from the order.
+     *
+     * @return $this
+     */
+    public function removeItems(): self
+
     {
-        $this->Order_phone = $Order_phone;
+        foreach ($this->getItems() as $item) {
+            $this->removeItem($item);
+        }
 
         return $this;
     }
-
-    public function getOrder_Phone(): ?string
+    /**
+     * @return float
+     */
+    public function getTotal(): float
     {
-        return $this->Order_phone;
+        $total = 0;
+        foreach ($this->getItems() as $item) {
+            $total += $item->getTotal();
+        }
+
+        return $total;
     }
 
-    public function setOrder_Phone(string $Order_phone): self
-    {
-        $this->Order_phone = $Order_phone;
-
-        return $this;
-    }
-
-    public function getNameCustomer(): ?string
-    {
-        return $this->Name_customer;
-    }
-
-    public function setNameCustomer(string $Name_customer): self
-    {
-        $this->Name_customer = $Name_customer;
-
-        return $this;
-    }
-
-    public function getName_Customer(): ?string
-    {
-        return $this->Name_customer;
-    }
-
-    public function setName_Customer(string $Name_customer): self
-    {
-        $this->Name_customer = $Name_customer;
-
-        return $this;
-    }
 
     public function getOrderStatus(): ?string
+
+    public function getCreatedAt(): ?DateTimeInterface
+>>>>>>> Stashed changes
     {
-        return $this->Order_status;
+        return $this->createdAt;
     }
 
-    public function setOrderStatus(string $Order_status): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
-        $this->Order_status = $Order_status;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
+<<<<<<< Updated upstream
     public function getOrder_Status(): ?string
     {
         return $this->Order_status;
@@ -187,25 +187,17 @@ class Order
     {
         return $this->detailOrders;
     }
+=======
+>>>>>>> Stashed changes
 
-    public function addDetailOrder(DetailOrder $detailOrder): self
+    public function getUpdatedAt(): ?DateTimeInterface
     {
-        if (!$this->detailOrders->contains($detailOrder)) {
-            $this->detailOrders[] = $detailOrder;
-            $detailOrder->setOrders($this);
-        }
-
-        return $this;
+        return $this->updatedAt;
     }
 
-    public function removeDetailOrder(DetailOrder $detailOrder): self
+    public function setUpdatedAt(DateTimeInterface $updatedAt): self
     {
-        if ($this->detailOrders->removeElement($detailOrder)) {
-            // set the owning side to null (unless already changed)
-            if ($detailOrder->getOrders() === $this) {
-                $detailOrder->setOrders(null);
-            }
-        }
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
