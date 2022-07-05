@@ -543,10 +543,33 @@ ul.footer_list_link li {
     padding-bottom: 6px;
 }
 
-.product__origin-brand {
-
+.edit-product-container {
+    position: relative;
 }
 
-.product__origin-name {
+.form-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #666;
+}
 
+.form-icon__ic {
+    font-size: 30px;
+}
+
+.btn-action {
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 40px;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: #10c5e5;
+    border: none;
+    cursor: pointer;
 }

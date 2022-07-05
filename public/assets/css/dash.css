@@ -118,7 +118,7 @@ img {
 }
 
 .img-display {
-    overflow: hidden;
+    box-shadow: 2px 3px 4px #999;
 }
 
 .img-showcase {
@@ -165,15 +165,15 @@ img {
     margin: 16px 0;
 }
 
-.product-title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 4px;
-    width: 100px;
-    background-color: #1e1e1e;
-}
+/*.product-title::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    height: 4px;*/
+/*    width: 100px;*/
+/*    background-color: #1e1e1e;*/
+/*}*/
 
 .product-link {
     text-decoration: none;
@@ -207,6 +207,7 @@ img {
 
 .new-price span {
     color: #61dafb;
+    text-decoration: none;
 }
 
 .product-detail h2 {
@@ -271,9 +272,14 @@ img {
 
 @media screen and (min-width: 992px) {
     .card {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        position: relative;
         grid-gap: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        padding: 0 20px;
+        width: 80%;
     }
 
     .card-wrapper {
@@ -281,18 +287,22 @@ img {
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #f0eae9;
+        padding: 30px;
+        max-width: 100%;
     }
 
     .product-img {
         display: flex;
         flex-direction: column;
         justify-content: center;
-
+        flex: 1;
     }
 
     .product-content {
         padding-top: 60px;
         padding-left: 30px;
+        flex: 1;
     }
 
 }
