@@ -72,12 +72,36 @@ class Order
         return $this;
     }
 
+    public function getDelivery_Address(): ?string
+    {
+        return $this->Delivery_address;
+    }
+
+    public function setDelivery_Address(string $Delivery_address): self
+    {
+        $this->Delivery_address = $Delivery_address;
+
+        return $this;
+    }
+
     public function getOrderDate(): ?\DateTimeInterface
     {
         return $this->Order_date;
     }
 
     public function setOrderDate(\DateTimeInterface $Order_date): self
+    {
+        $this->Order_date = $Order_date;
+
+        return $this;
+    }
+
+    public function getOrder_Date(): ?\DateTimeInterface
+    {
+        return $this->Order_date;
+    }
+
+    public function setOrder_Date(\DateTimeInterface $Order_date): self
     {
         $this->Order_date = $Order_date;
 
@@ -96,6 +120,18 @@ class Order
         return $this;
     }
 
+    public function getOrder_Phone(): ?string
+    {
+        return $this->Order_phone;
+    }
+
+    public function setOrder_Phone(string $Order_phone): self
+    {
+        $this->Order_phone = $Order_phone;
+
+        return $this;
+    }
+
     public function getNameCustomer(): ?string
     {
         return $this->Name_customer;
@@ -108,12 +144,36 @@ class Order
         return $this;
     }
 
+    public function getName_Customer(): ?string
+    {
+        return $this->Name_customer;
+    }
+
+    public function setName_Customer(string $Name_customer): self
+    {
+        $this->Name_customer = $Name_customer;
+
+        return $this;
+    }
+
     public function getOrderStatus(): ?string
     {
         return $this->Order_status;
     }
 
     public function setOrderStatus(string $Order_status): self
+    {
+        $this->Order_status = $Order_status;
+
+        return $this;
+    }
+
+    public function getOrder_Status(): ?string
+    {
+        return $this->Order_status;
+    }
+
+    public function setOrder_Status(string $Order_status): self
     {
         $this->Order_status = $Order_status;
 

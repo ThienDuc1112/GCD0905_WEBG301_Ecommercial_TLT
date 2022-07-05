@@ -37,14 +37,16 @@
                     </ul>
                 </li>
                 <li class="item-management3">
-                    <a class="link" href="{{ path('app_order_index') }}">
+                    <a class="link" href="#">
                         <i class=""></i>
                         <span class="title">Order</span>
                         <i class="fas fa-caret-down"></i>
                     </a>
                     <ul class="list-management">
+                        <li class="item-child"><a class="link" href="{{ path('app_order_index') }}">List Order</a></li>
+                        <li class="item-child"><a class="link" href="{{ path('app_order_action') }}">Action</a></li>
                         <li class="item-child"><a class="link" href="{{ path('app_order_new') }}">Add Order</a></li>
-                        <li class="item-child"><a class="link" href="#">Edit Order</a></li>
+
                     </ul>
                 </li>
                 <li class="item-management">

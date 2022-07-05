@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Form\OrderType;
 use App\Repository\OrderRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,16 @@ class OrderController extends AbstractController
     public function index(OrderRepository $orderRepository): Response
     {
         return $this->render('order/index.html.twig', [
+            'orders' => $orderRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/action", name="app_order_action", methods={"GET"})
+     */
+    public function actionOrder(OrderRepository $orderRepository): Response
+    {
+        return $this->render('order/action.html.twig', [
             'orders' => $orderRepository->findAll(),
         ]);
     }
