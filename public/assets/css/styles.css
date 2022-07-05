@@ -313,7 +313,7 @@ ul.footer_list_link li {
     transform: scale(1.05);
     transition: all .2s linear;
 }
-<<<<<<< Updated upstream
+
 
 .login_container form h3 {
     font-size: 2.5rem;
@@ -574,7 +574,6 @@ ul.footer_list_link li {
     border: none;
     cursor: pointer;
 }
-=======
 .right-content {
   margin-left: 300px;
   min-width: 900px;
@@ -585,4 +584,4 @@ ul.footer_list_link li {
   font-size: 22px;
   color : rgba(0,0,0,0.6)
 }
->>>>>>> Stashed changes
+

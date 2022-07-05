@@ -40,7 +40,6 @@ class Product
     private $Brand;
 
 
-
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -138,84 +137,6 @@ class Product
         $this->Picture = $Picture;
 
         return $this;
-    }
-
-<<<<<<< Updated upstream
-    public function getimages_id(): ?string
-    {
-        return $this->Picture;
-    }
-
-    public function setimages_id(string $Picture): self
-    {
-        $this->Picture = $Picture;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, DetailOrder>
-     */
-    public function getDetailOrders(): Collection
-    {
-        return $this->detailOrders;
-    }
-
-    public function addDetailOrder(DetailOrder $detailOrder): self
-    {
-        if (!$this->detailOrders->contains($detailOrder)) {
-            $this->detailOrders[] = $detailOrder;
-            $detailOrder->setProducts($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDetailOrder(DetailOrder $detailOrder): self
-    {
-        if ($this->detailOrders->removeElement($detailOrder)) {
-            // set the owning side to null (unless already changed)
-            if ($detailOrder->getProducts() === $this) {
-                $detailOrder->setProducts(null);
-            }
-        }
-=======
->>>>>>> Stashed changes
-
-
-    /**
-     * @return Collection<int, Image>
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getProduct() === $this) {
-                $image->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return strval($this->id);
     }
 
 }

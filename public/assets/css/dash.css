@@ -269,17 +269,13 @@ img {
 .purchase-infor button:hover {
     opacity: 0.9;
 }
-<<<<<<< Updated upstream
 
-@media screen and (min-width: 992px) {
-    .card {
-        position: relative;
-=======
+
+
 @media screen and (min-width: 992px){
     .card2{
-        display: grid;
+
         grid-template-columns: repeat(2, 1fr);
->>>>>>> Stashed changes
         grid-gap: 24px;
         display: flex;
         justify-content: center;
@@ -288,12 +284,10 @@ img {
         padding: 0 20px;
         width: 80%;
     }
-<<<<<<< Updated upstream
 
-    .card-wrapper {
-=======
+
+
     .card-wrapper2{
->>>>>>> Stashed changes
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -309,12 +303,10 @@ img {
         justify-content: center;
         flex: 1;
     }
-<<<<<<< Updated upstream
 
-    .product-content {
-=======
+
     .product-content{
->>>>>>> Stashed changes
+
         padding-top: 60px;
         padding-left: 30px;
         flex: 1;

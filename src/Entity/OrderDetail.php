@@ -90,4 +90,8 @@ class OrderDetail
     {
         return $this->getProduct()->getPrice() * $this->getQuantity();
     }
+    public function __toString()
+    {
+        return strval($this->id);
+    }
 }

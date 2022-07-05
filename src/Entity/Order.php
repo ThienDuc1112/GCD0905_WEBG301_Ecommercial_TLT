@@ -76,27 +76,9 @@ class Order
         }
         $this->items[] = $item;
         $item->setOrderRef($this);
-
-    }
-    public function getDelivery_Address(): ?string
-    {
-        return $this->Delivery_address;
-    }
-
-    public function setDelivery_Address(string $Delivery_address): self
-    {
-        $this->Delivery_address = $Delivery_address;
-
         return $this;
     }
 
-    public function getOrderDate(): ?\DateTimeInterface
-    {
-        return $this->Order_date;
-
-            return $this;
-
-    }
 
     public function removeItem(OrderDetail $item): self
     {
@@ -111,17 +93,6 @@ class Order
     }
 
 
-    public function getOrder_Date(): ?\DateTimeInterface
-    {
-        return $this->Order_date;
-    }
-
-    public function setOrder_Date(\DateTimeInterface $Order_date): self
-    {
-        $this->Order_date = $Order_date;
-
-        return $this;
-    }
 
 
     /**
@@ -130,7 +101,6 @@ class Order
      * @return $this
      */
     public function removeItems(): self
-
     {
         foreach ($this->getItems() as $item) {
             $this->removeItem($item);
@@ -138,24 +108,20 @@ class Order
 
         return $this;
     }
-    /**
-     * @return float
-     */
-    public function getTotal(): float
-    {
-        $total = 0;
-        foreach ($this->getItems() as $item) {
-            $total += $item->getTotal();
-        }
 
-        return $total;
+    public function getStatus(): ?string
+    {
+        return $this->status;
     }
 
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
-    public function getOrderStatus(): ?string
+        return $this;
+    }
 
     public function getCreatedAt(): ?DateTimeInterface
->>>>>>> Stashed changes
     {
         return $this->createdAt;
     }
@@ -167,29 +133,6 @@ class Order
         return $this;
     }
 
-<<<<<<< Updated upstream
-    public function getOrder_Status(): ?string
-    {
-        return $this->Order_status;
-    }
-
-    public function setOrder_Status(string $Order_status): self
-    {
-        $this->Order_status = $Order_status;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, DetailOrder>
-     */
-    public function getDetailOrders(): Collection
-    {
-        return $this->detailOrders;
-    }
-=======
->>>>>>> Stashed changes
-
     public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
@@ -200,5 +143,19 @@ class Order
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * Calculates the order total.
+     */
+    public function getTotal(): float
+    {
+        $total = 0;
+
+        foreach ($this->getItems() as $item) {
+            $total += $item->getTotal();
+        }
+
+        return $total;
     }
 }
