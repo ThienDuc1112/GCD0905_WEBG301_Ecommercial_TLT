@@ -447,6 +447,7 @@ ul.footer_list_link li {
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .product-price__old {

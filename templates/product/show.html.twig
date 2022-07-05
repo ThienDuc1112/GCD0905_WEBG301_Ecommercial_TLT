@@ -50,6 +50,10 @@
                 {% if brand == 'Adidas' %}
                     <a class="product-link" href="{{ path('adidas') }}">Visit {{ product.Brand }} store</a>
                 {% endif %}
+
+                {% if brand != 'Adidas' and  brand != 'Nike'%}
+                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a>
+                {% endif %}
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>

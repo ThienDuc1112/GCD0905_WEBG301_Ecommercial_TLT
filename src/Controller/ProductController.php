@@ -27,6 +27,16 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/action", name="app_product_action", methods={"GET"})
+     */
+    public function actionProduct(ProductRepository $productRepository): Response
+    {
+        return $this->render('product/action.html.twig', [
+            'products' => $productRepository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/new", name="app_product_new", methods={"GET", "POST"})
      */
     public function new(Request $request, ProductRepository $productRepository): Response
