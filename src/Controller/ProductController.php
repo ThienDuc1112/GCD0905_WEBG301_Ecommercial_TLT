@@ -110,6 +110,8 @@ class ProductController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/{id}", name="app_product_delete", methods={"POST"})
      */

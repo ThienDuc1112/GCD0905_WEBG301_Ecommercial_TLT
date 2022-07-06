@@ -1,0 +1,22 @@
+{% block style %}
+    <style>
+        label {
+            font-weight: 600;
+            display: inline-block;
+            width: 150px;
+        }
+
+        input {
+            width: calc(100% - 15px);
+            height: 30px;
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+
+<button class="btn btn-action">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

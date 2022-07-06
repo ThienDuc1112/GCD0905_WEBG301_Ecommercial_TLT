@@ -1,0 +1,18 @@
+{% extends 'admin/base.html.twig' %}
+{% block menu %} {% endblock %}
+
+
+
+{% block title %}New Product{% endblock %}
+
+{% block rightContent %}
+    <div class="edit-product-container">
+        <h1 style="text-align: center; margin-bottom: 30px">Create new Product</h1>
+
+        {{ include('admin/Product/_form.html.twig') }}
+        <a href="{{ path('admin_product_action') }}" class="form-icon">
+            <i class="fa-solid fa-arrow-left form-icon__ic"></i>
+        </a>
+
+    </div>
+{% endblock %}
