@@ -3,6 +3,16 @@
 {% block customstylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/css/styl.css') }}">
 {% endblock %}
+
+{% block style %}
+    <style>
+        .product-item {
+            width: 23%;
+            margin: 10px 8px 0;
+        }
+    </style>
+{% endblock %}
+
 {% block title %}Product shop{% endblock %}
 {% block main %}
     <div class="sort-dropdown">
@@ -50,21 +60,51 @@
 
         </div>
 
-        <div class="content" name="listing">
+        <div style="margin-left: 20px" class="product-container">
             {% for product in products %}
-                <div class="items">
-                    <img style="height: 230px" src="{{ asset('assets/images/'~product.Picture) }}"
-                         class="card-img-top" alt="">
-                    <div class="card_body">
-                        <h5 class="">{{ product.Name }}</h5>
-                        <p class="card-text">{{ product.Description }}</p>
-                        <p class="price">{{ product.Price }}</p>
-                        <p class="category">{{ product.Category }}</p>
+
+                <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-item">
+                    <img class="product-img" src="{{ asset('assets/images/'~product.Picture) }}" alt="">
+                    <p class="product-name">{{ product.Name }}</p>
+                    <div class="product-price">
+                        <p class="product-price__old">{{ product.Price + 10 }}$</p>
+                        <p class="product-price__new">{{ product.Price }}$</p>
                     </div>
-                    <div class="action">
-                        <a href="{{ path('app_product_show', {'id': product.id}) }}" class="view">View detail</a>
+                    <div class="product-favorite">
+                        <i class="fas fa-check product-favorite__ic"></i>
+                        <span class="product-favorite__text">Favorite</span>
                     </div>
-                </div>
+
+                    <div class="product__action">
+                            <span class="product__like ">
+                                <i class="product__like-icon fas fa-heart "></i>
+                            </span>
+
+                        <div class="product__rating">
+                            {% set starActive =  random(1, 5)%}
+                            {% set starnot = 5 - starActive %}
+
+                            {% for i in 1..starActive  %}
+                                <i class="product__star--gold fas fa-star"></i>
+                            {% endfor %}
+
+                            {% if starActive != 5 %}
+                                {% for i in 1..starnot  %}
+                                    <i class=" fas fa-star"></i>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <span class="product__sold">{{ random(100, 1000) }} Sold</span>
+                    </div>
+
+
+
+                    <div class="product__origin">
+                        <span class="product__origin-brand">{{ product.Brand }}</span>
+                        <span class="product__origin-name">TP.Hồ Chí Minh</span>
+                    </div>
+                </a>
+
             {% endfor %}
         </div>
     </div>

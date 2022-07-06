@@ -409,7 +409,7 @@ ul.footer_list_link li {
 
 .product-container {
     display: flex;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
 }
 
 .product-item {
@@ -528,6 +528,7 @@ ul.footer_list_link li {
 .product__star--gold {
     color: #ffce3e;
 }
+
 .product__sold {
     font-size: 13px;
     color: #666;
@@ -574,14 +575,15 @@ ul.footer_list_link li {
     border: none;
     cursor: pointer;
 }
+
 .right-content {
-  margin-left: 300px;
-  min-width: 900px;
+    min-width: 900px;
+    padding: 0 20px;
 }
 
-.footer-contact-icon  {
-  width: 26px;
-  font-size: 22px;
-  color : rgba(0,0,0,0.6)
+.footer-contact-icon {
+    width: 26px;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.6)
 }
 

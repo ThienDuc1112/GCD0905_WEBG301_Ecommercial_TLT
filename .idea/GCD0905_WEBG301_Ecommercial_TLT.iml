@@ -141,8 +141,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-file-iterator" />
     </content>
+    <orderEntry type="library" name="jquery-2.2.4" level="application" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jquery-2.2.4" level="application" />
+    
   </component>
 </module>

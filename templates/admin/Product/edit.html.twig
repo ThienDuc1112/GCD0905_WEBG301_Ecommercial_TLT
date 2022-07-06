@@ -8,10 +8,10 @@
 
         <h1 style="text-align: center; margin-bottom: 30px">Edit Product</h1>
 
-        {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('admin/Product/_form.html.twig', {'button_label': 'Update'}) }}
 
 
-        <a href="{{ path('app_product_action') }}" class="form-icon">
+        <a href="{{ path('admin_product_action') }}" class="form-icon">
             <i class="fa-solid fa-arrow-left form-icon__ic"></i>
         </a>
 

@@ -20,7 +20,7 @@
           href="https://www.freepnglogos.com/uploads/shopee-logo/shopee-bag-logo-free-transparent-icon-17.png"
           type="image/x-icon"/>
 
-
+    {% block style %} {% endblock %}
     {% block customstylesheets %}{% endblock %}
 
     <title>{% block title %}Authentic Shoes {% endblock %}</title>
@@ -44,12 +44,17 @@
         <div class="menu_select_section">
             <a class="text_option" href="{{ path('main_page') }}">Home</a>
             <a class="text_option" href="{{ path('app_shop',{'pageId':1}) }}">Shop</a>
+
             <a class="text_option" href="{{ path('app_shop_Adidas',{'pageId':1}) }}">Adidas</a>
             <a class="text_option" href="{{ path('app_shop_Nike',{'pageId':1}) }}">Nike</a>
+
+            <a class="text_option" href="#">Adidas</a>
+            <a class="text_option" href="#">Nike</a>
+
             <a class="text_option" href="">Men's</a>
             <a class="text_option" href="">Women's</a>
             <a class="text_option" href="">About Us</a>
-            <a class="text_option" href="{{ path('app_admin') }}">My Admin</a>
+            <a class="text_option" href="{{ path('admin') }}">My Admin</a>
         </div>
         <div class="menu_field_section">
             {#        <form #}

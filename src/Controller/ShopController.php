@@ -62,8 +62,6 @@ class ShopController extends AbstractController
             'selectedCat' => $selectCategory ?: '',
             'selectedBrand' => $selectBrand ?: '',
             'pageNumber' => ceil($numOfItems / $itemsPerPage),
-
-
         ]);
     }
 
@@ -179,31 +177,6 @@ class ShopController extends AbstractController
 
     }
 
-    /**
-     * @Route("/adidas", name="adidas")
-     */
-    public function getBrandAdidas(ProductRepository $productRepository): Response
-    {
-
-        $products = $productRepository->findBy(['Brand' => 'Adidas']);
-        return $this->render('product/adidas.html.twig', [
-            'products' => $products
-        ]);
-    }
-//
-////    Tìm ra sản phẩm có brand là Nike
-////
-    /**
-     * @Route("/nike", name="nike")
-     */
-    public function getBrandNike(ProductRepository $productRepository): Response
-    {
-
-        $products = $productRepository->findBy(['Brand' => 'Nike']);
-        return $this->render('front/shop.html.twig', [
-            'products' => $products
-        ]);
-    }
 
 
 }
