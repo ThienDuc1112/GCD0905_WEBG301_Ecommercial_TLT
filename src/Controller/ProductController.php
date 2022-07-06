@@ -13,11 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-
+/**
+ * @Route("/product")
+ */
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/product", name="app_product_index", methods={"GET"})
+     * @Route("/", name="app_product_index", methods={"GET"})
      */
     public function index(ProductRepository $productRepository): Response
     {
@@ -27,21 +29,7 @@ class ProductController extends AbstractController
     }
 
     /**
-<<<<<<< Updated upstream
-     * @Route("/action", name="app_product_action", methods={"GET"})
-     */
-    public function actionProduct(ProductRepository $productRepository): Response
-    {
-        return $this->render('product/action.html.twig', [
-            'products' => $productRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/new", name="app_product_new", methods={"GET", "POST"})
-=======
-     * @Route("/product/new", name="app_product_new", methods={"GET", "POST"})
->>>>>>> Stashed changes
      */
     public function new(Request $request, ProductRepository $productRepository): Response
     {
@@ -55,15 +43,16 @@ class ProductController extends AbstractController
 
             $file = $form['Picture']->getData();
             if ($file) {
+                $fileName = $this->generateUniqueFileName(). '.jpg';
                 try {
                     $file->move(
                         $this->getParameter('images_directory'),
-                        $form->get('Brand')->getData() . '.jpg'
+                        $fileName
                     );
                 } catch (FileException $e) {
                     print($e);
                 }
-                $product->setPicture($form->get('Brand')->getData() . '.jpg');
+                $product->setPicture($fileName);
             }
             //------------------Image Upload--------------//
 
@@ -77,58 +66,32 @@ class ProductController extends AbstractController
             'form' => $form,
         ]);
     }
+    /**
+     * @Route("/action", name="app_product_action", methods={"GET"})
+     */
+    public function actionProduct(ProductRepository $productRepository): Response
+    {
+        return $this->render('product/action.html.twig', [
+            'products' => $productRepository->findAll(),
+        ]);
+    }
 
 //    Tìm ra sản phẩm có brand là adidas
 
-    /**
-     * @Route("/product/adidas", name="adidas")
-     */
-    public function getBrandAdidas(ProductRepository $productRepository)
-    {
 
-        $products = $productRepository->findBy(['Brand' => 'Adidas']);
-        return $this->render('product/adidas.html.twig', [
-            'products' => $products
-        ]);
-    }
-
-//    Tìm ra sản phẩm có brand là Nike
-
-    /**
-     * @Route("/product/nike", name="nike")
-     */
-    public function getBrandNike(ProductRepository $productRepository)
-    {
-
-        $products = $productRepository->findBy(['Brand' => 'Nike']);
-        return $this->render('product/nike.html.twig', [
-            'products' => $products
-        ]);
-    }
 
 //    /**
-//     * @Route("/product/{id}", name="app_product_show", methods={"GET"})
+//     * @Route("/{id}", name="app_product_show", methods={"GET"})
 //     */
-//    public function show(Product $product, Request $request, CartManager $cartManager): Response
+//    public function show(Product $product): Response
 //    {
-//        $form = $this->createForm(AddToCartType::class);
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $item = $form->getData();
-//            $item->setProduct($product);
-//            $cart = $cartManager->getCurrentCart();
-//            $cart->addItem($item);
-//            return $this->redirectToRoute('app_product_show', ['id' => $product->getId()]);
-//        }
-//
 //        return $this->render('product/show.html.twig', [
 //            'product' => $product,
-//            'form'=>$form->createView()
 //        ]);
 //    }
 
     /**
-     * @Route("/product/{id}/edit", name="app_product_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_product_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
     {
@@ -148,7 +111,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product/{id}", name="app_product_delete", methods={"POST"})
+     * @Route("/{id}", name="app_product_delete", methods={"POST"})
      */
     public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
     {
@@ -157,6 +120,11 @@ class ProductController extends AbstractController
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    private function generateUniqueFileName(): string
+    {
+        return md5(uniqid());
     }
 
 }

@@ -65,6 +65,7 @@ class ShopController extends AbstractController
 
         ]);
     }
+//
 
     /**
      * @Route("/productDetail/{productID}", name="product_detail", methods={"GET"})
@@ -77,51 +78,31 @@ class ShopController extends AbstractController
 
     }
 
-//    /**
-//     * @Route("/reviewCart", name="cart", methods={"GET","POST"})
-//     */
-//    public function cart(): Response
-//    {
-//        return $this->render('front/cart.html.twig');
-//
-//    }
-
     /**
-     * @Route("/addCart/{id}", name="app_add_cart", methods={"GET","POST"})
+     * @Route("/adidas", name="adidas")
      */
-    public function addCart(Product $product, Request $request): Response
+    public function getBrandAdidas(ProductRepository $productRepository): Response
     {
-        $session = $request->getSession();
-        $quantity = (int)$request->query->get('quantity');
 
-        if(!$session->has('cartElements')) {
-//            $cartElements = array($product->getId() => $quantity);
-            $cartElements[] = ['id' => $product->getId(),
-                'name' => $request->get('Item_Name'),
-                'quantity' => $quantity,
-                'price' => $request->get('Price')];
-
-
-        } else {
-            $cartElements = $session->get('cartElements');
-            $cartElements = array($product->getId() => $quantity) + $cartElements;
-
-        }
-        $request->getSession()->set('cartElements',$cartElements);
-        return $this->json($cartElements);
+        $products = $productRepository->findBy(['Brand' => 'Adidas']);
+        return $this->render('product/adidas.html.twig', [
+            'products' => $products
+        ]);
     }
-//    /**
-//     * @Route("/reviewCart", name="app_review_cart", methods={"GET","POST"})
-//     */
-//    public function reviewCart(Request $request): Response
-//    {
-//        $session = $request->getSession();
-//        if ($session->has('cartElements')) {
-//            $cartElements = $session->get('cartElements');
-//        } else
-//            $cartElements = [];
-//        return $this->json($cartElements);
-//    }
+//
+////    Tìm ra sản phẩm có brand là Nike
+////
+    /**
+     * @Route("/nike", name="nike")
+     */
+    public function getBrandNike(ProductRepository $productRepository): Response
+    {
+
+        $products = $productRepository->findBy(['Brand' => 'Nike']);
+        return $this->render('product/nike.html.twig', [
+            'products' => $products
+        ]);
+    }
 
 
 }

@@ -33,9 +33,9 @@ class CartController extends AbstractController
         ]);
     }
     /**
-     * @Route("/product/{id}", name="app_product_show", methods={"GET","POST"})
+     * @Route("/Product/{id}", name="app_product_show", methods={"GET","POST"})
      */
-    public function show(Product $product, Request $request, CartManager $cartManager): Response
+    public function DetailProduct(Product $product, Request $request, CartManager $cartManager): Response
     {
         $form = $this->createForm(AddToCartType::class);
 
