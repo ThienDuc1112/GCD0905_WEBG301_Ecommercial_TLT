@@ -2,16 +2,23 @@
 {% block menu %}{% endblock %}
 {% block main %}
     <div class="login_container">
-        <form action="" method="post">
+
+        <form style="position: absolute" action="{{ path('login') }}" method="post">
+            {% if error %}
+                <div class="error-message-form">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
             <a class="form-home" href="{{ path('main_page') }}">
                 <i class="fa-solid fa-house form-home-ic"></i>
             </a>
             <h3 class="heading_bg">Please sign in</h3>
             <label for="inputEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" placeholder="Email address" required autofocus>
+            <input type="email" name="_email" class="form-control" placeholder="Email address" required autofocus>
             <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" placeholder="Email address" required autofocus>
+            <input type="password" name="_password" class="form-control" placeholder="Password" required autofocus>
             <button class="login_btn" type="submit">Sign in</button>
+{#            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>#}
             <a href="{{ path('register') }}" class="text_route_form">I'm new</a>
         </form>
     </div>

@@ -30,11 +30,18 @@
 {% block menu %}
     <div class="menu_container">
         <div class="menu_text_section">
-            <p class="text_label">🤡</p>
+            <p style="display: inline-block" class="text_label">🤡</p>
+
         </div>
         <div class="menu_log_section">
-            <a class="btn_log" href="{{ path('register') }}">Sign up</a> |
-            <a class="btn_log" href="{{ path('login') }}">Sign in</a>
+            {% if app.user%}
+                <a class="btn_log" href="#">Login as {{ app.user.name }} {{ app.user.lastname }}</a>
+                <a style="color: red" class="btn_log" href="{{ path('logout') }}">Log out</a>
+            {% endif %}
+            {% if  not app.user  %}
+                <a class="btn_log" href="{{ path('register') }}">Sign up</a> |
+                <a class="btn_log" href="{{ path('login') }}">Sign in</a>
+            {% endif %}
         </div>
     </div>
     <div class="menu_container_option">
@@ -48,13 +55,12 @@
             <a class="text_option" href="{{ path('app_shop_Adidas',{'pageId':1}) }}">Adidas</a>
             <a class="text_option" href="{{ path('app_shop_Nike',{'pageId':1}) }}">Nike</a>
 
-            <a class="text_option" href="#">Adidas</a>
-            <a class="text_option" href="#">Nike</a>
-
-            <a class="text_option" href="">Men's</a>
-            <a class="text_option" href="">Women's</a>
+            <a class="text_option" href="">Men</a>
+            <a class="text_option" href="">Women</a>
             <a class="text_option" href="">About Us</a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a class="text_option" href="{{ path('admin') }}">My Admin</a>
+            {% endif %}
         </div>
         <div class="menu_field_section">
             {#        <form #}
@@ -93,6 +99,7 @@
             </form>
         </div>
         <div class="menu_proceed_section">
+            {% if app.user%}
             <a class="btn_trolley" href="{{ path('cart') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor" stroke-width="2">
@@ -100,6 +107,16 @@
                           class="trolley_icon"/>
                 </svg>
             </a>
+            {% endif %}
+            {% if not app.user%}
+            <a class="btn_trolley" href="{{ path('login') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                          class="trolley_icon"/>
+                </svg>
+            </a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
