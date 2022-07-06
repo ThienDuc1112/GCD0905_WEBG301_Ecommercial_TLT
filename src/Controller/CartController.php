@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\AddToCartType;
+use App\Form\CartItemType;
 use App\Form\CartType;
 use App\Manager\CartManager;
 use DateTime;

@@ -32,7 +32,7 @@
                         <td><img style="height: 100px" src="{{ asset('assets/images/'~item.vars.data.product.Picture) }}"></td>
                         <td>${{ item.vars.data.product.Price }}</td>
                         <td>
-                            {{ form_widget(item.quantity) }}
+                            {{ form_widget(item.quantity)}}
                         </td>
                         <td>${{ item.vars.data.product.Price }}</td>
                         <td>{{ form_widget(item.remove, {'attr': {'class': 'btn btn-dark btn-sm'}}) }}</td>

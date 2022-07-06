@@ -94,4 +94,5 @@ class OrderDetail
     {
         return strval($this->id);
     }
+
 }
