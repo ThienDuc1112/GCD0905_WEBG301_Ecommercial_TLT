@@ -61,8 +61,6 @@ class ShopController extends AbstractController
             'selectedCat' => $selectCategory ?: '',
             'selectedBrand' => $selectBrand ?: '',
             'pageNumber' => ceil($numOfItems / $itemsPerPage),
-
-
         ]);
     }
 //
