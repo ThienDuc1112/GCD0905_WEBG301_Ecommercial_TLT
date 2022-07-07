@@ -35,6 +35,7 @@
         </div>
         <div class="menu_log_section">
             {% if app.user%}
+                <a href="{{ path('profile',{'id':app.user.id}) }}"> <i class="fa-solid fa-user"></i> </a>
                 <a class="btn_log" href="#">Login as {{ app.user.name }} {{ app.user.lastname }}</a>
                 <a style="color: red" class="btn_log" href="{{ path('logout') }}">Log out</a>
             {% endif %}

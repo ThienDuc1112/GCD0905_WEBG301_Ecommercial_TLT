@@ -18,7 +18,7 @@
             <label for="inputPassword" class="form-label">Password</label>
             <input type="password" name="_password" class="form-control" placeholder="Password" required autofocus>
             <button class="login_btn" type="submit">Sign in</button>
-{#            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>#}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
             <a href="{{ path('register') }}" class="text_route_form">I'm new</a>
         </form>
     </div>

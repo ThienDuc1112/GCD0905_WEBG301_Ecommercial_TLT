@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\EditUserType;
 use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,7 +47,7 @@ class FrontController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register(UserPasswordEncoderInterface $password_encoder, Request $request)
+    public function register(UserPasswordEncoderInterface $password_encoder, Request $request, EntityManagerInterface $entityManager)
     {
         $user = new User;
         $form = $this->createForm(UserType::class, $user);
@@ -80,6 +83,38 @@ class FrontController extends AbstractController
         );
         $this->get('security.token_storage')->setToken($token);
         $this->get('session')->set('_security_main',serialize($token));
+    }
+
+    /**
+     * @Route("/profile/{id}", name="profile", methods={"GET"})
+     */
+    public function Profile():Response
+    {
+        return $this->render('front/profile.html.twig');
+    }
+
+    /**
+     * @Route("/profile/{id}/edit", name="user_edit", methods={"GET","POST"})
+     */
+    public function EditProfile(Request $request, UserRepository $userRepository):Response
+    {
+        $user=$this->getUser();
+        $form = $this->createForm(EditUserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()&&$form->isValid()){
+        $manager=$this->getDoctrine()->getManager();
+        $manager->persist($user);
+        $manager->flush();
+
+        $this->addFlash('messenger', 'Edit your profile successful');
+        return $this->redirectToRoute('app_shop');
+        }
+        return $this->renderForm('front/edit_profile.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
     }
 
 

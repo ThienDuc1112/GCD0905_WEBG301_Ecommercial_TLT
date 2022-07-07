@@ -1,4 +1,8 @@
 security:
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -26,7 +30,9 @@ security:
 
             form_login:
                 check_path: login
+                # when user tries to access a protected page, they are redirected here
                 login_path: login
+                enable_csrf: true
 #                csrf_token_generator: security.csrf.token_manager
                 default_target_path: main_page
                 username_parameter: _email
@@ -43,7 +49,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-#        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
