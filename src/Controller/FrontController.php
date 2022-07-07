@@ -109,7 +109,7 @@ class FrontController extends AbstractController
         $manager->flush();
 
         $this->addFlash('messenger', 'Edit your profile successful');
-        return $this->redirectToRoute('app_shop');
+        return $this->redirectToRoute('main_page');
         }
         return $this->renderForm('front/edit_profile.html.twig', [
             'user' => $user,

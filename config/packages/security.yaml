@@ -32,7 +32,7 @@ security:
                 check_path: login
                 # when user tries to access a protected page, they are redirected here
                 login_path: login
-                enable_csrf: true
+#                enable_csrf: true
 #                csrf_token_generator: security.csrf.token_manager
                 default_target_path: main_page
                 username_parameter: _email
