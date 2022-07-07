@@ -7,6 +7,7 @@ use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -96,26 +97,48 @@ class FrontController extends AbstractController
     /**
      * @Route("/profile/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function EditProfile(Request $request, UserRepository $userRepository):Response
+    public function EditProfile(Request $request, UserRepository $userRepository, User $user):Response
     {
-        $user=$this->getUser();
+
+//        $user = $this->getUser();
         $form = $this->createForm(EditUserType::class, $user);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted()&&$form->isValid()){
-        $manager=$this->getDoctrine()->getManager();
-        $manager->persist($user);
-        $manager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form['avatar']->getData();
+            if ($file) {
+                $fileName = $this->generateUniqueFileName() . '.jpg';
+                try {
+                    $file->move(
+                        $this->getParameter('images_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    print($e);
 
-        $this->addFlash('messenger', 'Edit your profile successful');
-        return $this->redirectToRoute('app_shop');
+
+                }
+//                $manager = $this->getDoctrine()->getManager();
+//                $manager->persist($user);
+//                $manager->flush();
+                $user->setAvatar($fileName);
+            }
+            $userRepository->add($user,true);
+
+            $this->addFlash('messenger', 'Edit your profile successful');
+            return $this->redirectToRoute('app_shop');
         }
         return $this->renderForm('front/edit_profile.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
     }
-
+    private function generateUniqueFileName(): string
+    {
+        return md5(uniqid());
+    }
 
 }
+
+
