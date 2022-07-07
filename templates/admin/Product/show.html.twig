@@ -59,10 +59,10 @@
                 {# Điều hướng theo tên của brand #}
                 {% set brand = product.Brand %}
                 {% if brand == 'Nike' %}
-                    <a class="product-link" href="{{ path('nike') }}">Visit {{ product.Brand }} store</a>
+                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a>
                 {% endif %}
                 {% if brand == 'Adidas' %}
-                    <a class="product-link" href="{{ path('adidas') }}">Visit {{ product.Brand }} store</a>
+                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a>
                 {% endif %}
 
                 {% if brand != 'Adidas' and  brand != 'Nike'%}
