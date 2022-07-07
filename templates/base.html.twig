@@ -33,10 +33,17 @@
             <p style="display: inline-block" class="text_label">🤡</p>
 
         </div>
-        <div class="menu_log_section">
+            {% if app.user%}
+            <div style="display: flex;align-items: center;" class="menu_log_section">
+            {% endif %}
+
+            {% if not app.user%}
+            <div class="menu_log_section">
+            {% endif%}
+
             {% if app.user%}
                 <a href="{{ path('profile',{'id':app.user.id}) }}"> <i class="fa-solid fa-user"></i> </a>
-                <a class="btn_log" href="#">Login as {{ app.user.name }} {{ app.user.lastname }}</a>
+                <a class="btn_log" href="{{ path('profile',{'id':app.user.id}) }}">Login as {{ app.user.name }} {{ app.user.lastname }}</a>
                 <a style="color: red" class="btn_log" href="{{ path('logout') }}">Log out</a>
             {% endif %}
             {% if  not app.user  %}
@@ -56,9 +63,8 @@
             <a class="text_option" href="{{ path('app_shop_Adidas',{'pageId':1}) }}">Adidas</a>
             <a class="text_option" href="{{ path('app_shop_Nike',{'pageId':1}) }}">Nike</a>
 
-            <a class="text_option" href="">Men</a>
-            <a class="text_option" href="">Women</a>
-            <a class="text_option" href="">About Us</a>
+            <a class="text_option" href="#footer">Contact</a>
+            <a href="#footer" class="text_option" >About Us</a>
             {% if is_granted('ROLE_ADMIN') %}
             <a class="text_option" href="{{ path('admin') }}">My Admin</a>
             {% endif %}
@@ -125,7 +131,7 @@
 {% endblock %}
 {% block javascripts %} {% endblock %}
 {% block footer_links %}
-    <footer class="footer_container">
+    <footer id="footer" class="footer_container">
         <div class="footer_col">
             <small class="d-block mb-3 text-muted">&copy; Thien - Truong - Linh</small>
         </div>

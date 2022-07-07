@@ -40,7 +40,7 @@ class FrontController extends AbstractController
     /**
      * @Route("/logout", name="logout")
      */
-    public function logout() : void
+    public function logout(): void
     {
         throw new \Exception('This should never be reached!');
     }
@@ -53,8 +53,7 @@ class FrontController extends AbstractController
         $user = new User;
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
             $user->setName($request->request->get('user')['name']);
@@ -71,7 +70,7 @@ class FrontController extends AbstractController
 
             return $this->redirectToRoute('main_page');
         }
-        return $this->render('front/register.html.twig',['form'=>$form->createView()]);
+        return $this->render('front/register.html.twig', ['form' => $form->createView()]);
     }
 
     private function loginUserAutomatically($user, $password)
@@ -83,13 +82,13 @@ class FrontController extends AbstractController
             $user->getRoles()
         );
         $this->get('security.token_storage')->setToken($token);
-        $this->get('session')->set('_security_main',serialize($token));
+        $this->get('session')->set('_security_main', serialize($token));
     }
 
     /**
      * @Route("/profile/{id}", name="profile", methods={"GET"})
      */
-    public function Profile():Response
+    public function Profile(): Response
     {
         return $this->render('front/profile.html.twig');
     }
@@ -97,7 +96,7 @@ class FrontController extends AbstractController
     /**
      * @Route("/profile/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function EditProfile(Request $request, UserRepository $userRepository, User $user):Response
+    public function EditProfile(Request $request, UserRepository $userRepository, User $user): Response
     {
 
 //        $user = $this->getUser();
@@ -119,21 +118,23 @@ class FrontController extends AbstractController
 
 
                 }
-//                $manager = $this->getDoctrine()->getManager();
-//                $manager->persist($user);
-//                $manager->flush();
+//            $manager = $this->getDoctrine()->getManager();
+//            $manager->persist($user);
+//               $manager->flush();
                 $user->setAvatar($fileName);
             }
-            $userRepository->add($user,true);
+            $userRepository->add($user, true);
 
             $this->addFlash('messenger', 'Edit your profile successful');
-            return $this->redirectToRoute('app_shop');
+            return $this->redirectToRoute('main_page');
+
         }
         return $this->renderForm('front/edit_profile.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
     }
+
     private function generateUniqueFileName(): string
     {
         return md5(uniqid());
