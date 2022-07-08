@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\AddToCartType;
 use App\Form\ProductType;
 use App\Manager\CartManager;
+use App\Repository\OrderDetailRepository;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use DateTime;
@@ -205,5 +206,15 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_order_list', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+    //     * @Route("/orderdetails/{id}", name="admin_orderdetails", methods={"GET"})
+    //     */
+    public function OrderDetail(OrderDetailRepository $orderDetailRepository, OrderRepository $orderRepository, $id): Response
+    {
+        return $this->render('admin/order_details.html.twig', [
+//            'order' => $orderRepository,
+            'detail' => $orderDetailRepository->findBy(['id' => $id])
+        ]);
+    }
 
 }
