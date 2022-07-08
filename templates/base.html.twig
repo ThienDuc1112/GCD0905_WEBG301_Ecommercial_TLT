@@ -64,7 +64,7 @@
             <a class="text_option" href="{{ path('app_shop_Nike',{'pageId':1}) }}">Nike</a>
 
             <a class="text_option" href="#footer">Contact</a>
-            <a href="#footer" class="text_option" >About Us</a>
+            <a href="{{ path('about_us') }}" class="text_option" >About Us</a>
             {% if is_granted('ROLE_ADMIN') %}
             <a class="text_option" href="{{ path('admin') }}">My Admin</a>
             {% endif %}
@@ -139,28 +139,28 @@
             <h5 class="heading_penta">Contact</h5>
             <ul class="footer_list_link">
                 <li>
-                    <i class="footer-contact-icon fa-brands fa-facebook"></i>
-                    <a class="footer_link" href="#">Facebook</a>
+                    <i class="footer_contact_icon fa-brands fa-facebook"></i>
+                    <a class="footer_link" href="https://www.facebook.com/">Facebook</a>
                 </li>
                 <li>
-                    <i class="footer-contact-icon  fa-brands fa-youtube"></i>
-                    <a class="footer_link" href="#">Youtube</a>
+                    <i class="footer_contact_icon fa-brands fa-linkedin"></i>
+                    <a class="footer_link" href="https://www.linkedin.com/in/nv-truong-314641220/">Linkedin</a>
                 </li>
                 <li>
-                    <i class="footer-contact-icon  fa-brands fa-vimeo"></i>
+                    <i class="footer_contact_icon  fa-brands fa-vimeo"></i>
                     <a class="footer_link" href="#">Vimeo</a>
                 </li>
                 <li>
-                    <i class="footer-contact-icon fa-brands fa-twitter"></i>
-                    <a class="footer_link" href="#">Twister</a>
+                    <i class="footer_contact_icon fa-solid fa-phone"></i>
+                    <a class="footer_link" href="tel:0915229925">Phone number</a>
                 </li>
                 <li>
-                    <i class="footer-contact-icon fa-brands fa-instagram"></i>
-                    <a class="footer_link" href="#">Instagram</a>
+                    <i class="footer_contact_icon fa-brands fa-instagram"></i>
+                    <a class="footer_link" href="https://www.instagram.com/nv_truonqqq/">Instagram</a>
                 </li>
                 <li>
-                    <i class="footer-contact-icon fa-solid fa-envelope"></i>
-                    <a class="footer_link" href="#">Gmail</a>
+                    <i class="footer_contact_icon fa-solid fa-envelope"></i>
+                    <a class="footer_link" href="mailto:truongnvgcd201597@gmail.com?subject=subject&cc=cc@example.com">Gmail</a>
                 </li>
             </ul>
         </div>

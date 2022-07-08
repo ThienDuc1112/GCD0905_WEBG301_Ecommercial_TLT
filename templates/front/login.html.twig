@@ -2,16 +2,16 @@
 {% block menu %}{% endblock %}
 {% block main %}
     <div class="login_container">
-
-        <form style="position: absolute" action="{{ path('login') }}" method="post">
+        <a class="log_home_btn" href="{{ path('main_page') }}">
+            <i class="fa-solid fa-house log_home_icon"></i>
+        </a>
+        <form action="{{ path('login') }}" method="post">
             {% if error %}
                 <div class="error-message-form">
                     {{ error.messageKey|trans(error.messageData, 'security') }}
                 </div>
             {% endif %}
-            <a class="form-home" href="{{ path('main_page') }}">
-                <i class="fa-solid fa-house form-home-ic"></i>
-            </a>
+
             <h3 class="heading_bg">Please sign in</h3>
             <label for="inputEmail" class="form-label">Email address</label>
             <input type="email" name="_email" class="form-control" placeholder="Email address" required autofocus>
