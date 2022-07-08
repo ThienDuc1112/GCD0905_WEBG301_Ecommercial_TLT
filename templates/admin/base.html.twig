@@ -20,9 +20,13 @@
                     </a>
                 </li>
                 <li class="item-management">
-                    <a class="link" href="#">
-                        <i class=""></i>
+                    <a class="link" href="{{ path('admin_user_list') }}">
                         <span class="title">Customer</span>
+                    </a>
+                </li>
+                <li class="item-management3">
+                    <a class="link" href="{{ path('admin_order_list') }}">
+                        <span class="title">Order</span>
                     </a>
                 </li>
                 <li class="item-management2">
@@ -32,27 +36,12 @@
                         <i class="fas fa-caret-down"></i>
                     </a>
                     <ul class="list-management">
-                        <li class="item-child"><a class="link" href="{{ path('app_product_index') }}">List product</a></li>
+                        <li class="item-child"><a class="link" href="{{ path('admin_product_list') }}">List product</a></li>
                         <li class="item-child"><a class="link" href="{{ path('admin_product_action') }}">Action</a></li>
                         <li class="item-child"><a class="link" href="{{ path('admin_product_new') }}">Add Product</a></li>
                     </ul>
                 </li>
-                <li class="item-management3">
-                    <a class="link" href="#">
-                        <i class=""></i>
-                        <span class="title">Order</span>
-                        <i class="fas fa-caret-down"></i>
-                    </a>
-                    <ul class="list-management">
 
-                        <li class="item-child"><a class="link" href="#">List Order</a></li>
-                        <li class="item-child"><a class="link" href="#">Action</a></li>
-
-                        <li class="item-child"><a class="link" href="#">Add Order</a></li>
-
-                        <li class="item-child"><a class="link" href="#">Add Order</a></li>
-                    </ul>
-                </li>
             </ul>
         </nav>
 

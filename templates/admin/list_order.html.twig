@@ -1,0 +1,91 @@
+{% extends 'admin/base.html.twig' %}
+  {% block menu %} {% endblock %}
+
+{% block title %}Order index{% endblock %}
+
+{% block style %}
+    <style>
+        td {
+            text-align: center;
+        }
+
+        tr {
+            height: 60px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        thead {
+            background-color: #000;
+        }
+
+        th {
+            color: #fff;
+        }
+        .action-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .show-btn,
+        .delete-btn{
+            display: inline-block;
+            height: 40px;
+            width: 70px;
+            color: #fff;
+            margin: 0 5px;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 40px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            background-color: #e51010;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block rightContent %}
+    <h1 style="text-align: center; margin-bottom: 30px">List Order</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Status</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.CreatedAt|date('d-m-Y H:i:s') }}</td>
+                <td>{{ order.UpdatedAt|date('d-m-Y H:i:s') }}</td>
+                <td class="action-container">
+{#                    <a style="background-color: #10c5e5;" class="show-btn" href="{{ path('app_product_show', {'id': product.id}) }}">show</a>#}
+                    <a style="background-color: #10c5e5;" class="show-btn" href="{{ path('admin_orderdetails', {'id': order.id}) }}">show</a>
+                    <a>
+                        <form method="post" action="{{ path('admin_order_delete', {'id': order.id}) }}" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ order.id) }}">
+                            <button class="btn delete-btn">Delete</button>
+                        </form>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -28,6 +28,14 @@ class FrontController extends AbstractController
     }
 
     /**
+     * @Route("/about", name="about_us")
+     */
+    public function about()
+    {
+        return $this->render('front/about.html.twig');
+    }
+
+    /**
      * @Route("/login", name="login")
      */
     public function login(AuthenticationUtils $helper)
