@@ -14,8 +14,8 @@ class OrderFactory{
         $order = new Order();
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $order ->setStatus(Order::STATUS_CART)
-                ->setCreatedAt(new DateTime())
-                 ->setUpdatedAt(new DateTime());
+            ->setCreatedAt(new DateTime())
+            ->setUpdatedAt(new DateTime());
 
         return $order;
     }

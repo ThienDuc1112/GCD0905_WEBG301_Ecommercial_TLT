@@ -28,17 +28,17 @@
 </head>
 <body>
 {% block menu %}
-    <div class="menu_container">
-        <div class="menu_text_section">
-            <p style="display: inline-block" class="text_label">🤡</p>
+<div class="menu_container">
+    <div class="menu_text_section">
+        <p style="display: inline-block" class="text_label">🤡</p>
 
-        </div>
-            {% if app.user%}
-            <div style="display: flex;align-items: center;" class="menu_log_section">
-            {% endif %}
+    </div>
+    {% if app.user%}
+    <div style="display: flex;align-items: center;" class="menu_log_section">
+        {% endif %}
 
-            {% if not app.user%}
-            <div class="menu_log_section">
+        {% if not app.user%}
+        <div class="menu_log_section">
             {% endif%}
 
             {% if app.user%}
@@ -64,9 +64,9 @@
             <a class="text_option" href="{{ path('app_shop_Nike',{'pageId':1}) }}">Nike</a>
 
             <a class="text_option" href="#footer">Contact</a>
-            <a href="#footer" class="text_option" >About Us</a>
+            <a href="{{ path('about_us') }}" class="text_option" >About Us</a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a class="text_option" href="{{ path('admin') }}">My Admin</a>
+                <a class="text_option" href="{{ path('admin') }}">My Admin</a>
             {% endif %}
         </div>
         <div class="menu_field_section">
@@ -107,102 +107,102 @@
         </div>
         <div class="menu_proceed_section">
             {% if app.user%}
-            <a class="btn_trolley" href="{{ path('cart') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                          class="trolley_icon"/>
-                </svg>
-            </a>
+                <a class="btn_trolley" href="{{ path('cart') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                              class="trolley_icon"/>
+                    </svg>
+                </a>
             {% endif %}
             {% if not app.user%}
-            <a class="btn_trolley" href="{{ path('login') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                          class="trolley_icon"/>
-                </svg>
-            </a>
+                <a class="btn_trolley" href="{{ path('login') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                              class="trolley_icon"/>
+                    </svg>
+                </a>
             {% endif %}
         </div>
     </div>
-{% endblock %}
-{% block main %}
-{% endblock %}
-{% block javascripts %} {% endblock %}
-{% block footer_links %}
-    <footer id="footer" class="footer_container">
-        <div class="footer_col">
-            <small class="d-block mb-3 text-muted">&copy; Thien - Truong - Linh</small>
-        </div>
-        <div class="footer_col">
-            <h5 class="heading_penta">Contact</h5>
-            <ul class="footer_list_link">
-                <li>
-                    <i class="footer-contact-icon fa-brands fa-facebook"></i>
-                    <a class="footer_link" href="#">Facebook</a>
-                </li>
-                <li>
-                    <i class="footer-contact-icon  fa-brands fa-youtube"></i>
-                    <a class="footer_link" href="#">Youtube</a>
-                </li>
-                <li>
-                    <i class="footer-contact-icon  fa-brands fa-vimeo"></i>
-                    <a class="footer_link" href="#">Vimeo</a>
-                </li>
-                <li>
-                    <i class="footer-contact-icon fa-brands fa-twitter"></i>
-                    <a class="footer_link" href="#">Twister</a>
-                </li>
-                <li>
-                    <i class="footer-contact-icon fa-brands fa-instagram"></i>
-                    <a class="footer_link" href="#">Instagram</a>
-                </li>
-                <li>
-                    <i class="footer-contact-icon fa-solid fa-envelope"></i>
-                    <a class="footer_link" href="#">Gmail</a>
-                </li>
-            </ul>
-        </div>
-        <div class="footer_col">
-            <h5 class="heading_penta">Resources</h5>
-            <ul class="footer_list_link">
-                <li><a class="footer_link" href="#">Help center</a></li>
-                <li><a class="footer_link" href="#">Blog</a></li>
-                <li><a class="footer_link" href="#">Guidelines</a></li>
-                <li><a class="footer_link" href="#">Developers</a></li>
-            </ul>
-        </div>
-        <div class="footer_col">
-            <h5 class="heading_penta">About</h5>
-            <ul class="footer_list_link">
-                <li><a class="footer_link" href="#">Team</a></li>
-                <li><a class="footer_link" href="#">Contact</a></li>
-                <li><a class="footer_link" href="#">Jobs</a></li>
-                <li><a class="footer_link" href="#">Partners</a></li>
-                <li><a class="footer_link" href="#">Terms</a></li>
-            </ul>
-        </div>
-    </footer>
-{% endblock %}
+    {% endblock %}
+    {% block main %}
+    {% endblock %}
+    {% block javascripts %} {% endblock %}
+    {% block footer_links %}
+        <footer id="footer" class="footer_container">
+            <div class="footer_col">
+                <small class="d-block mb-3 text-muted">&copy; Thien - Truong - Linh</small>
+            </div>
+            <div class="footer_col">
+                <h5 class="heading_penta">Contact</h5>
+                <ul class="footer_list_link">
+                    <li>
+                        <i class="footer_contact_icon fa-brands fa-facebook"></i>
+                        <a class="footer_link" href="https://www.facebook.com/">Facebook</a>
+                    </li>
+                    <li>
+                        <i class="footer_contact_icon fa-brands fa-linkedin"></i>
+                        <a class="footer_link" href="https://www.linkedin.com/in/nv-truong-314641220/">Linkedin</a>
+                    </li>
+                    <li>
+                        <i class="footer_contact_icon  fa-brands fa-vimeo"></i>
+                        <a class="footer_link" href="#">Vimeo</a>
+                    </li>
+                    <li>
+                        <i class="footer_contact_icon fa-solid fa-phone"></i>
+                        <a class="footer_link" href="tel:0915229925">Phone number</a>
+                    </li>
+                    <li>
+                        <i class="footer_contact_icon fa-brands fa-instagram"></i>
+                        <a class="footer_link" href="https://www.instagram.com/nv_truonqqq/">Instagram</a>
+                    </li>
+                    <li>
+                        <i class="footer_contact_icon fa-solid fa-envelope"></i>
+                        <a class="footer_link" href="mailto:truongnvgcd201597@gmail.com?subject=subject&cc=cc@example.com">Gmail</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer_col">
+                <h5 class="heading_penta">Resources</h5>
+                <ul class="footer_list_link">
+                    <li><a class="footer_link" href="#">Help center</a></li>
+                    <li><a class="footer_link" href="#">Blog</a></li>
+                    <li><a class="footer_link" href="#">Guidelines</a></li>
+                    <li><a class="footer_link" href="#">Developers</a></li>
+                </ul>
+            </div>
+            <div class="footer_col">
+                <h5 class="heading_penta">About</h5>
+                <ul class="footer_list_link">
+                    <li><a class="footer_link" href="#">Team</a></li>
+                    <li><a class="footer_link" href="#">Contact</a></li>
+                    <li><a class="footer_link" href="#">Jobs</a></li>
+                    <li><a class="footer_link" href="#">Partners</a></li>
+                    <li><a class="footer_link" href="#">Terms</a></li>
+                </ul>
+            </div>
+        </footer>
+    {% endblock %}
 
 
 
-{# <script> #}
-{#    $(function () { #}
-{#        $('[data-toggle="tooltip"]').tooltip() #}
-{#    }) #}
-{# </script> #}
+    {# <script> #}
+    {#    $(function () { #}
+    {#        $('[data-toggle="tooltip"]').tooltip() #}
+    {#    }) #}
+    {# </script> #}
 
-{% block js %}
-{% endblock %}
+    {% block js %}
+    {% endblock %}
 
 
-{#<script>#}
-{#    $(function () {#}
-{#        $('[data-toggle="tooltip"]').tooltip()#}
-{#    })#}
-{#</script>#}
+    {#<script>#}
+    {#    $(function () {#}
+    {#        $('[data-toggle="tooltip"]').tooltip()#}
+    {#    })#}
+    {#</script>#}
 
 </body>
 </html>
