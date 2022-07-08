@@ -90,7 +90,7 @@
                 <td>{{ product.Description }}</td>
                 <td>{{ product.Brand }}</td>
                 <td class="action-container">
-                    <a class="show-btn" href="{{ path('admin_product_show', {'id': product.id}) }}">show</a>
+                    <a class="show-btn" href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
                     <a class="edit-btn" href="{{ path('admin_product_edit', {'id': product.id}) }}">edit</a>
                     <a>
                         <form method="post" action="{{ path('admin_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">

@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 
+use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\User;
 use App\Form\AddToCartType;
 use App\Form\ProductType;
 use App\Manager\CartManager;
+use App\Repository\OrderRepository;
+use App\Repository\UserRepository;
 use DateTime;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -85,6 +89,40 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/listproduct", name="admin_product_list", methods={"GET"})
+     */
+    public function listProduct(ProductRepository $productRepository): Response
+    {
+        return $this->render('admin/Product/index.html.twig', [
+            'products' => $productRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/listuser", name="admin_user_list", methods={"GET"})
+     */
+    public function listUser(UserRepository $userRepository): Response
+    {
+        return $this->render('admin/list_user.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="admin_user_delete", methods={"POST"})
+     */
+    public function userDelete(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $userRepository->remove($user, true);
+        }
+
+        return $this->redirectToRoute('admin_user_list', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
+    /**
      * @Route("/{id}/edit", name="admin_product_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
@@ -144,4 +182,28 @@ class AdminController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
+
+    /**
+     * @Route("/listorder", name="admin_order_list", methods={"GET"})
+     */
+    public function listOrder(OrderRepository $orderRepository): Response
+    {
+        return $this->render('admin/list_order.html.twig', [
+            'orders' => $orderRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="admin_order_delete", methods={"POST"})
+     */
+    public function orderDelete(Request $request, Order $order, OrderRepository $orderRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $order->getId(), $request->request->get('_token'))) {
+            $orderRepository->remove($order, true);
+        }
+
+        return $this->redirectToRoute('admin_order_list', [], Response::HTTP_SEE_OTHER);
+    }
+
+
 }
