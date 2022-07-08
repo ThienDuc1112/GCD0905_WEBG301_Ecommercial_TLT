@@ -4,30 +4,23 @@
 
 {% block main %}
 
-{{ form_start(form) }}
-<div class="form-group">
-    <label for="user_name" class="form-label">First name</label>
-    {{ form_widget(form.name) }}
-</div>
-<div class="form-group">
-    <label for="user_last_name" class="form-label">Last name</label>
-    {{ form_widget(form.last_name) }}
-</div>
-    <div class="form-group">
+    {{ form_start(form) }}
+    <div class="edit_profile_container">
+
+        <label for="user_name" class="form-label">First name</label>
+        {{ form_widget(form.name) }}
+        <label for="user_last_name" class="form-label">Last name</label>
+        {{ form_widget(form.last_name) }}
         <label for="user_last_name" class="form-label">Phone</label>
         {{ form_widget(form.phone) }}
-    </div>
-    <div class="form-group">
         <label for="user_last_name" class="form-label">Location</label>
         {{ form_widget(form.location) }}
-    </div>
-    <div class="form-group">
         <label for="user_last_name" class="form-label">Avatar</label>
         {{ form_widget(form.avatar) }}
-    </div>
+        <button class="btn">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
 
-<button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
+    </div>
 
 
 {% endblock %}

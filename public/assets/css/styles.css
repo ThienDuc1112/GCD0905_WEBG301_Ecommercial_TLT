@@ -99,6 +99,9 @@
     background-color: #61dafb;
     color: white;
 }
+.user_icon{
+    color: #000000;
+}
 
 .text_label {
     margin-left: 66px;
@@ -608,3 +611,58 @@ ul.footer_list_link li {
     background-color: #ee1b1b;
 }
 
+/* SHOP */
+.shop_control_section{
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    align-items: center;
+    background: #F5F5F5;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+}
+.shop_filter_form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.shop_pricing_field{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.shop_filter_btn{
+    background-color: #000000;
+    color: white;
+    padding: 10px 30px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-left: 50px;
+    transition: 0.6s;
+}
+.shop_filter_btn:hover{
+    background-color: #61dafb;
+}
+.shop_reset_text{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* EDIT PROFILE */
+.edit_profile_container{
+    width: 100vh;
+}
+.edit_profile_container form{
+    position: relative;
+    padding: 2rem;
+    width: 30rem;
+    border-radius: 0.5rem;
+    background-color: #ffffff94;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto;
+}
