@@ -67,7 +67,9 @@
                 </form>
             </div>
         </div>
+        <h1 class="heading_bg">New releases</h1>
             <div class="product_section">
+                <form action="" method="post" class="box">
                 {% for product in products %}
 
                     <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-item">
@@ -110,8 +112,8 @@
                             <span class="product__origin-name">TP.Hồ Chí Minh</span>
                         </div>
                     </a>
-
                 {% endfor %}
+                </form>
             </div>
 
         <div class="shop_page_num_section">

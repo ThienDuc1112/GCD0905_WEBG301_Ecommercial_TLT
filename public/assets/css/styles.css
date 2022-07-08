@@ -236,6 +236,7 @@ ul.footer_list_link li {
     font-size: 45px;
     margin-bottom: 20px;
     font-family: "Candal", sans-serif;
+    text-align: center;
 }
 
 .btn_trolley {
@@ -415,7 +416,19 @@ ul.footer_list_link li {
 .log_home_icon:hover{
     color: orangered;
 }
-
+/* PRODUCT*/
+.product_section{
+    width: 1350px;
+    margin: 0 auto;
+}
+.product_section .box{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 265px);
+    align-items: flex-start;
+    gap: 3rem;
+    justify-content: center;
+    margin-top: 10px;
+}
 .product-page-heading {
     text-align: center;
 }
@@ -426,16 +439,9 @@ ul.footer_list_link li {
 }
 
 .product-item {
-    display: block;
     text-decoration: none;
     position: relative;
-    width: 18%;
-    margin: 10px 5px 0;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
-    transition: transform linear 0.1s;
-    will-change: transform;
+    box-shadow: 0 0px 30px #0000009e;
 }
 
 .product-img {
@@ -621,7 +627,7 @@ ul.footer_list_link li {
     background: #F5F5F5;
     border-radius: 8px;
     padding: 15px;
-    margin-top: 10px;
+    margin-bottom: 20px;
 }
 .shop_filter_form{
     display: grid;

@@ -13,19 +13,19 @@
 
 {% block main %}
     <div class="card-wrapper3">
-        <div class="card3">
-            <a href="{{ path('app_shop') }}" class="form-icon">
-                <i style="font-size: 20px" class="fa-solid fa-arrow-left form-icon__ic"></i>
-                Back to list
-            </a>
-        </div>
+{#        <div class="card3">#}
+{#            <a href="{{ path('app_shop') }}" class="form-icon">#}
+{#                <i style="font-size: 20px" class="fa-solid fa-arrow-left form-icon__ic"></i>#}
+{#                Back to list#}
+{#            </a>#}
+{#        </div>#}
     </div>
     <div class="card-wrapper2">
         <div class="card2">
             <div class="product-img">
                 <div class="img-display">
                     <div class="img-showcase">
-                        <img src="{{ asset('assets/images/'~product.Picture) }}">
+                        <img src="{{ asset('assets/images/'~product.Picture) }}" class="img_detail">
                         <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
                         <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
                         <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
