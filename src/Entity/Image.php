@@ -25,8 +25,11 @@ class Image
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $product;
+
+
 
     public function getId(): ?int
     {
@@ -58,4 +61,6 @@ class Image
 
         return $this;
     }
+
+
 }

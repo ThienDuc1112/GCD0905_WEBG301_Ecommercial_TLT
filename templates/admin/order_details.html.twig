@@ -80,11 +80,10 @@
                 <td>{{detail.quantity * detail.Price }}</td>
 
             </tr>
-
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
             {% endfor %}
+{#            {{ form_start(form) }}#}
+{#            <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#            {{ form_end(form) }}#}
         </tbody>
     </table>
 
