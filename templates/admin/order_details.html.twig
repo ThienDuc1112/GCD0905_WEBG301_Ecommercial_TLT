@@ -51,26 +51,40 @@
 
 {% block rightContent %}
     <h1 style="text-align: center; margin-bottom: 30px">Order details</h1>
+    <h2>Information User</h2>
+    <div>ID: {{ order.user.id }}</div>
+    <div>Name:{{ order.user.name }}</div>
+    <div>LastName:{{ order.user.lastname }}</div>
+    <div>Phone Number:{{ order.user.phone }}</div>
+    <div>Email: {{ order.user.email }}</div>
 
     <table class="table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Product ID</th>
-            <th>User ID</th>
+            <th>Product Name</th>
+            <th>Image</th>
+            <th>Product Price</th>
             <th>Quantity</th>
+            <th>Total</th>
         </tr>
         </thead>
         <tbody>
+            {% for detail in details %}
             <tr>
-                <td>{{ detail.id }}</td>
-                <td>{{ detail.product }}</td>
-                <td>{{ detail.orderRef }}</td>
-                <td>{{ detail.quantity }}</td>
+                <td>{{detail.id }}</td>
+                <td>{{ detail.Name }}</td>
+                <td> <img height="100px" src="{{ asset('assets/images/'~detail.Picture) }}"></td>
+                <td>{{detail.Price }}</td>
+                <td>{{detail.quantity }}</td>
+                <td>{{detail.quantity * detail.Price }}</td>
+
             </tr>
+
             <tr>
                 <td colspan="6">no records found</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 

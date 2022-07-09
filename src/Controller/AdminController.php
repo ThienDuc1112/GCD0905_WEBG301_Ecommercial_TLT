@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Order;
+use App\Entity\OrderDetail;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Form\AddToCartType;
@@ -209,11 +210,13 @@ class AdminController extends AbstractController
     /**
     //     * @Route("/orderdetails/{id}", name="admin_orderdetails", methods={"GET"})
     //     */
-    public function OrderDetail(OrderDetailRepository $orderDetailRepository, OrderRepository $orderRepository, $id): Response
+    public function OrderDetail(OrderRepository $orderRepository, Order $order, OrderDetail $orderDetail): Response
     {
+        $id = $order->getId();
+        $product=$orderRepository->findDetail($id);
         return $this->render('admin/order_details.html.twig', [
-//            'order' => $orderRepository,
-            'detail' => $orderDetailRepository->findBy(['id' => $id])
+            'order'=>$order,
+            'details'=>$product
         ]);
     }
 
