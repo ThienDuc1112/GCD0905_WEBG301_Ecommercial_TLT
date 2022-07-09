@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block customstylesheets %}
-        <link rel="stylesheet" href="{{ asset('assets/css/dash.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dash.css') }}">
 {% endblock %}
 
 {% block style %}
@@ -15,86 +15,86 @@
 
 {% block main %}
     <div class="product_container">
-            <div class="product_img_section">
-                    <div class="product_img_main">
-                        <img src="{{ asset('assets/images/'~product.Picture) }}" class="img_detail">
-                    </div>
-                <div class="product_img_child">
-                    <div class="product_img_items">
-                        <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
-                        </a>
-                    </div>
-                    <div class="product_img_items">
-                        <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
-                        </a>
-                    </div>
-                    <div class="product_img_items">
-                        <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
-                        </a>
-                    </div>
-                    <div class="product_img_items">
-                        <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
-                        </a>
-                    </div>
-                    {% for image in product.images %}
+        <div class="product_img_section">
+            <div class="product_img_main">
+                <img src="{{ asset('assets/images/'~product.Picture) }}" class="img_detail">
+            </div>
+            <div class="product_img_child">
+                <div class="product_img_items">
+                    <a href="#" data-id="1">
+                        <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
+                    </a>
+                </div>
+                <div class="product_img_items">
+                    <a href="#" data-id="1">
+                        <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
+                    </a>
+                </div>
+                <div class="product_img_items">
+                    <a href="#" data-id="1">
+                        <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
+                    </a>
+                </div>
+                <div class="product_img_items">
+                    <a href="#" data-id="1">
+                        <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
+                    </a>
+                </div>
+                {% for image in product.images %}
                     <div class="img-item">
-                        <a href="#" data-id = "1">
+                        <a href="#" data-id="1">
                             <img src="{{ asset('assets/images/'~image.image) }}" class="img_child">
                         </a>
                     </div>
-                    {% endfor %}
+                {% endfor %}
 
-                </div>
             </div>
-            <div class="product_content">
-                <h2 class="product_title">{{ product.Name }}</h2>
+        </div>
+        <div class="product_content">
+            <h2 class="product_title">{{ product.Name }}</h2>
 
-{#                                #}{# Điều hướng theo tên của brand #}
-{#                {% set brand = product.Brand %}#}
-{#                {% if brand == 'Nike' %}#}
-{#                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a>#}
-{#                {% endif %}#}
-{#                {% if brand == 'Adidas' %}#}
-{#                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a>#}
-{#                {% endif %}#}
+            {#                                #}{# Điều hướng theo tên của brand #}
+            {#                {% set brand = product.Brand %} #}
+            {#                {% if brand == 'Nike' %} #}
+            {#                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a> #}
+            {#                {% endif %} #}
+            {#                {% if brand == 'Adidas' %} #}
+            {#                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a> #}
+            {#                {% endif %} #}
 
-{#                {% if brand != 'Adidas' and  brand != 'Nike'%}#}
-{#                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a>#}
-{#                {% endif %}#}
+            {#                {% if brand != 'Adidas' and  brand != 'Nike'%} #}
+            {#                    <a class="product-link" href="#">Visit {{ product.Brand }} store</a> #}
+            {#                {% endif %} #}
 
-                <div class="product-rating">
-                    <i class="fas fa-star rating_icons"></i>
-                    <i class="fas fa-star rating_icons"></i>
-                    <i class="fas fa-star rating_icons"></i>
-                    <i class="fas fa-star rating_icons"></i>
-                    <i class="fas fa-star-half-alt rating_icons"></i>
-                    <span>4.8(32)</span>
-                </div>
-                <div class="product-price">
-                    <p class="product_price">Old Price: <span>${{ product.Price + 10}}
-                    <p class="product_price">New Price: <span>${{ product.Price }}
-                </div>
-                <div class="product-detail">
-                    <h2> About this product:</h2>
-                    <p>{{ product.Description }}</p>
-                    <ul class="product_quantity">
-                        <li><i class="fa-solid fa-circle-check"></i>Available: <span>in the store</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i>Category: <span>{{ product.Category }}</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i>Shipping Area: <span>in Viet Nam</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i>Shipping Fee:<span>depend on area</span></li>
-                    </ul>
-                </div>
-                {{ form_start(form, {'attr': {'class': 'product_form_proceed'}}) }}
-                <div class="show_func_btn">
-                    {{ form_label(form.quantity) }}: {{ form_widget(form.quantity, {'attr': {'class': 'form_quantity'}}) }}
-                </div>
-                {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25 product_btn_add'}}) }}
-{#                {{ form_end(form), {'class': 'product_btn_re' }}#}
+            <div class="product-rating">
+                <i class="fas fa-star rating_icons"></i>
+                <i class="fas fa-star rating_icons"></i>
+                <i class="fas fa-star rating_icons"></i>
+                <i class="fas fa-star rating_icons"></i>
+                <i class="fas fa-star-half-alt rating_icons"></i>
+                <span>4.8(32)</span>
             </div>
+            <div class="product-price">
+                <p class="product_price">Old Price: <span>${{ product.Price + 10 }}
+                <p class="product_price">New Price: <span>${{ product.Price }}
+            </div>
+            <div class="product-detail">
+                <h2> About this product:</h2>
+                <p>{{ product.Description }}</p>
+                <ul class="product_quantity">
+                    <li><i class="fa-solid fa-circle-check"></i>Available: <span>in the store</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i>Category: <span>{{ product.Category }}</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i>Shipping Area: <span>in Viet Nam</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i>Shipping Fee:<span>depend on area</span></li>
+                </ul>
+            </div>
+            {{ form_start(form, {'attr': {'class': 'product_form_proceed'}}) }}
+            <div class="show_func_btn">
+                {{ form_label(form.quantity) }}: {{ form_widget(form.quantity, {'attr': {'class': 'form_quantity'}}) }}
+            </div>
+            {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25 product_btn_add'}}) }}
+            {{ form_end(form, {'attr': {'class': 'product_btn_re'}}) }}
+        </div>
     </div>
 
 {% endblock %}
