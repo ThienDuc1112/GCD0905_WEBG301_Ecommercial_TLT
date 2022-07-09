@@ -2,6 +2,15 @@
 {% block customstylesheets %}
         <link rel="stylesheet" href="{{ asset('assets/css/dash.css') }}">
 {% endblock %}
+
+{% block style %}
+    <style>
+        #add_to_cart_remove {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
 {% block title %}Product{% endblock %}
 
 {% block main %}
