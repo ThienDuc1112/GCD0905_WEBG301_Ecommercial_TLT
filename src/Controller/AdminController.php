@@ -102,6 +102,18 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/{id}", name="admin_product_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+            $productRepository->remove($product, true);
+        }
+
+        return $this->redirectToRoute('admin_product_action', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
      * @Route("/listuser", name="admin_user_list", methods={"GET"})
      */
     public function listUser(UserRepository $userRepository): Response
@@ -145,17 +157,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_product_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
-            $productRepository->remove($product, true);
-        }
 
-        return $this->redirectToRoute('admin_product_action', [], Response::HTTP_SEE_OTHER);
-    }
 
     /**
      * @Route("/product/{id}", name="admin_product_show", methods={"GET","POST"})

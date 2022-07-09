@@ -29,70 +29,70 @@ class ProductController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="app_product_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, ProductRepository $productRepository): Response
-    {
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
+//    /**
+//     * @Route("/new", name="app_product_new", methods={"GET", "POST"})
+//     */
+//    public function new(Request $request, ProductRepository $productRepository): Response
+//    {
+//        $product = new Product();
+//        $form = $this->createForm(ProductType::class, $product);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//
+//            //------------------Image Upload--------------//
+//
+//            $file = $form['Picture']->getData();
+//            if ($file) {
+//                $fileName = $this->generateUniqueFileName() . '.jpg';
+//                try {
+//                    $file->move(
+//                        $this->getParameter('images_directory'),
+//                        $fileName
+//                    );
+//                } catch (FileException $e) {
+//                    print($e);
+//                }
+//                $product->setPicture($fileName);
+//            }
+//
+//            $images = $form['images']->getData();
+//            foreach ($images as $image) {
+//                $fileImage = $this->generateUniqueFileName() . '.jpg';
+//                $image->move(
+//                    $this->getParameter('images_directory'),
+//                    $fileImage
+//                );
+//                $img = new Image();
+//                $img->setImage($fileImage);
+//                $product->addImage($img);
+//
+//            }
+//            //------------------Image Upload--------------//
+//
+////            $productRepository->add($product, true);
+//            $entityManager = $this->getDoctrine()->getManager();
+//            $entityManager->persist($product);
+//            $entityManager->flush();
+//
+//            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+//        }
+//
+//        return $this->renderForm('admin/Product/new.html.twig', [
+//            'product' => $product,
+//            'form' => $form,
+//        ]);
+//    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            //------------------Image Upload--------------//
-
-            $file = $form['Picture']->getData();
-            if ($file) {
-                $fileName = $this->generateUniqueFileName() . '.jpg';
-                try {
-                    $file->move(
-                        $this->getParameter('images_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    print($e);
-                }
-                $product->setPicture($fileName);
-            }
-
-            $images = $form['images']->getData();
-            foreach ($images as $image) {
-                $fileImage = $this->generateUniqueFileName() . '.jpg';
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $fileImage
-                );
-                $img = new Image();
-                $img->setImage($fileImage);
-                $product->addImage($img);
-
-            }
-            //------------------Image Upload--------------//
-
-//            $productRepository->add($product, true);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($product);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin/Product/new.html.twig', [
-            'product' => $product,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/action", name="app_product_action", methods={"GET"})
-     */
-    public function actionProduct(ProductRepository $productRepository): Response
-    {
-        return $this->render('product/action.html.twig', [
-            'products' => $productRepository->findAll(),
-        ]);
-    }
+//    /**
+//     * @Route("/action", name="app_product_action", methods={"GET"})
+//     */
+//    public function actionProduct(ProductRepository $productRepository): Response
+//    {
+//        return $this->render('product/action.html.twig', [
+//            'products' => $productRepository->findAll(),
+//        ]);
+//    }
 
 //    Tìm ra sản phẩm có brand là adidas
 
@@ -107,42 +107,42 @@ class ProductController extends AbstractController
 //        ]);
 //    }
 
-    /**
-     * @Route("/{id}/edit", name="app_product_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
-    {
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
+//    /**
+//     * @Route("/{id}/edit", name="app_product_edit", methods={"GET", "POST"})
+//     */
+//    public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
+//    {
+//        $form = $this->createForm(ProductType::class, $product);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $productRepository->add($product, true);
+//
+//            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+//        }
+//
+//        return $this->renderForm('product/edit.html.twig', [
+//            'product' => $product,
+//            'form' => $form,
+//        ]);
+//    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $productRepository->add($product, true);
 
-            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('product/edit.html.twig', [
-            'product' => $product,
-            'form' => $form,
-        ]);
-    }
-
-
-    /**
-     * @Route("/{id}", name="app_product_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
-            $productRepository->remove($product, true);
-        }
-
-        return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
-    }
-
-    private function generateUniqueFileName(): string
-    {
-        return md5(uniqid());
-    }
+//    /**
+//     * @Route("/{id}", name="app_product_delete", methods={"POST"})
+//     */
+//    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
+//    {
+//        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+//            $productRepository->remove($product, true);
+//        }
+//
+//        return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+//    }
+//
+//    private function generateUniqueFileName(): string
+//    {
+//        return md5(uniqid());
+//    }
 
 }
