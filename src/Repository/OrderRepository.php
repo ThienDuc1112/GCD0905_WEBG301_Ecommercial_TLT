@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PHPUnit\Framework\MockObject\Builder\Identity;
 
 /**
  * @extends ServiceEntityRepository<Order>
@@ -14,6 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Order[]    findAll()
  * @method Order[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class OrderRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -37,6 +39,19 @@ class OrderRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findDetail($id):array
+    {
+        $db = $this->createQueryBuilder('o')
+            ->select('d.id, d.quantity, p.Name, p.Picture, p.Price')
+            ->leftJoin('App\Entity\OrderDetail','d', 'WITH', 'o.id = d.orderRef')
+            ->leftJoin('App\Entity\Product','p', 'WITH', 'd.product = p.id')
+            ->where('o.id = :ide')
+            ->setParameter('ide', $id);
+
+        $query = $db->getQuery();
+        return $query->execute();
     }
 
 //    /**
@@ -63,4 +78,5 @@ class OrderRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
 }
