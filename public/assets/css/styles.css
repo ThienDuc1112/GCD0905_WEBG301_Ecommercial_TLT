@@ -731,7 +731,7 @@ ul.footer_list_link li {
 }
 .about_heading{
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #FFFFFF;
+    color: #000000;
     margin: 20px;
     opacity: 0;
     transition: opacity 1s;
@@ -746,4 +746,27 @@ ul.footer_list_link li {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+.social_icon_ref{
+    color: #000000;
+}
+.about_tech_section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+}
+.about_tech_name{
+    font-size: 28px;
+    text-align: center;
+}
+.tech_icons{
+    font-size: 100px;
+}
+.about_us_txt{
+
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    font-family: sans-serif;
+
 }
