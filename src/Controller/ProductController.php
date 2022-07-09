@@ -145,4 +145,6 @@ class ProductController extends AbstractController
 //        return md5(uniqid());
 //    }
 
+
+
 }

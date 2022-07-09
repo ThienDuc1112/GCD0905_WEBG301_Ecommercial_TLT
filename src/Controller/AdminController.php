@@ -82,6 +82,30 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/orderdelete/{id}", name="admin_order_delete", methods={"POST"})
+     */
+    public function orderDelete(Request $request, Order $order, OrderRepository $orderRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $order->getId(), $request->request->get('_token'))) {
+            $orderRepository->remove($order, true);
+        }
+
+        return $this->redirectToRoute('admin_order_list', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/productdelete/{id}", name="admin_product_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+            $productRepository->remove($product, true);
+        }
+
+        return $this->redirectToRoute('admin_product_action', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
      * @Route("/action", name="admin_product_action", methods={"GET"})
      */
     public function actionProduct(ProductRepository $productRepository): Response
@@ -101,17 +125,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_product_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
-            $productRepository->remove($product, true);
-        }
 
-        return $this->redirectToRoute('admin_product_action', [], Response::HTTP_SEE_OTHER);
-    }
 
     /**
      * @Route("/listuser", name="admin_user_list", methods={"GET"})
@@ -124,7 +138,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_user_delete", methods={"POST"})
+     * @Route("/user/{id}", name="admin_user_delete", methods={"POST"})
      */
     public function userDelete(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -198,17 +212,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_order_delete", methods={"POST"})
-     */
-    public function orderDelete(Request $request, Order $order, OrderRepository $orderRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $order->getId(), $request->request->get('_token'))) {
-            $orderRepository->remove($order, true);
-        }
 
-        return $this->redirectToRoute('admin_order_list', [], Response::HTTP_SEE_OTHER);
-    }
 
     /**
     //     * @Route("/orderdetails/{id}", name="admin_orderdetails", methods={"GET"})
