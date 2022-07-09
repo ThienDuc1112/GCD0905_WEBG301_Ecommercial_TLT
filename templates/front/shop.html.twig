@@ -4,112 +4,119 @@
     <link rel="stylesheet" href="{{ asset('assets/css/styl.css') }}">
 {% endblock %}
 
-{% block style %}
-    <style>
-        .product-item {
-            width: 23%;
-            margin: 10px 8px 0;
-        }
-    </style>
-{% endblock %}
-
 {% block title %}Product shop{% endblock %}
 {% block main %}
-    <div class="sort-dropdown">
-        <button class="sort-button">Sort</button>
-        <div class="dropdown-list">
-            <a href="{{ path(app.request.attributes.get('_route'),
-                app.request.query.all|merge({'sort': 'Price', 'order': 'desc'})) }}">Sort by price: High to Low</a>
-            <a href="{{ path(app.request.attributes.get('_route'),
-                app.request.query.all|merge({'sort': 'Price', 'order': 'asc'})) }}">Sort by price: Low To High</a>
-            <a href="{{ path(app.request.attributes.get('_route'),
-                app.request.query.all|merge({'sort': 'id', 'order': 'desc'})) }}">Sort by newness</a>
-        </div>
-    </div>
-    <div class="container">
-        <div class="bar" name="sideBar">
-            <form action={{ path('app_shop') }} method="get">
-                Category:
-                <select name="cat">
-                    <option value="Sneaker" {{ (selectedCat=="Sneaker") ? 'selected' }}> Sneaker</option>
-                    <option value="Oxford" {{ (selectedCat=="Oxford") ? 'selected' }}> Oxford</option>
-                    <option value="" {{ (selectedCat=="All") ? 'selected' }} >
-                        All
-                    </option>
-                </select> <br>
-                Brand:
-                <select name="brand">
-                    <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>
-                    <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>
-                </select><br>
-
-                Min Price: <input type="number" name="minPrice"><br>
-                Max Price: <input type="number" name="maxPrice"><br>
-                {#                <div class="row"> #}
-                {#                    {% for item in listofproduct %} #}
-                {#                    <div class="col-6"><h4> Brand List</h4> #}
-                {#                        <a href="{{ path('app_shop2',{'brandName': item.brand})Nike }}" #}
-                {#                    </div> #}
-                {#                </div> #}
-
-                <input type="submit" value="Filter" class="btn btn-primary"> |
-                <a href="{{ path('app_shop') }}"
-                   class="btn btn-primary">Reset</a>
-            </form>
-
-
-        </div>
-
-        <div style="margin-left: 20px" class="product-container">
-            {% for product in products %}
-
-                <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-item">
-                    <img class="product-img" src="{{ asset('assets/images/'~product.Picture) }}" alt="">
-                    <p class="product-name">{{ product.Name }}</p>
-                    <div class="product-price">
-                        <p class="product-price__old">{{ product.Price + 10 }}$</p>
-                        <p class="product-price__new">{{ product.Price }}$</p>
+    <div class="shop_container">
+        <div class="shop_control_section">
+            <div class="shop_sort_section">
+                <button class="sort-button">Sort</button>
+                <div class="dropdown-list">
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'Price', 'order': 'desc'})) }}">Sort by price: High to
+                        Low</a>
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'Price', 'order': 'asc'})) }}">Sort by price: Low To
+                        High</a>
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                        app.request.query.all|merge({'sort': 'id', 'order': 'desc'})) }}">Sort by newness</a>
+                </div>
+            </div>
+            <div class="shop_side_bar">
+                <form action={{ path('app_shop') }} method="get" class="shop_filter_form">
+                    <div>
+                    Category:
+                    <select name="cat">
+                        <option value="Sneaker" {{ (selectedCat=="Sneaker") ? 'selected' }}> Sneaker</option>
+                        <option value="Oxford" {{ (selectedCat=="Oxford") ? 'selected' }}> Oxford</option>
+                        <option value="" {{ (selectedCat=="All") ? 'selected' }} >
+                            All
+                        </option>
+                    </select>
                     </div>
-                    <div class="product-favorite">
-                        <i class="fas fa-check product-favorite__ic"></i>
-                        <span class="product-favorite__text">Favorite</span>
+                    <div>
+                    Brand:
+                    <select name="brand">
+                        <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>
+                        <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>
+                    </select><br>
+                    </div>
+                    <div class="shop_pricing_field">
+                    <label for="minPrice">Min:</label>
+                    <input type="number" name="minPrice">
+                    </div>
+                    <div class="shop_pricing_field">
+
+                        <label for="maxPrice">Max:</label>
+                        <input type="number" name="maxPrice">
+
+                    {#                <div class="row"> #}
+                    {#                    {% for item in listofproduct %} #}
+                    {#                    <div class="col-6"><h4> Brand List</h4> #}
+                    {#                        <a href="{{ path('app_shop2',{'brandName': item.brand})Nike }}" #}
+                    {#                    </div> #}
+                    {#                </div> #}
                     </div>
 
-                    <div class="product__action">
+                    <button class="shop_filter_btn">
+                        Filter
+                    </button>
+                    <button class="shop_filter_btn">
+                    <a href="{{ path('app_shop') }}"
+                       class="shop_reset_text">Reset</a>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <h1 class="heading_bg">New releases</h1>
+            <div class="product_section">
+                <form action="" method="post" class="box">
+                {% for product in products %}
+
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-item">
+                        <img class="product-img" src="{{ asset('assets/images/'~product.Picture) }}" alt="">
+                        <p class="product-name">{{ product.Name }}</p>
+                        <div class="product-price">
+                            <p class="product-price__old">{{ product.Price + 10 }}$</p>
+                            <p class="product-price__new">{{ product.Price }}$</p>
+                        </div>
+                        <div class="product-favorite">
+                            <i class="fas fa-check product-favorite__ic"></i>
+                            <span class="product-favorite__text">Favorite</span>
+                        </div>
+
+                        <div class="product__action">
                             <span class="product__like ">
                                 <i class="product__like-icon fas fa-heart "></i>
                             </span>
 
-                        <div class="product__rating">
-                            {% set starActive =  random(1, 5)%}
-                            {% set starnot = 5 - starActive %}
+                            <div class="product__rating">
+                                {% set starActive =  random(1, 5) %}
+                                {% set starnot = 5 - starActive %}
 
-                            {% for i in 1..starActive  %}
-                                <i class="product__star--gold fas fa-star"></i>
-                            {% endfor %}
-
-                            {% if starActive != 5 %}
-                                {% for i in 1..starnot  %}
-                                    <i class=" fas fa-star"></i>
+                                {% for i in 1..starActive %}
+                                    <i class="product__star--gold fas fa-star"></i>
                                 {% endfor %}
-                            {% endif %}
+
+                                {% if starActive != 5 %}
+                                    {% for i in 1..starnot %}
+                                        <i class=" fas fa-star"></i>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <span class="product__sold">{{ random(100, 1000) }} Sold</span>
                         </div>
-                        <span class="product__sold">{{ random(100, 1000) }} Sold</span>
-                    </div>
 
 
+                        <div class="product__origin">
+                            <span class="product__origin-brand">{{ product.Brand }}</span>
+                            <span class="product__origin-name">TP.Hồ Chí Minh</span>
+                        </div>
+                    </a>
+                {% endfor %}
+                </form>
+            </div>
 
-                    <div class="product__origin">
-                        <span class="product__origin-brand">{{ product.Brand }}</span>
-                        <span class="product__origin-name">TP.Hồ Chí Minh</span>
-                    </div>
-                </a>
-
-            {% endfor %}
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div style="display:flex;text-align:center;justify-content:center">
+        <div class="shop_page_num_section">
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     {% for i in range(1, pageNumber) %}

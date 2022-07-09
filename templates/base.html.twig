@@ -42,7 +42,7 @@
             {% endif%}
 
             {% if app.user%}
-                <a href="{{ path('profile',{'id':app.user.id}) }}"> <i class="fa-solid fa-user"></i> </a>
+                <a href="{{ path('profile',{'id':app.user.id}) }}"> <i class="fa-solid fa-user user_icon"></i> </a>
                 <a class="btn_log" href="{{ path('profile',{'id':app.user.id}) }}">Login as {{ app.user.name }} {{ app.user.lastname }}</a>
                 <a style="color: red" class="btn_log" href="{{ path('logout') }}">Log out</a>
             {% endif %}
