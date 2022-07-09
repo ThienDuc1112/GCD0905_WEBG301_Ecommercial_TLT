@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\OrderDetail;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,6 +39,19 @@ class OrderDetailRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+
+    public function findDetailOrder($id){
+        $qb =$this->createQueryBuilder('d');
+        $qb
+            ->select('d.quantity')
+            ->innerJoin('App\Entity\Order', 'o', Join::WITH,'o = d.orderRef' )
+            ->where('d.orderRef = id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getResult();
+    }
+
 
 //    /**
 //     * @return OrderDetail[] Returns an array of OrderDetail objects

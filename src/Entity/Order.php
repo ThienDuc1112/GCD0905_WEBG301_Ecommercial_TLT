@@ -41,10 +41,16 @@ class Order
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     */
+    private $user;
+
     /**
      * @var string
      */
-    const STATUS_CART = 'cart';
+    const STATUS_CART = 'ordered';
 
     public function __construct()
     {
@@ -157,4 +163,23 @@ class Order
 
         return $total;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+//    public function setUser(?User $user): self
+//    {
+//        $this->user = $user;
+//
+//        return $this;
+//    }
+    public function setUser(User $user): Order
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+
 }

@@ -45,15 +45,17 @@ class Product
      */
     private $Category;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="product")
-     */
-    private $images;
+
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $Picture;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
+     */
+    private $images;
 
 
     public function __construct()
@@ -135,6 +137,36 @@ class Product
     public function setPicture(string $Picture): self
     {
         $this->Picture = $Picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getProduct() === $this) {
+                $image->setProduct(null);
+            }
+        }
 
         return $this;
     }

@@ -25,18 +25,18 @@ class ProductType extends AbstractType
                 'label' => 'Main Image',
                 'mapped' => false, 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '2048k',
 
 
                     ])
                 ],
             ])
-//            ->add('images_id', EntityType::class, [
-//                'class' => Image::class,
-//                'choice_label' => 'img1',
-//                'mapped' => false,
-//            ]);
-        ;
+            ->add('images',FileType::class,[
+                'label' => 'Other Images',
+                'multiple'=> true,
+                'mapped' => false,
+                'required'=> false,
+               ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

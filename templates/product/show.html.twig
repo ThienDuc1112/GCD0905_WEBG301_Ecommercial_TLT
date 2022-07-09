@@ -52,6 +52,14 @@
                             <img src="{{ asset('assets/images/maxplus1.png') }}">
                         </a>
                     </div>
+                    {% for image in product.images %}
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/'~image.image) }}">
+                        </a>
+                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="product-content">

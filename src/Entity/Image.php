@@ -17,10 +17,6 @@ class Image
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -29,30 +25,23 @@ class Image
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $product;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+
+
+    public function getImage(): ?string
     {
-        return $this->title;
+        return $this->image;
     }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-//    public function getImage(): ?string
-//    {
-//        return $this->image;
-//    }
 
     public function setImage(?string $image): self
     {
@@ -72,4 +61,6 @@ class Image
 
         return $this;
     }
+
+
 }

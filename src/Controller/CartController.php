@@ -2,16 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\User;
 use App\Form\AddToCartType;
 use App\Form\CartItemType;
 use App\Form\CartType;
+use App\Form\EditUserType;
 use App\Manager\CartManager;
+use App\Repository\UserRepository;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+
 
 class CartController extends AbstractController
 {
@@ -61,5 +67,18 @@ class CartController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
+
+    public function createOrder():Order{
+        $order = new Order();
+        /** @var \App\Entity\User $user */
+            $user = $this->getUser();
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $order ->setStatus(Order::STATUS_CART)
+                ->setCreatedAt(new DateTime())
+                ->setUpdatedAt(new DateTime())
+                ->setUser($user);
+        return $order;
+    }
+
 
 }

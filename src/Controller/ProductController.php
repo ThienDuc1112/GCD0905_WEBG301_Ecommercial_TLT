@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Product;
 use App\Form\AddToCartType;
 use App\Form\ProductType;
@@ -43,7 +44,7 @@ class ProductController extends AbstractController
 
             $file = $form['Picture']->getData();
             if ($file) {
-                $fileName = $this->generateUniqueFileName(). '.jpg';
+                $fileName = $this->generateUniqueFileName() . '.jpg';
                 try {
                     $file->move(
                         $this->getParameter('images_directory'),
@@ -54,9 +55,25 @@ class ProductController extends AbstractController
                 }
                 $product->setPicture($fileName);
             }
+
+            $images = $form['images']->getData();
+            foreach ($images as $image) {
+                $fileImage = $this->generateUniqueFileName() . '.jpg';
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fileImage
+                );
+                $img = new Image();
+                $img->setImage($fileImage);
+                $product->addImage($img);
+
+            }
             //------------------Image Upload--------------//
 
-            $productRepository->add($product, true);
+//            $productRepository->add($product, true);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($product);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -66,6 +83,7 @@ class ProductController extends AbstractController
             'form' => $form,
         ]);
     }
+
     /**
      * @Route("/action", name="app_product_action", methods={"GET"})
      */
@@ -77,7 +95,6 @@ class ProductController extends AbstractController
     }
 
 //    Tìm ra sản phẩm có brand là adidas
-
 
 
 //    /**
@@ -109,7 +126,6 @@ class ProductController extends AbstractController
             'form' => $form,
         ]);
     }
-
 
 
     /**
