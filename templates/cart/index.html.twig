@@ -21,7 +21,7 @@
                         <th>Image</th>
                         <th>Item price</th>
                         <th>Quantity</th>
-                        <th>Total</th>
+{#                        <th>Total</th>#}
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -34,9 +34,8 @@
                         <td>
                             {{ form_widget(item.quantity)}}
                         </td>
-                        <td>${{ item.vars.data.product.Price }}</td>
+{#                        <td>${{ item.vars.data.product.Price * item.quantity }}</td>#}
                         <td>{{ form_widget(item.remove, {'attr': {'class': 'btn btn-dark btn-sm'}}) }}</td>
-{#                        <td>aaa</td>#}
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -44,8 +43,25 @@
                 <div class="shop">
                     <a href="{{ path('app_shop') }}">Continue buy shoes</a>
                 </div>
-                {{ form_end(form, {'render_rest': false}) }}
+                {% do form.remove.setRendered %}
+
+                {% do form.items.setRendered %}
+                {{ form_end(form) }}
+{#                {{ form_end(form, {'render_rest': false}) }}#}
             </div>
+                <div class="col-lg-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div><b>Total</b></div>
+                            <span><b>{{ cart.total }} $</b></span>
+                        </li>
+                    </ul>
+                    {% if not user.location and not user.phone %}
+                        <p>Please update your information to checkout</p>
+                    {% else %}
+                        <a href="#" class="btn btn-warning w-100"> Checkout</a>
+                    {% endif %}
+                </div>
             {% else %}
                 <div class="alert alert-info">
                     Your cart is empty. Go to the <a href="{{ path('app_shop') }}">Continue buy shoes</a>

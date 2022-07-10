@@ -153,6 +153,7 @@ class Order
     /**
      * Calculates the order total.
      */
+
     public function getTotal(): float
     {
         $total = 0;

@@ -14,10 +14,62 @@
 {% block title %}Product{% endblock %}
 
 {% block main %}
+
+    <div class="card-wrapper3">
+{#        <div class="card3">#}
+{#            <a href="{{ path('app_shop') }}" class="form-icon">#}
+{#                <i style="font-size: 20px" class="fa-solid fa-arrow-left form-icon__ic"></i>#}
+{#                Back to list#}
+{#            </a>#}
+{#        </div>#}
+    </div>
+    <div class="card-wrapper2">
+        <div class="card2">
+            <div class="product-img">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        <img src="{{ asset('assets/images/'~product.Picture) }}" class="img_detail">
+                        <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
+                        <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
+                        <img style="height: 400px" src="{{ asset('assets/images/maxplus1.png') }}">
+                    </div>
+                </div>
+                <div class="img-select">
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/Jordan2.jpg') }}">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/Jordan3.jpg') }}">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/Jordan4.jpg') }}">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/Jordan5.jpg') }}">
+                        </a>
+                    </div>
+                    {% for image in product.images %}
+                    <div class="img-item">
+                        <a href="#" data-id = "1">
+                            <img src="{{ asset('assets/images/'~image.image) }}">
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
     <div class="product_container">
         <div class="product_img_section">
             <div class="product_img_main">
                 <img src="{{ asset('assets/images/'~product.Picture) }}" class="img_detail">
+
             </div>
             <div class="product_img_child">
                 <div class="product_img_items">
@@ -40,6 +92,11 @@
                         <img src="{{ asset('assets/images/maxplus1.png') }}" class="img_child">
                     </a>
                 </div>
+
+                {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25'}}) }}
+                {% do form.remove.setRendered %}
+                {{ form_end(form) }}
+
                 {% for image in product.images %}
                     <div class="img-item">
                         <a href="#" data-id="1">
@@ -47,6 +104,7 @@
                         </a>
                     </div>
                 {% endfor %}
+
 
             </div>
         </div>
