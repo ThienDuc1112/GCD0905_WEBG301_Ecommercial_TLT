@@ -41,16 +41,16 @@ class OrderDetailRepository extends ServiceEntityRepository
     }
 
 
-    public function findDetailOrder($id){
-        $qb =$this->createQueryBuilder('d');
-        $qb
-            ->select('d.quantity')
-            ->innerJoin('App\Entity\Order', 'o', Join::WITH,'o = d.orderRef' )
-            ->where('d.orderRef = id')
-            ->setParameter('id', $id);
-
-        return $qb->getQuery()->getResult();
-    }
+//    public function findDetailOrder($id){
+//        $qb =$this->createQueryBuilder('d');
+//        $qb
+//            ->select('d.quantity')
+//            ->innerJoin('App\Entity\Order', 'o', Join::WITH,'o = d.orderRef' )
+//            ->where('d.orderRef = id')
+//            ->setParameter('id', $id);
+//
+//        return $qb->getQuery()->getResult();
+//    }
 
 
 //    /**

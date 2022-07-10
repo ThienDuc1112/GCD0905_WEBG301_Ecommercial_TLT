@@ -23,7 +23,6 @@ class ShopController extends AbstractController
     public function index(ProductRepository $productRepository, Request $request, $pageId = 1): Response
     {
         $selectBrand = $request->query->get('brand');
-        $selectBrand = $request->query->get('brand');
         $selectCategory = $request->query->get('cat');
         $minPrice = $request->query->get('minPrice');
         $maxPrice = $request->query->get('maxPrice');
