@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderDetail;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Form\AddToCartType;
@@ -10,6 +11,7 @@ use App\Form\CartItemType;
 use App\Form\CartType;
 use App\Form\EditUserType;
 use App\Manager\CartManager;
+use App\Repository\OrderDetailRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -26,6 +28,8 @@ class CartController extends AbstractController
      */
     public function index(CartManager $cartManager, Request $request): Response
     {
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
         $cart = $cartManager->getCurrentCart();
         $form = $this->createForm(CartType::class, $cart);
         $form->handleRequest($request);
@@ -36,7 +40,8 @@ class CartController extends AbstractController
         }
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
     /**

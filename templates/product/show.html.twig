@@ -34,22 +34,22 @@
                 <div class="img-select">
                     <div class="img-item">
                         <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                            <img src="{{ asset('assets/images/Jordan2.jpg') }}">
                         </a>
                     </div>
                     <div class="img-item">
                         <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                            <img src="{{ asset('assets/images/Jordan3.jpg') }}">
                         </a>
                     </div>
                     <div class="img-item">
                         <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                            <img src="{{ asset('assets/images/Jordan4.jpg') }}">
                         </a>
                     </div>
                     <div class="img-item">
                         <a href="#" data-id = "1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                            <img src="{{ asset('assets/images/Jordan5.jpg') }}">
                         </a>
                     </div>
                     {% for image in product.images %}
@@ -108,6 +108,7 @@
                     {{ form_label(form.quantity) }}: {{ form_widget(form.quantity) }}
                 </div>
                 {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25'}}) }}
+                {% do form.remove.setRendered %}
                 {{ form_end(form) }}
             </div>
         </div>
