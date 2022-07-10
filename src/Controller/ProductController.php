@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
- * @Route("/product")
+ * @Route("api/product")
  */
 class ProductController extends AbstractController
 {

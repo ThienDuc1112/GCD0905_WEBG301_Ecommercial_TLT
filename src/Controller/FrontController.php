@@ -17,6 +17,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Form\UserType;
 
+/**
+ * @Route("/api")
+ */
+
 class FrontController extends AbstractController
 {
     /**
