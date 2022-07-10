@@ -24,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/admin")
+ * @Route("/api/admin")
  */
 class AdminController extends AbstractController
 {
@@ -82,6 +82,30 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/orderdelete/{id}", name="admin_order_delete", methods={"POST"})
+     */
+    public function orderDelete(Request $request, Order $order, OrderRepository $orderRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $order->getId(), $request->request->get('_token'))) {
+            $orderRepository->remove($order, true);
+        }
+
+        return $this->redirectToRoute('admin_order_list', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/productdelete/{id}", name="admin_product_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+            $productRepository->remove($product, true);
+        }
+
+        return $this->redirectToRoute('admin_product_action', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
      * @Route("/action", name="admin_product_action", methods={"GET"})
      */
     public function actionProduct(ProductRepository $productRepository): Response
@@ -89,6 +113,24 @@ class AdminController extends AbstractController
         return $this->render('admin/Product/action.html.twig', [
             'products' => $productRepository->findAll(),
         ]);
+
+//        $products = $this->getDoctrine()
+//            ->getRepository(Product::class)
+//            ->findAll();
+//
+//        $data = [];
+//
+//        foreach ($products as $product) {
+//            $data[] = [
+//                'id' => $product->getId(),
+//                'name' => $product->getName(),
+//                'description' => $product->getDescription(),
+//            ];
+//        }
+//
+//
+//        return $this->json($data);
+
     }
 
     /**
@@ -101,6 +143,8 @@ class AdminController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/listuser", name="admin_user_list", methods={"GET"})
      */
@@ -112,7 +156,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_user_delete", methods={"POST"})
+     * @Route("/user/{id}", name="admin_user_delete", methods={"POST"})
      */
     public function userDelete(Request $request, User $user, UserRepository $userRepository): Response
     {
@@ -145,17 +189,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_product_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
-            $productRepository->remove($product, true);
-        }
 
-        return $this->redirectToRoute('admin_product_action', [], Response::HTTP_SEE_OTHER);
-    }
 
     /**
      * @Route("/product/{id}", name="admin_product_show", methods={"GET","POST"})
@@ -196,21 +230,11 @@ class AdminController extends AbstractController
         ]);
     }
 
+
+
     /**
-     * @Route("/{id}", name="admin_order_delete", methods={"POST"})
+     * @Route("/orderdetails/{id}", name="admin_orderdetails", methods={"GET"})
      */
-    public function orderDelete(Request $request, Order $order, OrderRepository $orderRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $order->getId(), $request->request->get('_token'))) {
-            $orderRepository->remove($order, true);
-        }
-
-        return $this->redirectToRoute('admin_order_list', [], Response::HTTP_SEE_OTHER);
-    }
-
-    /**
-    //     * @Route("/orderdetails/{id}", name="admin_orderdetails", methods={"GET"})
-    //     */
     public function OrderDetail(Request $request,OrderRepository $orderRepository, Order $order, OrderDetail $orderDetail): Response
     {
 //        $form = $this->createForm(InformationOrderType::class, $order);
@@ -228,5 +252,139 @@ class AdminController extends AbstractController
 //            'form' => $form,
         ]);
     }
+
+
+//    Rest Api
+
+    /**
+     * @Route("/productapi", name="admin_product_indexapi", methods={"GET"})
+     */
+    public function Apiindex(): Response
+    {
+        $products = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findAll();
+
+        $data = [];
+
+        foreach ($products as $product) {
+            $data[] = [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'price' => $product->getPrice(),
+                'description' => $product->getDescription(),
+                'brand' => $product->getBrand(),
+                'category' => $product->getCategory(),
+                'picture' => $product-> getPicture(),
+            ];
+        }
+
+
+        return $this->json($data);
+    }
+
+    /**
+     * @Route("/productapi", name="admin_product_newapi", methods={"POST"})
+     */
+    public function Apinew(Request $request, ProductRepository $productRepository): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $product = new Product();
+        $product->setName($request->request->get('name'));
+        $product->setPrice($request->request->get('price'));
+        $product->setDescription($request->request->get('description'));
+        $product->setBrand($request->request->get('brand'));
+        $product->setCategory($request->request->get('category'));
+        $product->setPicture($request->request->get('picture'));
+
+        $entityManager->persist($product);
+        $entityManager->flush();
+
+        return $this->json('Created new project successfully with id ' . $product->getId());
+    }
+
+    /**
+     * @Route("/productapi/{id}", name="admin_product_showapi", methods={"GET"})
+     */
+    public function Apishow(int $id): Response
+    {
+        $product = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->find($id);
+
+        if (!$product) {
+
+            return $this->json('No project found for id ' . $id, 404);
+        }
+
+        $data =  [
+            'id' => $product->getId(),
+            'name' => $product->getName(),
+            'price' => $product->getPrice(),
+            'description' => $product->getDescription(),
+            'brand' => $product->getBrand(),
+            'category' => $product->getCategory(),
+            'picture' => $product-> getPicture(),
+        ];
+
+        return $this->json($data);
+    }
+
+    /**
+     * @Route("/productapi/{id}", name="admin_product_editapi", methods={"PUT"})
+     */
+    public function Apiedit(Request $request, int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Product::class)->find($id);
+
+        if (!$product) {
+            return $this->json('No project found for id' . $id, 404);
+        }
+
+        $product->setName($request->request->get('name'));
+        $product->setPrice($request->request->get('price'));
+        $product->setDescription($request->request->get('description'));
+        $product->setBrand($request->request->get('brand'));
+        $product->setCategory($request->request->get('category'));
+        $product->setPicture($request->request->get('picture'));
+        $entityManager->flush();
+
+
+        $data =  [
+            'id' => $product->getId(),
+            'name' => $product->getName(),
+            'price' => $product->getPrice(),
+            'description' => $product->getDescription(),
+            'brand' => $product->getBrand(),
+            'category' => $product->getCategory(),
+            'picture' => $product-> getPicture(),
+        ];
+
+        return $this->json($data);
+    }
+
+    /**
+     * @Route("/productapi/{id}", name="admin_product_deleteapi", methods={"DELETE"})
+     */
+    public function Apidelete(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Product::class)->find($id);
+
+        if (!$product) {
+            return $this->json('No project found for id' . $id, 404);
+        }
+
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return $this->json('Deleted a project successfully with id ' . $id);
+    }
+
+
+
+
 
 }

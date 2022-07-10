@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * @Route("/shop")
+ * @Route("/api/shop")
  */
 class ShopController extends AbstractController
 {
@@ -22,7 +22,7 @@ class ShopController extends AbstractController
      */
     public function index(ProductRepository $productRepository, Request $request, $pageId = 1): Response
     {
-//        $selectBrand = $request->query->get('brand');
+        $selectBrand = $request->query->get('brand');
         $selectBrand = $request->query->get('brand');
         $selectCategory = $request->query->get('cat');
         $minPrice = $request->query->get('minPrice');
@@ -63,6 +63,7 @@ class ShopController extends AbstractController
             'selectedBrand' => $selectBrand ?: '',
             'pageNumber' => ceil($numOfItems / $itemsPerPage),
         ]);
+
     }
 
     /**
