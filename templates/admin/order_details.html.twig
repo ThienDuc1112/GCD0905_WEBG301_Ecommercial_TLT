@@ -52,16 +52,23 @@
 {% block rightContent %}
     <h1 style="text-align: center; margin-bottom: 30px">Order details</h1>
     <h2>Information User</h2>
-    <div>ID: {{ order.user.id }}</div>
-    <div>Name:{{ order.user.name }}</div>
-    <div>LastName:{{ order.user.lastname }}</div>
-    <div>Phone Number:{{ order.user.phone }}</div>
-    <div>Email: {{ order.user.email }}</div>
+    {% for item in customer %}
+    <div>Name:{{ item.name }}</div>
+    <div>LastName:{{item.last_name }}</div>
+    <div>Phone Number:{{ item.phone }}</div>
+    <div>Email: {{ item.email }}</div>
+        <div>Email: {{ item.location }}</div>
+    {% endfor %}
+{#    <div>ID: {{ order.user.id }}</div>#}
+{#    <div>Name:{{ customer.name }}</div>#}
+{#    <div>LastName:{{ order.user.lastname }}</div>#}
+{#    <div>Phone Number:{{ order.user.phone }}</div>#}
+{#    <div>Email: {{ order.user.email }}</div>#}
 
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>Id Order</th>
             <th>Product Name</th>
             <th>Image</th>
             <th>Product Price</th>

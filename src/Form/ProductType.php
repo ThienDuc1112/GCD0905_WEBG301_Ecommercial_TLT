@@ -25,7 +25,7 @@ class ProductType extends AbstractType
                 'label' => 'Main Image',
                 'mapped' => false, 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '4096k',
 
 
                     ])

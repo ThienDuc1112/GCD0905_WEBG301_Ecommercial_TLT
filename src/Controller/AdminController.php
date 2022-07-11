@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Image;
 use App\Entity\Order;
 use App\Entity\OrderDetail;
 use App\Entity\Product;
@@ -21,6 +22,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 
 /**
@@ -48,6 +50,20 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //------------------Images Upload--------------//
+            $images = $form['images']->getData();
+            foreach ($images as $image) {
+                $fileImage = $this->generateUniqueFileName() . '.jpg';
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fileImage
+                );
+                $img = new Image();
+                $img->setImage($fileImage);
+                $product->addImage($img);
+            }
+
+
 
             //------------------Image Upload--------------//
 
@@ -234,15 +250,24 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/orderdetails/{id}", name="admin_orderdetails", methods={"GET"})
+     * Entity("Order", expr="repository.find(id)")
      */
-    public function OrderDetail(Request $request,OrderRepository $orderRepository, Order $order, OrderDetail $orderDetail): Response
+    public function OrderDetail(OrderRepository $orderRepository, Order $order): Response
     {
-
+//        $form = $this->createForm(InformationOrderType::class, $order);
+//        $form->handleRequest($request);
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $orderRepository->add($order, true);
+//
+//            return $this->redirectToRoute('admin_orderdetails', [], Response::HTTP_SEE_OTHER);
+//        }
         $id = $order->getId();
         $product=$orderRepository->findDetail($id);
+        $customer=$orderRepository->findCustomer($id);
         return $this->render('admin/order_details.html.twig', [
             'order'=>$order,
             'details'=>$product,
+            'customer'=>$customer,
 //            'form' => $form,
         ]);
     }
