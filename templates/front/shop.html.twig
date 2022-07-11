@@ -34,11 +34,21 @@
                     </select>
                     </div>
                     <div>
-                    Brand:
-                    <select name="brand">
-                        <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>
-                        <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>
-                    </select><br>
+                        <label class="brand"> Nike
+                        <input type="checkbox" name="brand[]" value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}>
+                        </label>
+                        <label class="brand"> Adidas
+                            <input type="checkbox" name="brand[]" value="Adidas" {{ (selectedBrand=="Adidas") ? 'selected' }}">
+                        </label>
+                        <label class="brand"> Yeezy
+                            <input type="checkbox" name="brand[]" value="Yeezy" {{ (selectedBrand=="Yeezy") ? 'selected' }}">
+                        </label>
+{#                    Brand:#}
+{#                    <select name="brand">#}
+{#                        <option value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}> Nike</option>#}
+{#                        <option value="Charles" {{ (selectedBrand=="Charles") ? 'selected' }}> Charles</option>#}
+{#                    </select><br>#}
+{#                        <br>#}
                     </div>
                     <div class="shop_pricing_field">
                     <label for="minPrice">Min:</label>

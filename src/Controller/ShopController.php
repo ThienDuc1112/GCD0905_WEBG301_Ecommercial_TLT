@@ -43,7 +43,7 @@ class ShopController extends AbstractController
             $criteria->andWhere($expressionBuilder->eq('Category', $selectCategory));
         }
         if (!is_null($selectBrand)) {
-            $criteria->andWhere($expressionBuilder->eq('Brand', $selectBrand));
+            $criteria->andWhere($expressionBuilder->in('Brand', $selectBrand));
         }
         if (!empty($sortBy)) {
             $criteria->orderBy([$sortBy => ($orderBy == 'asc') ? Criteria::ASC : Criteria::DESC]);
