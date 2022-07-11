@@ -31,26 +31,28 @@
                     </div>
                 </div>
                 <div class="img-select">
+                    {% for image in images.image %}
                     <div class="img-item">
                         <a href="#" data-id="1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
+                            <img src="{{ asset('assets/images/'~image) }}">
                         </a>
                     </div>
-                    <div class="img-item">
-                        <a href="#" data-id="1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
-                        </a>
-                    </div>
-                    <div class="img-item">
-                        <a href="#" data-id="1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
-                        </a>
-                    </div>
-                    <div class="img-item">
-                        <a href="#" data-id="1">
-                            <img src="{{ asset('assets/images/maxplus1.png') }}">
-                        </a>
-                    </div>
+                    {% endfor %}
+{#                    <div class="img-item">#}
+{#                        <a href="#" data-id="1">#}
+{#                            <img src="{{ asset('assets/images/maxplus1.png') }}">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <div class="img-item">#}
+{#                        <a href="#" data-id="1">#}
+{#                            <img src="{{ asset('assets/images/maxplus1.png') }}">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <div class="img-item">#}
+{#                        <a href="#" data-id="1">#}
+{#                            <img src="{{ asset('assets/images/maxplus1.png') }}">#}
+{#                        </a>#}
+{#                    </div>#}
                 </div>
             </div>
             <div class="product-content">
