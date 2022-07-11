@@ -317,7 +317,7 @@ nav .item-management3:hover ul {
 
 .product_container{
     width: 90%;
-    height: 89vh;
+    height: 88vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 auto;
@@ -344,29 +344,30 @@ nav .item-management3:hover ul {
 }
 .product_title{
     font-size: 33px;
-    color: #000000;
+    color: deepskyblue;
+    background-color: aliceblue;
 }
 .rating_icons{
     color: orange;
 }
 .product_price{
+    margin: 10px 0px;
     font-weight: 600;
+    font-size: 20px;
 }
 .show_func_btn{
 
 }
 .product_btn_add{
     padding: 15px 30px;
-    background-color: transparent;
+    background-color: #000000;
+    color: #FFFFFF;
     font-size: 20px;
     font-weight: bold;
-    border: 2px solid #000000;
     transition: 0.6s;
 }
 .product_btn_add:hover{
     cursor: pointer;
-    background-color: #000000;
-    color: #FFFFFF;
 }
 .product_content{
     border-style: solid;
@@ -396,4 +397,28 @@ nav .item-management3:hover ul {
 }
 .product_form_proceed{
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.old_price{
+    text-decoration: line-through;
+    color: orangered;
+}
+.new_price{
+    color: darkorange;
+}
+.price_amount{
+    font-size: 22px;
+}
+.product_description{
+    color: deepskyblue;
+    font-size: 26px;
+    margin-bottom: 7px;
+}
+.product_description_txt{
+    font-size: 16px;
+}
+.product_goal{
+    font-weight: bold;
+    color: orange;
 }
