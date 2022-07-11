@@ -316,10 +316,10 @@ nav .item-management3:hover ul {
 /*}*/
 
 .product_container{
-    width: 90%;
+    background-color: #F8F8F8;
     height: 88vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55% 45%;
     margin: 0 auto;
     align-items: center;
 }
@@ -337,15 +337,21 @@ nav .item-management3:hover ul {
     text-align: center;
 }
 .img_detail{
-    width: 80%;
+    width: 85%;
 }
 .img_child{
     width: 80%;
 }
 .product_title{
-    font-size: 33px;
-    color: deepskyblue;
-    background-color: aliceblue;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.35;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+.product_label{
+    text-transform: uppercase;
+    color: #e01019;
 }
 .rating_icons{
     color: orange;
@@ -374,6 +380,7 @@ nav .item-management3:hover ul {
     border-width: 1px;
     border-color: #CFCFCF;
     padding: 15px;
+    margin-right: 60px;
 }
 .product_quantity{
     line-height: 30px;
@@ -401,17 +408,17 @@ nav .item-management3:hover ul {
     align-items: center;
 }
 .old_price{
-    text-decoration: line-through;
+    text-decoration: underline;
     color: orangered;
 }
 .new_price{
-    color: darkorange;
+    color: #e01019;
 }
 .price_amount{
     font-size: 22px;
 }
 .product_description{
-    color: deepskyblue;
+    color: #000000;
     font-size: 26px;
     margin-bottom: 7px;
 }
