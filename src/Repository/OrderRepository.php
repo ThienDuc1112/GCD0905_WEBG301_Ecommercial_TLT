@@ -47,9 +47,19 @@ class OrderRepository extends ServiceEntityRepository
             ->select('o.id, d.quantity, p.Name, p.Picture, p.Price')
             ->leftJoin('App\Entity\OrderDetail','d', 'WITH', 'o.id = d.orderRef')
             ->leftJoin('App\Entity\Product','p', 'WITH', 'd.product = p.id')
-            ->where('o.id = :ide')
-            ->setParameter('ide', $id);
+            ->where('o.id = :id')
+            ->setParameter('id', $id);
 
+        $query = $db->getQuery();
+        return $query->execute();
+    }
+
+    public function findCustomer($id):array{
+        $db = $this->createQueryBuilder('o')
+            ->select('o.id,u.name,u.location,u.email,u.phone,u.last_name')
+            ->leftJoin('App\Entity\User','u', 'WITH', 'u.id = o.user')
+            ->where('o.id = :id')
+            ->setParameter('id', $id);
         $query = $db->getQuery();
         return $query->execute();
     }
