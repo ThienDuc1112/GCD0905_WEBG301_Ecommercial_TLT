@@ -32,6 +32,7 @@ class CartSessionStorage{
     }
 
     public function setCart(Order $cart):void{
+
         $this->getSession()->set(self::CART_KEY,$cart->getId());
     }
 

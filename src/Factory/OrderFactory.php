@@ -14,18 +14,7 @@ use Symfony\Component\Form\Form;
  * class OrderFactory
  */
 class OrderFactory{
-    public function create():Order{
-        $order = new Order();
-        $user = $this->getUser();
-        $order->setUser($user);
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $order ->setStatus(Order::STATUS_CART)
 
-            ->setCreatedAt(new DateTime())
-            ->setUpdatedAt(new DateTime());
-
-        return $order;
-    }
     public function createOrderDetail(Product $product):OrderDetail
     {
         $item = new OrderDetail();
@@ -35,6 +24,17 @@ class OrderFactory{
         return $item;
     }
 
-
+//    public function create():Order{
+//        $order = new Order();
+//        $user = $this->getUser();
+//        $order->setUser($user);
+//        date_default_timezone_set('Asia/Ho_Chi_Minh');
+//        $order ->setStatus(Order::STATUS_CART)
+//
+//            ->setCreatedAt(new DateTime())
+//            ->setUpdatedAt(new DateTime());
+//
+//        return $order;
+//    }
 
 }

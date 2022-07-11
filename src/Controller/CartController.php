@@ -57,15 +57,16 @@ class CartController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $item = $form->getData();
-            $item->setProduct($product);
+            $item = $form->getData();//take quantity
+            $item->setProduct($product);//take id product
 
-            $cart = $cartManager->getCurrentCart();
+            $cart = $cartManager->getCurrentCart();//check if order existed or not, if not create an order, else take id
+            //of current order
             $cart
-                ->addItem($item)
+                ->addItem($item)//if product existed, add more quantity, else add id of order into detailorder
                 ->setUpdatedAt(new DateTime());
 
-            $cartManager->save($cart);
+            $cartManager->save($cart);//insert into database
 
             return $this->redirectToRoute('app_product_show', ['id' => $product->getId()]);
         }

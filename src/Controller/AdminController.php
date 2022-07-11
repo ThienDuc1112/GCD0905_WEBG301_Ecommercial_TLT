@@ -237,13 +237,7 @@ class AdminController extends AbstractController
      */
     public function OrderDetail(Request $request,OrderRepository $orderRepository, Order $order, OrderDetail $orderDetail): Response
     {
-//        $form = $this->createForm(InformationOrderType::class, $order);
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $orderRepository->add($order, true);
-//
-//            return $this->redirectToRoute('admin_orderdetails', [], Response::HTTP_SEE_OTHER);
-//        }
+
         $id = $order->getId();
         $product=$orderRepository->findDetail($id);
         return $this->render('admin/order_details.html.twig', [

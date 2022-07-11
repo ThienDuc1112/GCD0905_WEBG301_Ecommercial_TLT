@@ -44,7 +44,7 @@ class OrderRepository extends ServiceEntityRepository
     public function findDetail($id):array
     {
         $db = $this->createQueryBuilder('o')
-            ->select('d.id, d.quantity, p.Name, p.Picture, p.Price')
+            ->select('o.id, d.quantity, p.Name, p.Picture, p.Price')
             ->leftJoin('App\Entity\OrderDetail','d', 'WITH', 'o.id = d.orderRef')
             ->leftJoin('App\Entity\Product','p', 'WITH', 'd.product = p.id')
             ->where('o.id = :ide')
