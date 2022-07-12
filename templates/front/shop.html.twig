@@ -26,14 +26,14 @@
                     <div>
                     Category:
                     <select name="cat">
-                        <option value="Sneaker" {{ (selectedCat=="Sneaker") ? 'selected' }}> Sneaker</option>
-                        <option value="Oxford" {{ (selectedCat=="Oxford") ? 'selected' }}> Oxford</option>
+                        <option value="Shoes" {{ (selectedCat=="Sneaker") ? 'selected' }}> Shoes</option>
+                        <option value="Slides" {{ (selectedCat=="Oxford") ? 'selected' }}> Slides</option>
                         <option value="" {{ (selectedCat=="All") ? 'selected' }} >
                             All
                         </option>
                     </select>
                     </div>
-                    <div>
+                    <div class="label_checkbox">
                         <label class="brand"> Nike
                         <input type="checkbox" name="brand[]" value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}>
                         </label>
