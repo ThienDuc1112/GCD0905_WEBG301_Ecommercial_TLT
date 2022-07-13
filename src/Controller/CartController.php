@@ -55,13 +55,13 @@ class CartController extends AbstractController
         $form = $this->createForm(AddToCartType::class);
 
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $item = $form->getData();//take quantity
             $item->setProduct($product);//take id product
 
             $cart = $cartManager->getCurrentCart();//check if order existed or not, if not create an order, else take id
             //of current order
+            $this->denyAccessUnlessGranted('ROLE_USER');
             $cart
                 ->addItem($item)//if product existed, add more quantity, else add id of order into detailorder
                 ->setUpdatedAt(new DateTime());
@@ -70,6 +70,7 @@ class CartController extends AbstractController
 
             return $this->redirectToRoute('app_product_show', ['id' => $product->getId()]);
         }
+
 
         return $this->render('product/show.html.twig', [
             'product' => $product,

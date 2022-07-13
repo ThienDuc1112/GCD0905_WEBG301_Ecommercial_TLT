@@ -74,6 +74,7 @@
             <th>Product Price</th>
             <th>Quantity</th>
             <th>Total</th>
+            <th> Link</th>
         </tr>
         </thead>
         <tbody>
@@ -85,6 +86,7 @@
                 <td>{{detail.Price }}</td>
                 <td>{{detail.quantity }}</td>
                 <td>{{detail.quantity * detail.Price }}</td>
+                <td><a href="{{ path('app_product_show',{'id': detail.idproduct}) }}">Link</a> </td>
 
             </tr>
             {% endfor %}

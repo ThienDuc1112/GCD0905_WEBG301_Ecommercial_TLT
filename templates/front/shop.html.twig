@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block customstylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/styl.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shop.css') }}">
 {% endblock %}
 
 {% block title %}Product shop{% endblock %}
 {% block main %}
     <div class="shop_container">
         <div class="shop_control_section">
-            <div class="shop_sort_section">
+            <div class="sort-dropdown">
                 <button class="sort-button">Sort</button>
                 <div class="dropdown-list">
                     <a href="{{ path(app.request.attributes.get('_route'),
@@ -26,22 +26,19 @@
                     <div>
                     Category:
                     <select name="cat">
-                        <option value="Shoes" {{ (selectedCat=="Sneaker") ? 'selected' }}> Shoes</option>
-                        <option value="Slides" {{ (selectedCat=="Oxford") ? 'selected' }}> Slides</option>
-                        <option value="" {{ (selectedCat=="All") ? 'selected' }} >
-                            All
-                        </option>
+                        <option value="Sneaker" {{ (selectedCat=="Sneaker") ? 'selected' }}> Sneaker</option>
+                        <option value="Oxford" {{ (selectedCat=="Oxford") ? 'selected' }}> Oxford</option>
                     </select>
                     </div>
                     <div class="label_checkbox">
-                        <label class="brand"> Nike
                         <input type="checkbox" name="brand[]" value="Nike" {{ (selectedBrand=="Nike") ? 'selected' }}>
+                        <label class="brand"> Nike
                         </label>
-                        <label class="brand"> Adidas
                             <input type="checkbox" name="brand[]" value="Adidas" {{ (selectedBrand=="Adidas") ? 'selected' }}">
+                        <label class="brand"> Adidas
                         </label>
-                        <label class="brand"> Yeezy
                             <input type="checkbox" name="brand[]" value="Yeezy" {{ (selectedBrand=="Yeezy") ? 'selected' }}">
+                        <label class="brand"> Yeezy
                         </label>
 {#                    Brand:#}
 {#                    <select name="brand">#}

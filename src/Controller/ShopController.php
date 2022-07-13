@@ -29,6 +29,7 @@ class ShopController extends AbstractController
         $sortBy = $request->query->get('sort');
         $orderBy = $request->query->get('order');
         $search = $request->query->get('search');
+        $sT = $request->query->get('searchT');
 
         $expressionBuilder = Criteria::expr();
         $criteria = new Criteria();
@@ -51,6 +52,9 @@ class ShopController extends AbstractController
         if (!empty($search)) {
             $criteria->andwhere($expressionBuilder->contains('Name', $search));
         }
+        if (!empty($sT)) {
+            $criteria->andwhere($expressionBuilder->contains('Description', $sT));
+        }
         $filteredList = $productRepository->matching($criteria);
         $numOfItems = $filteredList->count();   // total number of items satisfied above query
         $itemsPerPage = 4; // number of items shown each page
@@ -70,7 +74,6 @@ class ShopController extends AbstractController
      */
     public function Nike(ProductRepository $productRepository, Request $request, $pageId = 1): Response
     {
-//        $selectBrand = $request->query->get('brand');
         $selectBrand = 'Nike';
         $selectCategory = $request->query->get('cat');
         $minPrice = $request->query->get('minPrice');

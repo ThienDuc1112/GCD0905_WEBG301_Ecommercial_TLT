@@ -72,38 +72,26 @@
 
             </div>
             <div class="product_img_child">
+                {% for image in product.images %}
                 <div class="product_img_items">
                     <a href="#" data-id="1">
-                        <img src="{{ asset('assets/images/lb1.png') }}" class="img_child">
+                        <img src="{{ asset('assets/images/'~image.image) }}" class="img_child">
                     </a>
                 </div>
-                <div class="product_img_items">
-                    <a href="#" data-id="1">
-                        <img src="{{ asset('assets/images/lb2.png') }}" class="img_child">
-                    </a>
-                </div>
-                <div class="product_img_items">
-                    <a href="#" data-id="1">
-                        <img src="{{ asset('assets/images/lb3.png') }}" class="img_child">
-                    </a>
-                </div>
-                <div class="product_img_items">
-                    <a href="#" data-id="1">
-                        <img src="{{ asset('assets/images/lb1.png') }}" class="img_child">
-                    </a>
-                </div>
+
+                {% endfor %}
 
 {#                {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25'}}) }}#}
 {#                {% do form.remove.setRendered %}#}
 {#                {{ form_end(form) }}#}
 
-                {% for image in product.images %}
-                    <div class="img-item">
-                        <a href="#" data-id="1">
-                            <img src="{{ asset('assets/images/'~image.image) }}" class="img_child">
-                        </a>
-                    </div>
-                {% endfor %}
+{#                {% for image in product.images %}#}
+{#                    <div class="img-item">#}
+{#                        <a href="#" data-id="1">#}
+{#                            <img src="{{ asset('assets/images/'~image.image) }}" class="img_child">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                {% endfor %}#}
 
 
             </div>
@@ -147,13 +135,22 @@
                     <li><i class="fa-solid fa-circle-check"></i>Shipping Fee:<span class="product_goal">Depend on area.</span></li>
                 </ul>
             </div>
+{#            {% if app.user %}#}
             {{ form_start(form, {'attr': {'class': 'product_form_proceed'}}) }}
             <div class="show_func_btn">
                 {{ form_label(form.quantity) }}: {{ form_widget(form.quantity, {'attr': {'class': 'form_quantity'}}) }}
             </div>
             {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25 product_btn_add'}}) }}
             {{ form_end(form, {'attr': {'class': 'product_btn_re'}}) }}
+{#                {% else %}#}
+{#                    {{ form_start(form, {'attr': {'class': 'product_form_proceed'}}) }}#}
+{#                    <div class="show_func_btn">#}
+{#                        {{ form_label(form.quantity) }}: {{ form_widget(form.quantity, {'attr': {'class': 'form_quantity'}}) }}#}
+{#                    </div>#}
+{#                    <button><a href="{{ path('login') }}">Buy</a> </button>#}
+{#            {% endif %}#}
         </div>
+
     </div>
 
 {% endblock %}

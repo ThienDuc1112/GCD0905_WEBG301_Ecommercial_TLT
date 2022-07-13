@@ -98,10 +98,14 @@ img {
     cursor: pointer;
     margin-left: 8px;
     transition: 0.6s;
+    background: black;
 }
 
-.sort-button:hover ~.dropdown-list {
+.sort-dropdown:hover .dropdown-list {
     display: block;
+}
+.sort-button:hover .sort-button {
+    background-color: #3e8e41;
 }
 
 .sort-button:hover{
@@ -125,6 +129,16 @@ img {
     z-index: 1;
 }
 
+/*.dropdown-list::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    top: -2px;*/
+/*    height: 13px;*/
+/*    background: red;*/
+/*}*/
+
 .dropdown-list a {
     color: black;
     padding: 12px 16px;
@@ -136,6 +150,5 @@ img {
     background-color: #f1f1f1
 }
 
-.sort-dropdown:hover .dropdown-list {
-    display: block;
-}
+
+
